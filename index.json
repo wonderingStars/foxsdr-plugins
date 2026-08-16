@@ -9,21 +9,21 @@
       "version": "2.0.0",
       "author": "FoxSDR project",
       "licence": "MIT",
-      "abiVersion": 2,
+      "abiVersion": 3,
       "capabilities": [
         "CASCADE_CAP_DECODER"
       ],
       "summary": "Reference plugin: reports the RMS level of the demodulated audio.",
-      "description": "A minimal, fully working decoder plugin built from examples/example_plugin in the application source. It consumes demodulated audio and periodically emits a line of text reporting the block's RMS level. It exists to prove the plugin ABI and the catalogue install path end to end, and to serve as the template for real decoders. Version 2.0.0 is a rebuild against plugin ABI 2; the 1.0.0 binary was built against ABI 1 and the host refuses it.",
+      "description": "A minimal, fully working decoder plugin built from examples/example_plugin in the application source. It consumes demodulated audio and periodically emits a line of text reporting the block's RMS level. It exists to prove the plugin ABI and the catalogue install path end to end, and to serve as the template for real decoders. The version number tracks what the plugin does, not which ABI it was built against - the ABI is recorded separately and appears in the filename, so the same version can be published for more than one.",
       "minSupportedVersion": "2.0.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
       "platforms": [
         {
           "os": "windows",
           "arch": "x64",
-          "file": "example-decoder-2.0.0-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/example-decoder-2.0.0-win-x64.dll",
-          "sha256": "d3748ec0ba637fc19dd72ea0f9eef8de6ed292bb1b43d386f21920adc338b6bf",
+          "file": "example-decoder-2.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/example-decoder-2.0.0-abi3-win-x64.dll",
+          "sha256": "12b9e3e75ac9b04919ab715773257eee4446e926849f928884d0ed3aa8bff93d",
           "sizeBytes": 146432
         }
       ]
@@ -34,7 +34,7 @@
       "version": "1.0.0",
       "author": "FoxSDR project",
       "licence": "MIT",
-      "abiVersion": 2,
+      "abiVersion": 3,
       "capabilities": [
         "CASCADE_CAP_IQ_DECODER"
       ],
@@ -46,9 +46,9 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "adsb-decoder-1.0.0-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.0.0-win-x64.dll",
-          "sha256": "27d873784972bc1d7ce39dc65a89be2dfe16d739b6b7f94bd20f883665335383",
+          "file": "adsb-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "0120abc6153e855d98324c07108f561e873fd44dae2d64b74e93127c28c09ffb",
           "sizeBytes": 179712
         }
       ]
@@ -59,7 +59,7 @@
       "version": "1.0.0",
       "author": "FoxSDR project",
       "licence": "MIT",
-      "abiVersion": 2,
+      "abiVersion": 3,
       "capabilities": [
         "CASCADE_CAP_IQ_DECODER"
       ],
@@ -71,9 +71,9 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "ais-decoder-1.0.0-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ais-decoder-1.0.0-win-x64.dll",
-          "sha256": "daf62f39dc71f1b524eac31284180d07490e5d1361bfb18514342f128b4a8497",
+          "file": "ais-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ais-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "c33c597e726ac97bf42689b59185505459427768d59043a0d6f4837a2baa53a4",
           "sizeBytes": 178176
         }
       ]
@@ -84,7 +84,7 @@
       "version": "1.0.0",
       "author": "FoxSDR project",
       "licence": "MIT",
-      "abiVersion": 2,
+      "abiVersion": 3,
       "capabilities": [
         "CASCADE_CAP_DECODER"
       ],
@@ -96,9 +96,9 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "aprs-decoder-1.0.0-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aprs-decoder-1.0.0-win-x64.dll",
-          "sha256": "8d3520ce7897d51cc1c4d113b9e34e88cb84a3d7e8f09af6baf84a8a70c47e1a",
+          "file": "aprs-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aprs-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "e131a1fe907b78ed4e78387736949222e758bdf8b83505dc53f0bc43b520b03d",
           "sizeBytes": 178688
         }
       ]
@@ -109,7 +109,7 @@
       "version": "0.1.0",
       "author": "FoxSDR project",
       "licence": "MIT",
-      "abiVersion": 2,
+      "abiVersion": 3,
       "capabilities": [
         "CASCADE_CAP_IQ_DECODER"
       ],
@@ -122,9 +122,9 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "stdc-decoder-0.1.0-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/stdc-decoder-0.1.0-win-x64.dll",
-          "sha256": "581e0d1e356ae48eb84ddc0ac1442b2032c351adabf448effe8fba80dfd9b56b",
+          "file": "stdc-decoder-0.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/stdc-decoder-0.1.0-abi3-win-x64.dll",
+          "sha256": "c1bed2847b363f519469a01a054a3989e1d74a2d75bf87857ee8a897a2ddc03e",
           "sizeBytes": 195072
         }
       ]
@@ -135,7 +135,7 @@
       "version": "1.0.0",
       "author": "FoxSDR project",
       "licence": "MIT",
-      "abiVersion": 2,
+      "abiVersion": 3,
       "capabilities": [
         "CASCADE_CAP_DECODER"
       ],
@@ -148,9 +148,9 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "pocsag-decoder-1.0.0-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/pocsag-decoder-1.0.0-win-x64.dll",
-          "sha256": "d191ee1b151bab8ed8d21c66959ccee8041a105c23a5683e81ccc603dd04fb3c",
+          "file": "pocsag-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/pocsag-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "70f1bd0f7420c78a5a018fe8e51a2be343f8ecea4f768fdb9dccf89e1ffd132a",
           "sizeBytes": 128000
         }
       ]

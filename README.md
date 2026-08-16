@@ -9,6 +9,16 @@ the plugin binaries it names. Nothing here is required to *use* FoxSDR; the
 application ships with no plugins and contacts this repository only when you
 open the plugin browser and press Browse.
 
+> **These plugins need FoxSDR 0.14.0 or newer.** They are built against plugin
+> ABI 3, and the host requires an exact ABI match. On an older FoxSDR every
+> entry here will show as incompatible and cannot be installed — update the
+> application and they become available again. If you already have plugins
+> installed from before, updating FoxSDR disables them until you press Update
+> on each; the rebuilt versions are already published here and waiting.
+>
+> ABI 3 is intended to be the last such break. Capabilities are now additive,
+> so a future decoder type will not retire anything.
+
 ## Available plugins
 
 | Plugin | What it decodes | Needs | Notes |
