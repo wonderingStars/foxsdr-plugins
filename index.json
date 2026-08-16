@@ -48,8 +48,8 @@
           "arch": "x64",
           "file": "adsb-decoder-1.0.0-abi3-win-x64.dll",
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.0.0-abi3-win-x64.dll",
-          "sha256": "0120abc6153e855d98324c07108f561e873fd44dae2d64b74e93127c28c09ffb",
-          "sizeBytes": 179712
+          "sha256": "7a258f65bf69481ba03880facc31fbabd45b0d3f880ec4c0b585b9ae41d86220",
+          "sizeBytes": 191488
         }
       ]
     },
