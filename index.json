@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 1,
+  "generated": "2026-08-15T22:30:00Z",
+  "note": "Plugin catalogue for FoxSDR. The application fetches ONLY this file until you explicitly install something. Every download is verified against the sha256 recorded here before it is placed in the plugins directory.",
+  "plugins": [
+    {
+      "id": "example-decoder",
+      "name": "Example RMS Reporter",
+      "version": "2.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 2,
+      "capabilities": [
+        "CASCADE_CAP_DECODER"
+      ],
+      "summary": "Reference plugin: reports the RMS level of the demodulated audio.",
+      "description": "A minimal, fully working decoder plugin built from examples/example_plugin in the application source. It consumes demodulated audio and periodically emits a line of text reporting the block's RMS level. It exists to prove the plugin ABI and the catalogue install path end to end, and to serve as the template for real decoders. Version 2.0.0 is a rebuild against plugin ABI 2; the 1.0.0 binary was built against ABI 1 and the host refuses it.",
+      "minSupportedVersion": "2.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "example-decoder-2.0.0-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/example-decoder-2.0.0-win-x64.dll",
+          "sha256": "d3748ec0ba637fc19dd72ea0f9eef8de6ed292bb1b43d386f21920adc338b6bf",
+          "sizeBytes": 146432
+        }
+      ]
+    },
+    {
+      "id": "adsb-decoder",
+      "name": "ADS-B Aircraft Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 2,
+      "capabilities": [
+        "CASCADE_CAP_IQ_DECODER"
+      ],
+      "summary": "Decodes ADS-B aircraft position, callsign and velocity at 1090 MHz.",
+      "description": "Decodes Mode S / ADS-B transmissions from aircraft at 1090 MHz and reports callsign, position, altitude, ground speed, track and vertical rate. Every frame is validated against the 24-bit Mode S CRC, so corrupted receptions are discarded rather than shown as phantom aircraft. Positions are recovered from even/odd CPR frame pairs.\n\nThis decoder works on raw I/Q rather than demodulated audio, so it needs a receiver capable of 1090 MHz at 2 MS/s or more; 2.4 MS/s or higher is recommended, because at exactly 2 MS/s one sub-sample timing alignment in eight is unrecoverable in principle. A 1090 MHz antenna makes far more difference than any setting.\n\nAirborne position, callsign and velocity messages are decoded. Surface position and the less common message types are not yet parsed. Written clean-room from the published Mode S specification.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "adsb-decoder-1.0.0-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.0.0-win-x64.dll",
+          "sha256": "27d873784972bc1d7ce39dc65a89be2dfe16d739b6b7f94bd20f883665335383",
+          "sizeBytes": 179712
+        }
+      ]
+    },
+    {
+      "id": "ais-decoder",
+      "name": "AIS Ship Tracking Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 2,
+      "capabilities": [
+        "CASCADE_CAP_IQ_DECODER"
+      ],
+      "summary": "Decodes AIS ship positions and voyage data on the marine band.",
+      "description": "Decodes AIS - the Automatic Identification System that ships broadcast for collision avoidance - and reports vessel identity, position, speed, course and heading, together with ship name, callsign, type, destination and draught where the vessel sends them. Output includes a standard !AIVDM sentence for every frame that passes the checksum, so it can be fed to charting software.\n\nBoth AIS channels (161.975 and 162.025 MHz) are decoded at the same time from a single receiver: tune to 162.000 MHz and both are covered. This decoder works on raw I/Q rather than demodulated audio and needs 192 kS/s.\n\nClass A and Class B position reports and static voyage data are parsed into fields; other message types are still reported with their type and sender. Written clean-room from the published ITU-R M.1371 specification.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "ais-decoder-1.0.0-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ais-decoder-1.0.0-win-x64.dll",
+          "sha256": "daf62f39dc71f1b524eac31284180d07490e5d1361bfb18514342f128b4a8497",
+          "sizeBytes": 178176
+        }
+      ]
+    },
+    {
+      "id": "aprs-decoder",
+      "name": "APRS / AX.25 Packet Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 2,
+      "capabilities": [
+        "CASCADE_CAP_DECODER"
+      ],
+      "summary": "Decodes APRS and AX.25 packet radio from 144.800 MHz NFM audio.",
+      "description": "Decodes Bell 202 AFSK packet radio - the 1200 bps mode used by APRS worldwide - from demodulated narrowband FM audio, and emits one line of text per frame. Frames are validated against the AX.25 frame check sequence, so corrupted packets are discarded rather than shown as garbled text. Position reports are parsed into latitude and longitude, in both the uncompressed and base-91 compressed forms, along with timestamps, status reports and addressed messages. Any frame type it does not parse is still shown verbatim rather than dropped. Mic-E encoding is not yet parsed into fields. Written clean-room from the AX.25 v2.2 and APRS 1.0.1 specifications.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "aprs-decoder-1.0.0-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aprs-decoder-1.0.0-win-x64.dll",
+          "sha256": "8d3520ce7897d51cc1c4d113b9e34e88cb84a3d7e8f09af6baf84a8a70c47e1a",
+          "sizeBytes": 178688
+        }
+      ]
+    },
+    {
+      "id": "stdc-decoder",
+      "name": "Inmarsat-C / EGC Decoder (EXPERIMENTAL)",
+      "version": "0.1.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 2,
+      "capabilities": [
+        "CASCADE_CAP_IQ_DECODER"
+      ],
+      "summary": "EXPERIMENTAL - unverified against real signals. Inmarsat-C EGC / SafetyNET maritime broadcasts.",
+      "description": "READ THIS FIRST. This decoder is EXPERIMENTAL and has never successfully decoded a real satellite transmission. It is published at version 0.1.0 to make that status explicit.\n\nRoughly ten constants of the Inmarsat-C air interface could not be confirmed against any published source and were reconstructed from first principles: the frame synchronisation word, the scrambler, the interleaver geometry, the packet header layout and the message header format among them. The plugin passes an extensive self-test, but that test uses a transmitter built from the same reconstructed constants, so the two agree with each other and would agree even if the constants are wrong. **If any of them is wrong, this plugin will decode nothing off air, and that is the most likely outcome.**\n\nIt is published so that anyone who can receive the band can help correct it. If you have a working Inmarsat-C setup, a raw I/Q capture of an NCS channel is what this needs.\n\nWhat is sound is the layer beneath: the demodulator measures within 1-2 dB of theory, acquires the carrier over a plus or minus 200 Hz offset, and tracks a 50 ppm clock error. Tune to the NCS channel centre; it does not search the band. Needs raw I/Q, 24 kS/s preferred. Written clean-room from the published air-interface description.",
+      "legalNotice": "Inmarsat-C carries SafetyNET maritime safety broadcasts, which are intended for general reception, but the same system also carries private ship-to-shore and shore-to-ship correspondence. In the United Kingdom it is an offence under section 48 of the Wireless Telegraphy Act 2006 to intercept a message you are not authorised to receive, or to disclose its contents, and comparable restrictions apply elsewhere. You are responsible for ensuring your use of this plugin is lawful where you are.\n\nSeparately, and just as importantly: this plugin is EXPERIMENTAL. Its decoding of the Inmarsat-C air interface rests on constants that have never been checked against a real transmission, and it will most likely decode nothing at all. Do not rely on it for any purpose, and in particular do not rely on it to receive safety or distress information.",
+      "minSupportedVersion": "0.1.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "stdc-decoder-0.1.0-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/stdc-decoder-0.1.0-win-x64.dll",
+          "sha256": "581e0d1e356ae48eb84ddc0ac1442b2032c351adabf448effe8fba80dfd9b56b",
+          "sizeBytes": 195072
+        }
+      ]
+    },
+    {
+      "id": "pocsag-decoder",
+      "name": "POCSAG Pager Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 2,
+      "capabilities": [
+        "CASCADE_CAP_DECODER"
+      ],
+      "summary": "Decodes POCSAG (CCIR Radiopaging Code No. 1) pager messages from NFM audio.",
+      "description": "Decodes POCSAG paging transmissions from demodulated narrowband FM audio and emits one line of text per page. All three standard bit rates (512, 1200 and 2400 bps) are detected automatically, as is inverted polarity, so no manual configuration is needed. Both numeric and alphanumeric pages are supported. The BCH(31,21) error-correcting code is implemented in full: single-bit errors in a codeword are corrected, and codewords with more damage are discarded rather than reported as text. Written clean-room from the published specification.",
+      "legalNotice": "This plugin decodes third-party radio paging messages. In the United Kingdom it is an offence under section 48 of the Wireless Telegraphy Act 2006 to intercept a message you are not authorised to receive, or to disclose its contents. Comparable restrictions apply in many other jurisdictions, and some permit reception but prohibit disclosure or use. Paging traffic frequently carries personal data, including medical information.\n\nThis plugin is distributed separately from the application, and is not included in it, so that installing it is your informed decision. You are responsible for ensuring that your use of it is lawful where you are.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "pocsag-decoder-1.0.0-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/pocsag-decoder-1.0.0-win-x64.dll",
+          "sha256": "d191ee1b151bab8ed8d21c66959ccee8041a105c23a5683e81ccc603dd04fb3c",
+          "sizeBytes": 128000
+        }
+      ]
+    }
+  ]
+}
