@@ -73,8 +73,8 @@
           "arch": "x64",
           "file": "ais-decoder-1.0.0-abi3-win-x64.dll",
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ais-decoder-1.0.0-abi3-win-x64.dll",
-          "sha256": "c33c597e726ac97bf42689b59185505459427768d59043a0d6f4837a2baa53a4",
-          "sizeBytes": 178176
+          "sha256": "cd7de1f76a387a722226ce884287401c689542f82b01e8a2118d79a5a817f844",
+          "sizeBytes": 190976
         }
       ]
     },
