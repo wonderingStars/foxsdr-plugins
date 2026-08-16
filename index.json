@@ -98,8 +98,8 @@
           "arch": "x64",
           "file": "aprs-decoder-1.0.0-abi3-win-x64.dll",
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aprs-decoder-1.0.0-abi3-win-x64.dll",
-          "sha256": "e131a1fe907b78ed4e78387736949222e758bdf8b83505dc53f0bc43b520b03d",
-          "sizeBytes": 178688
+          "sha256": "ec25262de70e5aaab19295c506202ac85ffc534ad0808f84bbcbbfa31cb23b0d",
+          "sizeBytes": 189952
         }
       ]
     },
