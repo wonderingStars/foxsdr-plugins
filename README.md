@@ -13,7 +13,7 @@ open the plugin browser and press Browse.
 
 | Plugin | What it decodes | Needs | Notes |
 |---|---|---|---|
-| **ADS-B** 1.0.0 | Aircraft position, callsign, altitude, velocity at 1090 MHz | Raw I/Q, ≥2 MS/s (2.4 recommended) | Airborne messages; surface position not yet parsed |
+| **ADS-B** 1.0.0 | Aircraft position, callsign, altitude, velocity at 1090 MHz | Raw I/Q, ≥2 MS/s (2.4 recommended) | ✅ **Verified against real aircraft.** Airborne messages; surface position not yet parsed |
 | **AIS** 1.0.0 | Ship identity, position, course, voyage data | Raw I/Q, 192 kS/s | Decodes both marine channels at once; emits `!AIVDM` |
 | **APRS / AX.25** 1.0.0 | Amateur packet radio, 144.800 MHz | NFM audio | Mic-E not yet parsed into fields |
 | **POCSAG** 1.0.0 | Pager messages, all three bit rates | NFM audio | **Legal notice must be accepted before install** |
@@ -26,7 +26,15 @@ any of them.
 
 ## Please read: how far these have been tested
 
-**None of these decoders has yet been confirmed against a real off-air
+**ADS-B is confirmed working against real aircraft.** A six-second capture at
+1090 MHz on a USRP B200 decoded 10 distinct aircraft: 23 positions, 27
+velocity reports and 3 callsigns. Two easyJet flights (`EZY595R`, `EZY151Z`)
+came back on ICAO addresses in the UK block, and a Ryanair flight (`RYR26QM`)
+on an address in the Irish block — and since the address and the callsign
+travel in different message types decoded by different code, that agreement is
+real evidence rather than a coincidence.
+
+**The other decoders have not yet been confirmed against a real off-air
 signal.** Each is validated against a test transmitter written from the same
 reading of the specification. That demonstrates the two halves agree with each
 other; it does not prove either is right about the standard.
