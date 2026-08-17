@@ -4,6 +4,106 @@
   "note": "Plugin catalogue for FoxSDR. The application fetches ONLY this file until you explicitly install something. Every download is verified against the sha256 recorded here before it is placed in the plugins directory.",
   "plugins": [
     {
+      "id": "sstv-decoder",
+      "name": "SSTV Image Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IMAGE_DECODER"
+      ],
+      "summary": "Receives slow-scan television pictures on HF and 2 m.",
+      "description": "Decodes slow-scan television - amateur pictures sent as audio over SSB - and builds the image on screen line by line as it arrives. The mode is identified automatically from the transmission's own VIS header, so there is nothing to select: Martin M1 and M2, and Scottie S1, S2 and DX are all recognised.\n\nTune to 14.230 MHz USB, the main international calling frequency, or use one of the plugin's own presets for the other bands. A picture takes between one and two minutes to arrive, and you will see it building rather than waiting for the end.\n\nThe receiver's clock is never quite the sender's, and that shows as a slanted picture in many decoders. This one measures the difference from the transmission's sync pulses and corrects it, reporting the offset it found in parts per million.\n\nRobot 36 is deliberately not supported: it uses a different colour system, and the published descriptions of it disagree on two constants. Guessing would produce a picture that looked plausible and was wrong. Written clean-room from published mode specifications, cross-checked against independently published line-rate figures.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "sstv-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/sstv-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "aa9e4b3b4ab476f5b65957960064a1b3f0240ffab518b641d33391d527f80207",
+          "sizeBytes": 182784
+        }
+      ]
+    },
+    {
+      "id": "cw-decoder",
+      "name": "Morse (CW) Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_DECODER"
+      ],
+      "summary": "Reads Morse code and reports the sender's speed.",
+      "description": "Turns received Morse into text. Nothing has to be told to it: the decoder finds the tone, works out the speed from the signal itself, and follows an operator who speeds up or slows down mid-transmission. Anything from about 5 to 40 words per minute is read, and the speed it has settled on is reported alongside the text - which is the one number that explains a poor decode.\n\nFarnsworth sending, where the characters are sent fast but the gaps between them are stretched, is handled properly. Decoders that assume even spacing turn it into correctly-spelled words broken into single letters.\n\nPut the receiver in CW mode with a narrow filter; the plugin's presets set that up on the CW calling frequencies of each band. An empty band produces an empty screen rather than invented letters, which matters more than it sounds: text on screen from a dead frequency is far harder to disbelieve than nothing at all.\n\nThe code table is transcribed from ITU-R Recommendation M.1677-1 and cross-checked against an independent published table.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "cw-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/cw-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "2dffa60dc899731e5af2e8c8b012ad081d9f440c5de0b6dfed48d2699f852f1d",
+          "sizeBytes": 162816
+        }
+      ]
+    },
+    {
+      "id": "rtty-decoder",
+      "name": "RTTY Teleprinter Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_DECODER"
+      ],
+      "summary": "Decodes 45.45 baud amateur radioteletype on HF.",
+      "description": "Decodes RTTY - the radioteletype mode amateurs have used since mechanical teleprinters - at the amateur standard of 45.45 baud with a 170 Hz shift, and prints the text.\n\nWhich way round the two tones are sent is not standardised, and receiving through the wrong sideband inverts them again: four combinations, three of which produce fluent nonsense. Rather than ask you to choose, the decoder tries both and settles on whichever one is framing correctly, so a transmission decodes whether it is sent normal or reverse shift.\n\nTune on LSB, which is the amateur convention; the presets do that on the RTTY segment of each band. Both the international and the US variants of the character set are supported - they differ in eight letters, and two symbols are swapped between them, which is enough to make output look almost right.\n\nUnshift-on-space can be turned off for contest working, where the numeric exchanges that follow a space are exactly what it would corrupt. The character set is transcribed from ITU-T Recommendation S.1 and cross-checked against an independent published table.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "rtty-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/rtty-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "76030f0c7b52284aa81a79e0ddae96ef750000f0abbca1302a442a8ede3ae84f",
+          "sizeBytes": 160256
+        }
+      ]
+    },
+    {
+      "id": "openmaptiles-basemap",
+      "name": "Map Imagery (your own tile server)",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_BASEMAP"
+      ],
+      "summary": "Draws street-level map tiles under the map, from a server you run.",
+      "description": "Replaces the built-in coastline with real street-level map imagery, so aircraft, ships and stations are plotted over roads and place names instead of an outline. The map switches to the projection the tiles are drawn in while this is active, and back again when it is removed.\n\nIT SHIPS WITH NO SERVER CONFIGURED, and that is deliberate. Map imagery is almost always derived from OpenStreetMap and carries licence conditions, and the public tile servers exclude commercial use - so the plugin points at a tile server YOU choose and run, which keeps that decision, and the obligation that comes with it, with you. The OpenMapTiles stack is what it was written for, but any server that publishes ordinary map tiles will do.\n\nPut a one-line openmaptiles.conf next to the plugin giving your server's address. Until you do, it reports what it needs and draws nothing. Whatever attribution your data requires is displayed under the map whenever the tiles are on screen - the application will not draw a basemap it cannot credit.\n\nTiles are cached on disk, so an area you have looked at works again without a network, and nothing is fetched twice.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "openmaptiles-basemap-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.0.0-abi3-win-x64.dll",
+          "sha256": "d7d6ff6fa4e401f530541147648788333a6df1848f480cdb1c87e2425e3b7630",
+          "sizeBytes": 292352
+        }
+      ]
+    },
+    {
       "id": "example-decoder",
       "name": "Example RMS Reporter",
       "version": "2.0.0",
