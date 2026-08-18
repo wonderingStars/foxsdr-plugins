@@ -154,6 +154,32 @@
       ]
     },
     {
+      "id": "aircraft-info",
+      "name": "Aircraft Info (registry lookup)",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_TRACK_INFO"
+      ],
+      "summary": "Looks up who each aircraft on the map is - registration, type, operator - via api.adsbdb.com.",
+      "description": "ADS-B gives each aircraft's 24-bit address and sometimes a callsign; who the aircraft IS lives in registry databases. With this plugin installed, the map tooltip and the flight list show the registration, airframe type, operator and country of registry for every aircraft the ADS-B decoder is tracking, looked up from api.adsbdb.com - a free aggregator of public registry data.\n\nIt is polite to that free service by design: one request at a time, spaced over a second apart, and every answer is cached on this machine (%LOCALAPPDATA%\\foxsdr\\aircraft), so each airframe is looked up once ever, not once per session. Once an airframe is cached, it is identified offline.\n\nRequires FoxSDR 0.45.0 or later and an internet connection for airframes not yet cached.",
+      "legalNotice": "This plugin sends the ICAO address of every aircraft your receiver hears to api.adsbdb.com, a third-party service, to look up its registry details. The set of aircraft you can hear is a coarse indication of where your receiver is located. The application itself never makes this request; installing this plugin is what enables it. Do not install it if you do not want those lookups to leave your machine.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "aircraft-info-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aircraft-info-1.0.0-abi3-win-x64.dll",
+          "sha256": "3e54288995ab75f63abcc03c3654501b102b8de6fa8e98eb276612f7ecb95c24",
+          "sizeBytes": 222720
+        }
+      ]
+    },
+    {
       "id": "ais-decoder",
       "name": "AIS Ship Tracking Decoder",
       "version": "1.0.0",
