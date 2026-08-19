@@ -124,6 +124,14 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.0.0-abi3-win-x64.dll",
           "sha256": "d7d6ff6fa4e401f530541147648788333a6df1848f480cdb1c87e2425e3b7630",
           "sizeBytes": 292352
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "openmaptiles-basemap-1.0.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.0.0-abi3-linux-x64.so",
+          "sha256": "10d1787cc7b3c8544d96245a15024e46cc4ecffe1424c900a5077ef2ca4f4216",
+          "sizeBytes": 901208
         }
       ]
     },
@@ -208,6 +216,14 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aircraft-info-1.0.0-abi3-win-x64.dll",
           "sha256": "3e54288995ab75f63abcc03c3654501b102b8de6fa8e98eb276612f7ecb95c24",
           "sizeBytes": 222720
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "aircraft-info-1.0.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aircraft-info-1.0.0-abi3-linux-x64.so",
+          "sha256": "b63e7e554d78f4e5008d2d1707291a425476f8f70c1291e667d1991b769f6b77",
+          "sizeBytes": 797824
         }
       ]
     },
