@@ -25,6 +25,14 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/sstv-decoder-1.0.0-abi3-win-x64.dll",
           "sha256": "aa9e4b3b4ab476f5b65957960064a1b3f0240ffab518b641d33391d527f80207",
           "sizeBytes": 182784
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "sstv-decoder-1.0.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/sstv-decoder-1.0.0-abi3-linux-x64.so",
+          "sha256": "1f767a21eec224fe963cb3a1e6fddb4b810d11d526e9bc3bec74b37f462715ba",
+          "sizeBytes": 25976
         }
       ]
     },
@@ -50,6 +58,14 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/cw-decoder-1.0.0-abi3-win-x64.dll",
           "sha256": "2dffa60dc899731e5af2e8c8b012ad081d9f440c5de0b6dfed48d2699f852f1d",
           "sizeBytes": 162816
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "cw-decoder-1.0.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/cw-decoder-1.0.0-abi3-linux-x64.so",
+          "sha256": "9421769f7f1ccbec82fe79d27925bd13e1b58f3cf4bc42eefaa99b98de073d6f",
+          "sizeBytes": 29792
         }
       ]
     },
@@ -75,6 +91,14 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/rtty-decoder-1.0.0-abi3-win-x64.dll",
           "sha256": "76030f0c7b52284aa81a79e0ddae96ef750000f0abbca1302a442a8ede3ae84f",
           "sizeBytes": 160256
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "rtty-decoder-1.0.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/rtty-decoder-1.0.0-abi3-linux-x64.so",
+          "sha256": "c871fd0eaa8fe61ef77efac9799787b1a1e7e1cc078c84670a8d8e41c8fed4ef",
+          "sizeBytes": 21624
         }
       ]
     },
@@ -150,6 +174,14 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.0.0-abi3-win-x64.dll",
           "sha256": "7a258f65bf69481ba03880facc31fbabd45b0d3f880ec4c0b585b9ae41d86220",
           "sizeBytes": 191488
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "adsb-decoder-1.0.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.0.0-abi3-linux-x64.so",
+          "sha256": "8bc851e387ecde206fb0115e73f62f8ac7d5eba07c3377c213ccdf6c3de214a1",
+          "sizeBytes": 39872
         }
       ]
     },
@@ -201,6 +233,14 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ais-decoder-1.0.0-abi3-win-x64.dll",
           "sha256": "cd7de1f76a387a722226ce884287401c689542f82b01e8a2118d79a5a817f844",
           "sizeBytes": 190976
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "ais-decoder-1.0.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ais-decoder-1.0.0-abi3-linux-x64.so",
+          "sha256": "c9e98f72fc4072245b3f6e71658c7f881e1b6abee6a423fb331410a290103e12",
+          "sizeBytes": 43304
         }
       ]
     },
@@ -226,6 +266,14 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aprs-decoder-1.0.0-abi3-win-x64.dll",
           "sha256": "ec25262de70e5aaab19295c506202ac85ffc534ad0808f84bbcbbfa31cb23b0d",
           "sizeBytes": 189952
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "aprs-decoder-1.0.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aprs-decoder-1.0.0-abi3-linux-x64.so",
+          "sha256": "cd3f787dc02ab1f46a25da156f1a0c192b92bed205c6fd86306d022128439276",
+          "sizeBytes": 30712
         }
       ]
     },
@@ -252,6 +300,14 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/stdc-decoder-0.1.0-abi3-win-x64.dll",
           "sha256": "c1bed2847b363f519469a01a054a3989e1d74a2d75bf87857ee8a897a2ddc03e",
           "sizeBytes": 195072
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "stdc-decoder-0.1.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/stdc-decoder-0.1.0-abi3-linux-x64.so",
+          "sha256": "b1cc4522d48e318b88dc7ff7b9538bcd1b6407791fe3dcdb642c63097e76951f",
+          "sizeBytes": 42920
         }
       ]
     },
@@ -278,6 +334,14 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/pocsag-decoder-1.0.0-abi3-win-x64.dll",
           "sha256": "70f1bd0f7420c78a5a018fe8e51a2be343f8ecea4f768fdb9dccf89e1ffd132a",
           "sizeBytes": 128000
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "pocsag-decoder-1.0.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/pocsag-decoder-1.0.0-abi3-linux-x64.so",
+          "sha256": "6e6cc5f9693106376923edbe6ed8c150858f9be7aa7a17b72972a7556feadd0b",
+          "sizeBytes": 25128
         }
       ]
     }
