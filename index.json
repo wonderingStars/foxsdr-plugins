@@ -222,8 +222,8 @@
           "arch": "x64",
           "file": "aircraft-info-1.0.0-abi3-linux-x64.so",
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aircraft-info-1.0.0-abi3-linux-x64.so",
-          "sha256": "b63e7e554d78f4e5008d2d1707291a425476f8f70c1291e667d1991b769f6b77",
-          "sizeBytes": 797824
+          "sha256": "76e3d113440ca4d912f7e1bf2d73f3d01720ff2f07df39f1dca44a606123ff0e",
+          "sizeBytes": 797936
         }
       ]
     },
