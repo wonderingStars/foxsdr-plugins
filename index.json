@@ -104,33 +104,33 @@
     },
     {
       "id": "openmaptiles-basemap",
-      "name": "Map Imagery (your own tile server)",
-      "version": "1.0.0",
+      "name": "Map Imagery (OpenStreetMap)",
+      "version": "1.1.0",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
       "capabilities": [
         "CASCADE_CAP_BASEMAP"
       ],
-      "summary": "Draws street-level map tiles under the map, from a server you run.",
-      "description": "Replaces the built-in coastline with real street-level map imagery, so aircraft, ships and stations are plotted over roads and place names instead of an outline. The map switches to the projection the tiles are drawn in while this is active, and back again when it is removed.\n\nIT SHIPS WITH NO SERVER CONFIGURED, and that is deliberate. Map imagery is almost always derived from OpenStreetMap and carries licence conditions, and the public tile servers exclude commercial use - so the plugin points at a tile server YOU choose and run, which keeps that decision, and the obligation that comes with it, with you. The OpenMapTiles stack is what it was written for, but any server that publishes ordinary map tiles will do.\n\nPut a one-line openmaptiles.conf next to the plugin giving your server's address. Until you do, it reports what it needs and draws nothing. Whatever attribution your data requires is displayed under the map whenever the tiles are on screen - the application will not draw a basemap it cannot credit.\n\nTiles are cached on disk, so an area you have looked at works again without a network, and nothing is fetched twice.",
+      "summary": "Draws street-level OpenStreetMap tiles under the map. Works on install.",
+      "description": "Replaces the built-in coastline with real street-level map imagery, so aircraft, ships and stations are plotted over roads and place names instead of an outline. The map switches to the projection the tiles are drawn in while this is active, and back again when it is removed.\n\nINSTALLING IT IS THE WHOLE OF THE SETUP. It works on first run with nothing to configure, drawing OpenStreetMap tiles. Earlier versions shipped with no server and drew nothing until you wrote a config file; that is no longer the case.\n\nIf you would rather serve your own tiles - for more detail, for volume, or to be independent of somebody else's server - put a one-line openmaptiles.conf next to the plugin giving your server's address, and it uses that instead. Any server that publishes ordinary map tiles will do.\n\nMap data is (c) OpenStreetMap contributors, and that credit is displayed under the map whenever the tiles are on screen - the application will not draw a basemap it cannot credit.\n\nTiles are cached on disk, so an area you have looked at works again without a network, nothing is fetched twice, and only what you are actually looking at is ever requested.",
       "minSupportedVersion": "1.0.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
       "platforms": [
         {
           "os": "windows",
           "arch": "x64",
-          "file": "openmaptiles-basemap-1.0.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.0.0-abi3-win-x64.dll",
-          "sha256": "d7d6ff6fa4e401f530541147648788333a6df1848f480cdb1c87e2425e3b7630",
-          "sizeBytes": 292352
+          "file": "openmaptiles-basemap-1.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.1.0-abi3-win-x64.dll",
+          "sha256": "5a2283a614562b1310e3af1e38af7e6f1f2d1b9d6ece617c3a24d5576d68d874",
+          "sizeBytes": 283648
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "openmaptiles-basemap-1.0.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.0.0-abi3-linux-x64.so",
-          "sha256": "10d1787cc7b3c8544d96245a15024e46cc4ecffe1424c900a5077ef2ca4f4216",
+          "file": "openmaptiles-basemap-1.1.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.1.0-abi3-linux-x64.so",
+          "sha256": "9b1e8f236635a7041512154d74a4a44ca6463c381275f5cf30ea44bab23b92fa",
           "sizeBytes": 901208
         }
       ]
