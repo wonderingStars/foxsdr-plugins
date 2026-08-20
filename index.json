@@ -163,7 +163,7 @@
     {
       "id": "adsb-decoder",
       "name": "ADS-B Aircraft Decoder",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -178,17 +178,17 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "adsb-decoder-1.0.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.0.0-abi3-win-x64.dll",
-          "sha256": "7a258f65bf69481ba03880facc31fbabd45b0d3f880ec4c0b585b9ae41d86220",
-          "sizeBytes": 191488
+          "file": "adsb-decoder-1.0.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.0.1-abi3-win-x64.dll",
+          "sha256": "5afeb31bd98fd9d0c34ef0fa2e0616d82bfcfad1fb71f1b914e5deb8bc8051f2",
+          "sizeBytes": 192512
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "adsb-decoder-1.0.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.0.0-abi3-linux-x64.so",
-          "sha256": "8bc851e387ecde206fb0115e73f62f8ac7d5eba07c3377c213ccdf6c3de214a1",
+          "file": "adsb-decoder-1.0.1-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.0.1-abi3-linux-x64.so",
+          "sha256": "041dc82ed7f1c9253025a62340e47eb791dc3fc037e7289b0e3c77e7eb49957e",
           "sizeBytes": 39872
         }
       ]
@@ -230,7 +230,7 @@
     {
       "id": "ais-decoder",
       "name": "AIS Ship Tracking Decoder",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -245,17 +245,17 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "ais-decoder-1.0.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ais-decoder-1.0.0-abi3-win-x64.dll",
-          "sha256": "cd7de1f76a387a722226ce884287401c689542f82b01e8a2118d79a5a817f844",
-          "sizeBytes": 190976
+          "file": "ais-decoder-1.0.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ais-decoder-1.0.1-abi3-win-x64.dll",
+          "sha256": "05794173e1f97ee1e0aa32b74b5daec92238af8a45c94cba3b24153149a87567",
+          "sizeBytes": 191488
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "ais-decoder-1.0.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ais-decoder-1.0.0-abi3-linux-x64.so",
-          "sha256": "c9e98f72fc4072245b3f6e71658c7f881e1b6abee6a423fb331410a290103e12",
+          "file": "ais-decoder-1.0.1-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ais-decoder-1.0.1-abi3-linux-x64.so",
+          "sha256": "14a08430f42ec05a3d61d145ccab0378f874f4e373f450773dcc3ae18c0e64c8",
           "sizeBytes": 43304
         }
       ]
@@ -263,7 +263,7 @@
     {
       "id": "aprs-decoder",
       "name": "APRS / AX.25 Packet Decoder",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -278,17 +278,17 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "aprs-decoder-1.0.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aprs-decoder-1.0.0-abi3-win-x64.dll",
-          "sha256": "ec25262de70e5aaab19295c506202ac85ffc534ad0808f84bbcbbfa31cb23b0d",
-          "sizeBytes": 189952
+          "file": "aprs-decoder-1.0.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aprs-decoder-1.0.1-abi3-win-x64.dll",
+          "sha256": "746901aec916ab4d8ad46dc2528b6203e8aea5dd50a5ef9ff0462bf39cbc92a3",
+          "sizeBytes": 190464
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "aprs-decoder-1.0.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aprs-decoder-1.0.0-abi3-linux-x64.so",
-          "sha256": "cd3f787dc02ab1f46a25da156f1a0c192b92bed205c6fd86306d022128439276",
+          "file": "aprs-decoder-1.0.1-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aprs-decoder-1.0.1-abi3-linux-x64.so",
+          "sha256": "b970a057535011a97260e30bc126bb5ed3e475de286cbda34b740d5de8092173",
           "sizeBytes": 30712
         }
       ]
@@ -296,7 +296,7 @@
     {
       "id": "stdc-decoder",
       "name": "Inmarsat-C / EGC Decoder (EXPERIMENTAL)",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -312,17 +312,17 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "stdc-decoder-0.1.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/stdc-decoder-0.1.0-abi3-win-x64.dll",
-          "sha256": "c1bed2847b363f519469a01a054a3989e1d74a2d75bf87857ee8a897a2ddc03e",
-          "sizeBytes": 195072
+          "file": "stdc-decoder-0.1.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/stdc-decoder-0.1.1-abi3-win-x64.dll",
+          "sha256": "6a58bca11848d6fd6297193de44581f8d7831e882b1642c47fb02e38b1f82ade",
+          "sizeBytes": 196096
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "stdc-decoder-0.1.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/stdc-decoder-0.1.0-abi3-linux-x64.so",
-          "sha256": "b1cc4522d48e318b88dc7ff7b9538bcd1b6407791fe3dcdb642c63097e76951f",
+          "file": "stdc-decoder-0.1.1-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/stdc-decoder-0.1.1-abi3-linux-x64.so",
+          "sha256": "1d3bca03407f7bc557467497a1ec79bc24feb902f09b625861c7305cc6006932",
           "sizeBytes": 42920
         }
       ]
@@ -330,7 +330,7 @@
     {
       "id": "pocsag-decoder",
       "name": "POCSAG Pager Decoder",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -346,17 +346,17 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "pocsag-decoder-1.0.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/pocsag-decoder-1.0.0-abi3-win-x64.dll",
-          "sha256": "70f1bd0f7420c78a5a018fe8e51a2be343f8ecea4f768fdb9dccf89e1ffd132a",
-          "sizeBytes": 128000
+          "file": "pocsag-decoder-1.0.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/pocsag-decoder-1.0.1-abi3-win-x64.dll",
+          "sha256": "8771c0306227ba489468644e142192ef78fa716862a0da603670555393580a3c",
+          "sizeBytes": 157184
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "pocsag-decoder-1.0.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/pocsag-decoder-1.0.0-abi3-linux-x64.so",
-          "sha256": "6e6cc5f9693106376923edbe6ed8c150858f9be7aa7a17b72972a7556feadd0b",
+          "file": "pocsag-decoder-1.0.1-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/pocsag-decoder-1.0.1-abi3-linux-x64.so",
+          "sha256": "4bad4f394453d5587a9291a6dd053f33154fe39600706419e2952707caa7291e",
           "sizeBytes": 25128
         }
       ]
