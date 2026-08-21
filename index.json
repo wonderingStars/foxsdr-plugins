@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-08-15T22:30:00Z",
+  "generated": "2026-08-21T19:30:00Z",
   "note": "Plugin catalogue for FoxSDR. The application fetches ONLY this file until you explicitly install something. Every download is verified against the sha256 recorded here before it is placed in the plugins directory.",
   "plugins": [
     {
@@ -358,6 +358,40 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/pocsag-decoder-1.0.1-abi3-linux-x64.so",
           "sha256": "4bad4f394453d5587a9291a6dd053f33154fe39600706419e2952707caa7291e",
           "sizeBytes": 25128
+        }
+      ]
+    },
+    {
+      "id": "eas-decoder",
+      "name": "EAS / SAME Alert Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_DECODER"
+      ],
+      "summary": "Reads US Emergency Alert System and NOAA Weather Radio alert headers.",
+      "description": "Decodes the digital headers that carry every United States Emergency Alert System message and every NOAA Weather Radio alert - Specific Area Message Encoding, the bursts of tones before the announcement - and prints each one in words: what the event is, who issued it, which counties it covers, how long it is valid for, and which station sent it.\n\nThe header is transmitted three times so that a receiver can vote on it, and this decoder does. Two copies that agree are reported immediately; three are merged character by character, so an alert survives noise that damages each copy in a different place. A single copy is still reported, and says that it was alone and unconfirmed. The raw header string is printed under every alert, so the reading can be checked against what was actually sent. The two-tone attention signal is reported separately, with the duration it ran for.\n\nThe presets tune the seven NOAA Weather Radio channels between 162.400 and 162.550 MHz, which carry these headers in normal service - a Required Weekly Test goes out on every transmitter, every week, which makes them the way to check the decoder is working. EAS headers on broadcast stations decode the same way; they simply have no fixed frequency to offer as a preset.\n\nThere is deliberately no county-name table: over three thousand US counties, a list that changes, and naming the wrong one during a tornado warning would be worse than printing the number for you to look up. The state is named, the county is numbered.\n\nWritten clean-room from 47 CFR 11.31, the FCC section that defines the EAS protocol, with the state numbers from the Census Bureau and the channel list from the National Weather Service. No off-air EAS signal has been decoded yet.",
+      "legalNotice": "THIS IS NOT AN ALERTING DEVICE. It decodes what it hears on the frequency it is tuned to. It has no county database and cannot tell you whether an alert applies where you are, it sounds no alarm, and a receiver tuned elsewhere, squelched shut, or simply not running is enough to miss an alert completely. Do not rely on it for safety information: use a certified NOAA Weather Radio receiver for warnings that matter.\n\nReceiving these broadcasts is lawful - they are public safety transmissions intended for general reception. Transmitting them is not. 47 CFR 11.45: \"No person may transmit or cause to transmit the EAS codes or Attention Signal, or a recording or simulation thereof, in any circumstance other than in an actual National, State or Local Area emergency or authorized test of the EAS.\" This plugin only receives. Do not put its output, or a recording of what it decoded, on the air.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "eas-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/eas-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "ffbc5d64588f38a5dc296071486712b7a7cfb7998b42a8793b7db6b3e8208d5e",
+          "sizeBytes": 173056
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "eas-decoder-1.0.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/eas-decoder-1.0.0-abi3-linux-x64.so",
+          "sha256": "460100ac8cfa7506e8340d359667b3a5ea1be45bd0602be9c4a684473c5eff89",
+          "sizeBytes": 47040
         }
       ]
     }

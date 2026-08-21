@@ -27,6 +27,7 @@ open the plugin browser and press Browse.
 | **AIS** 1.0.0 | Ship identity, position, course, voyage data | Raw I/Q, 192 kS/s | Decodes both marine channels at once; emits `!AIVDM` |
 | **APRS / AX.25** 1.0.0 | Amateur packet radio, 144.800 MHz | NFM audio | Mic-E not yet parsed into fields |
 | **POCSAG** 1.0.0 | Pager messages, all three bit rates | NFM audio | **Legal notice must be accepted before install** |
+| **EAS / SAME** 1.0.0 | US Emergency Alert System and NOAA Weather Radio alert headers | NFM audio | Seven NOAA Weather Radio presets; **not an alerting device** — notice must be accepted |
 | **Inmarsat-C / EGC** 0.1.0 | SafetyNET maritime broadcasts | Raw I/Q, 24 kS/s | ⚠ **EXPERIMENTAL — has never decoded a real signal** |
 | **Example RMS Reporter** 2.0.0 | Nothing; reports audio level | NFM audio | Reference plugin and template |
 
@@ -60,6 +61,10 @@ and those checks are real:
   specification's own synchronisation and idle codewords have zero syndrome
   under it.
 - **APRS** matches the published CRC-16/X.25 check value `0x906E`.
+- **EAS / SAME** takes its event codes, originator codes and field rules
+  from 47 CFR 11.31 itself, and its state numbers from the Census Bureau
+  file, so the tables are anchored to the sources the transmitters are
+  built to. The demodulation is not: no off-air alert has been decoded.
 
 **Inmarsat-C has no such check available, and is the one to be careful with.**
 About ten constants of its air interface could not be confirmed against any
@@ -77,6 +82,8 @@ is the single most useful thing you can report.
 Some decoders here demodulate transmissions whose interception is restricted in
 some countries. In the UK, intercepting a message you are not authorised to
 receive is an offence under the Wireless Telegraphy Act 2006, s.48.
+
+**EAS / SAME is different, and its notice is not about interception.** Those broadcasts are meant to be received by anyone. The warning is that the plugin is NOT an alerting device: it decodes only what the receiver happens to be tuned to, knows nothing about where you are, and sounds no alarm. Use a certified NOAA Weather Radio receiver for warnings you rely on. Note also that 47 CFR 11.45 forbids transmitting the EAS codes or attention signal, or a recording of them, outside a real emergency or an authorised test - so do not put what you decode back on the air.
 
 Where that applies, the entry carries a `legalNotice` which the application
 displays and which you must accept before the Install button is enabled. It is
