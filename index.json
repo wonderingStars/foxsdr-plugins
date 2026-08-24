@@ -163,33 +163,33 @@
     {
       "id": "adsb-decoder",
       "name": "ADS-B Aircraft Decoder",
-      "version": "1.0.1",
+      "version": "1.1.0",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
       "capabilities": [
         "CASCADE_CAP_IQ_DECODER"
       ],
-      "summary": "Decodes ADS-B aircraft position, callsign and velocity at 1090 MHz.",
-      "description": "Decodes Mode S / ADS-B transmissions from aircraft at 1090 MHz and reports callsign, position, altitude, ground speed, track and vertical rate. Every frame is validated against the 24-bit Mode S CRC, so corrupted receptions are discarded rather than shown as phantom aircraft. Positions are recovered from even/odd CPR frame pairs.\n\nThis decoder works on raw I/Q rather than demodulated audio, so it needs a receiver capable of 1090 MHz at 2 MS/s or more; 2.4 MS/s or higher is recommended, because at exactly 2 MS/s one sub-sample timing alignment in eight is unrecoverable in principle. A 1090 MHz antenna makes far more difference than any setting.\n\nAirborne position, callsign and velocity messages are decoded. Surface position and the less common message types are not yet parsed. Written clean-room from the published Mode S specification.",
+      "summary": "Plots aircraft at 1090 MHz with flight trails, callsign, altitude and speed.",
+      "description": "Decodes Mode S / ADS-B transmissions from aircraft at 1090 MHz and reports callsign, position, altitude, ground speed, track and vertical rate. Every frame is validated against the 24-bit Mode S CRC, so corrupted receptions are discarded rather than shown as phantom aircraft. Positions are recovered from even/odd CPR frame pairs.\n\nThis decoder works on raw I/Q rather than demodulated audio, so it needs a receiver capable of 1090 MHz at 2 MS/s or more; 2.4 MS/s or higher is recommended, because at exactly 2 MS/s one sub-sample timing alignment in eight is unrecoverable in principle. A 1090 MHz antenna makes far more difference than any setting.\n\nAirborne and surface positions, callsign, velocity, vertical rate, geometric height, squawk and emergency status are decoded, and each aircraft draws a flight trail on the map. Aircraft that stop transmitting are released rather than accumulating for the session. Written clean-room from the published Mode S specification.",
       "minSupportedVersion": "1.0.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
       "platforms": [
         {
           "os": "windows",
           "arch": "x64",
-          "file": "adsb-decoder-1.0.1-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.0.1-abi3-win-x64.dll",
-          "sha256": "5afeb31bd98fd9d0c34ef0fa2e0616d82bfcfad1fb71f1b914e5deb8bc8051f2",
-          "sizeBytes": 192512
+          "file": "adsb-decoder-1.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.1.0-abi3-win-x64.dll",
+          "sha256": "1b6ea17a3adb5d05239100b5c8adb2a9ee0842be44a5b3ff314cf0fbe4f57f67",
+          "sizeBytes": 207360
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "adsb-decoder-1.0.1-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.0.1-abi3-linux-x64.so",
-          "sha256": "041dc82ed7f1c9253025a62340e47eb791dc3fc037e7289b0e3c77e7eb49957e",
-          "sizeBytes": 39872
+          "file": "adsb-decoder-1.1.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.1.0-abi3-linux-x64.so",
+          "sha256": "71e1c1b6c716d1daf5b9c3042500a59857f97189d9bc6df66cc64d780423d391",
+          "sizeBytes": 58288
         }
       ]
     },
