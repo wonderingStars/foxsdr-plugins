@@ -168,7 +168,8 @@
       "licence": "MIT",
       "abiVersion": 3,
       "capabilities": [
-        "CASCADE_CAP_IQ_DECODER"
+        "CASCADE_CAP_IQ_DECODER",
+        "CASCADE_CAP_TRACK_SOURCE"
       ],
       "summary": "Plots aircraft at 1090 MHz with flight trails, callsign, altitude and speed.",
       "description": "Decodes Mode S / ADS-B transmissions from aircraft at 1090 MHz and reports callsign, position, altitude, ground speed, track and vertical rate. Every frame is validated against the 24-bit Mode S CRC, so corrupted receptions are discarded rather than shown as phantom aircraft. Positions are recovered from even/odd CPR frame pairs.\n\nThis decoder works on raw I/Q rather than demodulated audio, so it needs a receiver capable of 1090 MHz at 2 MS/s or more; 2.4 MS/s or higher is recommended, because at exactly 2 MS/s one sub-sample timing alignment in eight is unrecoverable in principle. A 1090 MHz antenna makes far more difference than any setting.\n\nAirborne and surface positions, callsign, velocity, vertical rate, geometric height, squawk and emergency status are decoded, and each aircraft draws a flight trail on the map. Aircraft that stop transmitting are released rather than accumulating for the session. Written clean-room from the published Mode S specification.",
@@ -235,7 +236,8 @@
       "licence": "MIT",
       "abiVersion": 3,
       "capabilities": [
-        "CASCADE_CAP_IQ_DECODER"
+        "CASCADE_CAP_IQ_DECODER",
+        "CASCADE_CAP_TRACK_SOURCE"
       ],
       "summary": "Decodes AIS ship positions and voyage data on the marine band.",
       "description": "Decodes AIS - the Automatic Identification System that ships broadcast for collision avoidance - and reports vessel identity, position, speed, course and heading, together with ship name, callsign, type, destination and draught where the vessel sends them. Output includes a standard !AIVDM sentence for every frame that passes the checksum, so it can be fed to charting software.\n\nBoth AIS channels (161.975 and 162.025 MHz) are decoded at the same time from a single receiver: tune to 162.000 MHz and both are covered. This decoder works on raw I/Q rather than demodulated audio and needs 192 kS/s.\n\nClass A and Class B position reports and static voyage data are parsed into fields; other message types are still reported with their type and sender. Written clean-room from the published ITU-R M.1371 specification.",
@@ -268,7 +270,8 @@
       "licence": "MIT",
       "abiVersion": 3,
       "capabilities": [
-        "CASCADE_CAP_DECODER"
+        "CASCADE_CAP_DECODER",
+        "CASCADE_CAP_TRACK_SOURCE"
       ],
       "summary": "Decodes APRS and AX.25 packet radio from 144.800 MHz NFM audio.",
       "description": "Decodes Bell 202 AFSK packet radio - the 1200 bps mode used by APRS worldwide - from demodulated narrowband FM audio, and emits one line of text per frame. Frames are validated against the AX.25 frame check sequence, so corrupted packets are discarded rather than shown as garbled text. Position reports are parsed into latitude and longitude, in both the uncompressed and base-91 compressed forms, along with timestamps, status reports and addressed messages. Any frame type it does not parse is still shown verbatim rather than dropped. Mic-E encoding is not yet parsed into fields. Written clean-room from the AX.25 v2.2 and APRS 1.0.1 specifications.",
@@ -392,6 +395,39 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/eas-decoder-1.0.0-abi3-linux-x64.so",
           "sha256": "460100ac8cfa7506e8340d359667b3a5ea1be45bd0602be9c4a684473c5eff89",
           "sizeBytes": 47040
+        }
+      ]
+    },
+    {
+      "id": "satellites",
+      "name": "Satellites",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_TRACK_SOURCE"
+      ],
+      "summary": "Tracks satellites on the map, predicts passes, and Doppler-corrects a downlink.",
+      "description": "Satellite tracking built into the receiver: the ISS, amateur birds and weather satellites drawn live on the map with their predicted ground track, a pass table for your own station - when each one rises, how high it gets, where to look - and Doppler correction that keeps the radio on a moving downlink through a pass.\n\nOrbits come from CelesTrak element sets, fetched automatically and cached for offline use. Configuration is one commented text file the plugin writes on first run (the panel names its location): your latitude and longitude, which satellites to track by name or NORAD number, and optionally one satellite's downlink frequency to Doppler-correct. Retuning the radio additionally needs the 'allow tuning' permission on this plugin's row - a plugin cannot grant itself the VFO.\n\nThe orbital model is SGP4, written clean-room from the published Spacetrack/AIAA model papers and verified against the published verification tables to their own printing precision - about seven micrometres. Near-earth satellites only: deep-space orbits (GPS, geostationary) need a model this plugin deliberately does not implement, and are refused rather than plotted wrongly.\n\nFoxSDR 0.64.0 draws the predicted ground track dashed, as a prediction should be; on older versions the line simply draws solid.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "satellites-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.0-abi3-win-x64.dll",
+          "sha256": "083ce3dd8441d9f298b53bd361590c3f94b51088534c46a04a3d391252916b57",
+          "sizeBytes": 326144
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "satellites-1.0.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.0-abi3-linux-x64.so",
+          "sha256": "681a851eefa1ccbe920d8dac2a960dace0a7dbb2cc58ce3487b715597e379174",
+          "sizeBytes": 831736
         }
       ]
     }
