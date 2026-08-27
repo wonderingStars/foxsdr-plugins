@@ -426,8 +426,8 @@
           "arch": "x64",
           "file": "satellites-1.0.0-abi3-linux-x64.so",
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.0-abi3-linux-x64.so",
-          "sha256": "681a851eefa1ccbe920d8dac2a960dace0a7dbb2cc58ce3487b715597e379174",
-          "sizeBytes": 831736
+          "sha256": "a785d7954c5454f18d047cc8e06df5056f0ebaee259afb4e06ac53f40983995c",
+          "sizeBytes": 831760
         }
       ]
     }
