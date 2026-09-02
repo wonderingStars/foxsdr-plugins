@@ -163,7 +163,7 @@
     {
       "id": "adsb-decoder",
       "name": "ADS-B Aircraft Decoder",
-      "version": "1.1.0",
+      "version": "1.5.0",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -172,25 +172,25 @@
         "CASCADE_CAP_TRACK_SOURCE"
       ],
       "summary": "Plots aircraft at 1090 MHz with flight trails, callsign, altitude and speed.",
-      "description": "Decodes Mode S / ADS-B transmissions from aircraft at 1090 MHz and reports callsign, position, altitude, ground speed, track and vertical rate. Every frame is validated against the 24-bit Mode S CRC, so corrupted receptions are discarded rather than shown as phantom aircraft. Positions are recovered from even/odd CPR frame pairs.\n\nThis decoder works on raw I/Q rather than demodulated audio, so it needs a receiver capable of 1090 MHz at 2 MS/s or more; 2.4 MS/s or higher is recommended, because at exactly 2 MS/s one sub-sample timing alignment in eight is unrecoverable in principle. A 1090 MHz antenna makes far more difference than any setting.\n\nAirborne and surface positions, callsign, velocity, vertical rate, geometric height, squawk and emergency status are decoded, and each aircraft draws a flight trail on the map. Aircraft that stop transmitting are released rather than accumulating for the session. Written clean-room from the published Mode S specification.",
+      "description": "Decodes Mode S / ADS-B transmissions from aircraft at 1090 MHz and reports callsign, position, altitude, ground speed, track and vertical rate. Every frame is validated against the 24-bit Mode S CRC. A frame carrying a single damaged bit is repaired - the CRC identifies which bit, so a weak aircraft at the edge of range is heard rather than lost - and anything the CRC cannot account for is discarded rather than shown as phantom aircraft. Positions are recovered from even/odd CPR frame pairs.\n\nThis decoder works on raw I/Q rather than demodulated audio, so it needs a receiver capable of 1090 MHz at 2 MS/s or more; 2.4 MS/s or higher is recommended, because at exactly 2 MS/s one sub-sample timing alignment in eight is unrecoverable in principle. A 1090 MHz antenna makes far more difference than any setting.\n\nAirborne and surface positions, callsign, velocity, vertical rate, geometric height, squawk and emergency status are decoded, and each aircraft draws a flight trail on the map. Aircraft that stop transmitting are released rather than accumulating for the session. Written clean-room from the published Mode S specification.",
       "minSupportedVersion": "1.0.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
       "platforms": [
         {
           "os": "windows",
           "arch": "x64",
-          "file": "adsb-decoder-1.1.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.1.0-abi3-win-x64.dll",
-          "sha256": "1b6ea17a3adb5d05239100b5c8adb2a9ee0842be44a5b3ff314cf0fbe4f57f67",
-          "sizeBytes": 207360
+          "file": "adsb-decoder-1.5.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.5.0-abi3-win-x64.dll",
+          "sha256": "fca9d0d700f4cbc37280c43aab224ec33399c83a13b3be9ffadbcf7b2a95c499",
+          "sizeBytes": 311808
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "adsb-decoder-1.1.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.1.0-abi3-linux-x64.so",
-          "sha256": "71e1c1b6c716d1daf5b9c3042500a59857f97189d9bc6df66cc64d780423d391",
-          "sizeBytes": 58288
+          "file": "adsb-decoder-1.5.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.5.0-abi3-linux-x64.so",
+          "sha256": "1567b86d91d27af9a93f7c378400eebb23be131e93bf47d476e1bdcdfa11525a",
+          "sizeBytes": 115424
         }
       ]
     },
@@ -401,7 +401,7 @@
     {
       "id": "satellites",
       "name": "Satellites",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -416,18 +416,51 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "satellites-1.0.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.0-abi3-win-x64.dll",
-          "sha256": "083ce3dd8441d9f298b53bd361590c3f94b51088534c46a04a3d391252916b57",
-          "sizeBytes": 326144
+          "file": "satellites-1.0.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.1-abi3-win-x64.dll",
+          "sha256": "3bfb5bc16fc90b32b3f3bddbe24830a27e9547c4c4a77bc8f86067d7c118c4af",
+          "sizeBytes": 327168
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "satellites-1.0.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.0-abi3-linux-x64.so",
-          "sha256": "a785d7954c5454f18d047cc8e06df5056f0ebaee259afb4e06ac53f40983995c",
-          "sizeBytes": 831760
+          "file": "satellites-1.0.1-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.1-abi3-linux-x64.so",
+          "sha256": "b1e26b9f25548bb96e474a707f1b14b296a6ef95d8303035123d80a7946d74f8",
+          "sizeBytes": 831936
+        }
+      ]
+    },
+    {
+      "id": "apt-decoder",
+      "name": "NOAA Weather Pictures (APT)",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IMAGE_DECODER"
+      ],
+      "summary": "Receives the weather pictures the NOAA satellites broadcast as they pass overhead.",
+      "description": "The NOAA weather satellites transmit a picture of whatever they are flying over, continuously, in plain FM on 137 MHz - and anything that can hear them can have it. This decoder turns that transmission into the picture, building it line by line as the satellite crosses the sky, two lines a second for the ten or so minutes a pass lasts.\n\nBoth of the satellite's channels arrive side by side, exactly as sent: usually a visible-light image beside an infrared one, so the same clouds appear twice and the pair is worth more than either alone. Nothing has to be set up. Pick the satellite from this plugin's presets - NOAA 15, 18 and 19 each have their own frequency - and the picture starts when the pass does.\n\nInstall the Satellites plugin alongside this one and the two work together: that one tells you when NOAA 19 next comes over your house and where to point an antenna, this one draws what it sends while it is up.\n\nA word about what you need. APT is a wide signal by amateur standards and the presets ask for a 40 kHz channel accordingly; a narrower one clips the picture's own sidebands and washes it out. The transmitter is 800 km up and moving, so a simple antenna and a clear view of the sky matter more than an expensive receiver.\n\nWritten clean-room from the published NOAA KLM User's Guide format description. The sync detector's thresholds were set by measuring the decoder's own response to noise rather than guessed, and it requires the satellite's sync train to repeat on the line cadence before it will draw anything - so a noisy band produces no picture rather than a convincing picture of nothing.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "apt-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/apt-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "80df48e19c90d15a1f00a3e458a0daa431dc08cc1ba94e13a538b0ecfef0b50e",
+          "sizeBytes": 174080
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "apt-decoder-1.0.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/apt-decoder-1.0.0-abi3-linux-x64.so",
+          "sha256": "b470d8f4a4ce0a3eca72a03fee9365b8f3fa71192a9d9292e6e07903ff17873c",
+          "sizeBytes": 25776
         }
       ]
     }
