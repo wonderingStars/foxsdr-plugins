@@ -105,7 +105,7 @@
     {
       "id": "openmaptiles-basemap",
       "name": "Map Imagery (OpenStreetMap)",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -120,18 +120,18 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "openmaptiles-basemap-1.1.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.1.0-abi3-win-x64.dll",
-          "sha256": "5a2283a614562b1310e3af1e38af7e6f1f2d1b9d6ece617c3a24d5576d68d874",
-          "sizeBytes": 283648
+          "file": "openmaptiles-basemap-1.1.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.1.1-abi3-win-x64.dll",
+          "sha256": "91e6d2a33390d0601d54736adcb374f52d4c8882148ff78a340899044331989f",
+          "sizeBytes": 284672
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "openmaptiles-basemap-1.1.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.1.0-abi3-linux-x64.so",
-          "sha256": "9b1e8f236635a7041512154d74a4a44ca6463c381275f5cf30ea44bab23b92fa",
-          "sizeBytes": 901208
+          "file": "openmaptiles-basemap-1.1.1-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.1.1-abi3-linux-x64.so",
+          "sha256": "103dea6fa411fbbc8024d0276e5a6a96606358ae46110f587e8092ba1dba8261",
+          "sizeBytes": 901296
         }
       ]
     },
@@ -401,7 +401,7 @@
     {
       "id": "satellites",
       "name": "Satellites",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -416,18 +416,18 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "satellites-1.0.1-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.1-abi3-win-x64.dll",
-          "sha256": "3bfb5bc16fc90b32b3f3bddbe24830a27e9547c4c4a77bc8f86067d7c118c4af",
-          "sizeBytes": 327168
+          "file": "satellites-1.0.2-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.2-abi3-win-x64.dll",
+          "sha256": "1bdd8aaf445344d669425409340c37423fa81b9c43405c54faf6679ffb1f34d9",
+          "sizeBytes": 331264
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "satellites-1.0.1-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.1-abi3-linux-x64.so",
-          "sha256": "b1e26b9f25548bb96e474a707f1b14b296a6ef95d8303035123d80a7946d74f8",
-          "sizeBytes": 831936
+          "file": "satellites-1.0.2-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.2-abi3-linux-x64.so",
+          "sha256": "d4a4254a4419b7bc2bc38efb3818e55e8253ca3340b82492c43a02ea92e26e03",
+          "sizeBytes": 836016
         }
       ]
     },
