@@ -163,7 +163,7 @@
     {
       "id": "adsb-decoder",
       "name": "ADS-B Aircraft Decoder",
-      "version": "1.5.0",
+      "version": "1.6.0",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -172,24 +172,24 @@
         "CASCADE_CAP_TRACK_SOURCE"
       ],
       "summary": "Plots aircraft at 1090 MHz with flight trails, callsign, altitude and speed.",
-      "description": "Decodes Mode S / ADS-B transmissions from aircraft at 1090 MHz and reports callsign, position, altitude, ground speed, track and vertical rate. Every frame is validated against the 24-bit Mode S CRC. A frame carrying a single damaged bit is repaired - the CRC identifies which bit, so a weak aircraft at the edge of range is heard rather than lost - and anything the CRC cannot account for is discarded rather than shown as phantom aircraft. Positions are recovered from even/odd CPR frame pairs.\n\nThis decoder works on raw I/Q rather than demodulated audio, so it needs a receiver capable of 1090 MHz at 2 MS/s or more; 2.4 MS/s or higher is recommended, because at exactly 2 MS/s one sub-sample timing alignment in eight is unrecoverable in principle. A 1090 MHz antenna makes far more difference than any setting.\n\nAirborne and surface positions, callsign, velocity, vertical rate, geometric height, squawk and emergency status are decoded, and each aircraft draws a flight trail on the map. Aircraft that stop transmitting are released rather than accumulating for the session. Written clean-room from the published Mode S specification.",
+      "description": "Decodes Mode S / ADS-B transmissions from aircraft at 1090 MHz and reports callsign, position, altitude, ground speed, track and vertical rate. Every frame is validated against the 24-bit Mode S CRC. A frame carrying a single damaged bit is repaired - the CRC identifies which bit, so a weak aircraft at the edge of range is heard rather than lost - and anything the CRC cannot account for is discarded rather than shown as phantom aircraft. Positions are recovered from even/odd CPR frame pairs.\n\nThis decoder works on raw I/Q rather than demodulated audio, so it needs a receiver capable of 1090 MHz at 2 MS/s or more; 2.4 MS/s or higher is recommended, because at exactly 2 MS/s one sub-sample timing alignment in eight is unrecoverable in principle. A 1090 MHz antenna makes far more difference than any setting. The receiver's own DC offset is tracked and removed before detection, so a zero-IF dongle such as an RTL-SDR - whose offset would otherwise bury every aircraft not on top of the antenna - hears what it should.\n\nAirborne and surface positions, callsign, velocity, vertical rate, geometric height, squawk and emergency status are decoded, and each aircraft draws a flight trail on the map. Aircraft that stop transmitting are released rather than accumulating for the session. Written clean-room from the published Mode S specification.",
       "minSupportedVersion": "1.0.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
       "platforms": [
         {
           "os": "windows",
           "arch": "x64",
-          "file": "adsb-decoder-1.5.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.5.0-abi3-win-x64.dll",
-          "sha256": "fca9d0d700f4cbc37280c43aab224ec33399c83a13b3be9ffadbcf7b2a95c499",
+          "file": "adsb-decoder-1.6.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.6.0-abi3-win-x64.dll",
+          "sha256": "fa8ae8bf8402021eb9b9ef0d750ade232c44645f563df8f2f78cc630570a3c65",
           "sizeBytes": 311808
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "adsb-decoder-1.5.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.5.0-abi3-linux-x64.so",
-          "sha256": "1567b86d91d27af9a93f7c378400eebb23be131e93bf47d476e1bdcdfa11525a",
+          "file": "adsb-decoder-1.6.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.6.0-abi3-linux-x64.so",
+          "sha256": "aa06b3f8228eb006138df222034de4d76fe2381474553e331425c8a309087076",
           "sizeBytes": 115424
         }
       ]
