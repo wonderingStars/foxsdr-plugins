@@ -4,6 +4,39 @@
   "note": "Plugin catalogue for FoxSDR. The application fetches ONLY this file until you explicitly install something. Every download is verified against the sha256 recorded here before it is placed in the plugins directory.",
   "plugins": [
     {
+      "id": "survey-engine",
+      "name": "Survey Engine",
+      "version": "0.1.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IQ_DECODER"
+      ],
+      "summary": "Leave it running and come back to a list of what is transmitting near you.",
+      "description": "A waterfall tells you whether something is on a frequency while you are watching it. This answers the other question - what is around you at all - which needs days rather than minutes and therefore needs nobody sitting there. Point it at a band, leave it on a machine that is on anyway, and come back to the frequencies that were actually used, how wide they were, how strong they got, and what fraction of the visits they were present for.\n\nIt reads the whole receiver bandwidth at once rather than one channel at a time, so a 2 MHz slice is surveyed per dwell, and it steps across the band on its own. Stepping needs the 'allow tuning' permission on its row - a plugin cannot grant itself the VFO - and without it the survey still works perfectly well on whatever you have tuned, and says so rather than appearing broken.\n\nFindings go to survey.csv beside its configuration, rewritten every dwell so it is always current, and read back at startup so a survey resumes across a restart instead of being erased by one.\n\nWHAT IT WILL NOT TELL YOU. It does not know who is transmitting; no power spectrum does. The guess column is derived from the occupied bandwidth alone and always carries a question mark - 'NFM?' means 'about 12 kHz wide, which is what narrowband FM looks like', not 'this is narrowband FM', and never 'this is the local taxi firm'. A band name is shown where one is known, from an editable file of ITU allocations that ships with sections for all three regions; naming the actual operator of a channel needs a licence register, which is somebody else's compiled work and not ours to ship. If you have one, paste its rows into that file and it stays on your machine.\n\nVersion 0.1.0 is a first release and is marked as such: the detector has been run against real air and against synthesised spectra with known answers, but not against many aerials or many bands.",
+      "minSupportedVersion": "0.1.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "survey-engine-0.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/survey-engine-0.1.0-abi3-win-x64.dll",
+          "sha256": "a54d17f2255b6a6407c23b7050c2314536cfe82b70a5c88a7ff69eb7d9b0b63e",
+          "sizeBytes": 271872
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "survey-engine-0.1.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/survey-engine-0.1.0-abi3-linux-x64.so",
+          "sha256": "fa80b0af84e6bebcd47180c774aa896d75f51fecde56e075b120a747dc366dbf",
+          "sizeBytes": 68264
+        }
+      ]
+    },
+    {
       "id": "sstv-decoder",
       "name": "SSTV Image Decoder",
       "version": "1.0.0",
