@@ -70,6 +70,31 @@
       ]
     },
     {
+      "id": "wefax-decoder",
+      "name": "WEFAX Weather Fax Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IMAGE_DECODER"
+      ],
+      "summary": "Receives HF weather charts from the meteorological services.",
+      "description": "Draws the weather charts that national meteorological services still broadcast on shortwave for shipping - surface analyses, wind and wave forecasts, ice charts and satellite pictures - line by line as they arrive. A chart takes about ten minutes.\n\nTUNE 1.9 kHz BELOW THE PUBLISHED FREQUENCY, in USB. That is the rule for every radiofax station in the world and it is the one thing that stops a working receiver from decoding anything at all: schedules list the assigned frequency, and the picture lives 1.9 kHz under it. The plugin's presets have the offset already applied and show both numbers, for Hamburg/Pinneberg, Northwood and the US Coast Guard station at Boston.\n\nNothing has to be set. The transmission's own start tone says which index of cooperation is in use - 576 for the usual charts, 288 for the coarser ones - and the line rate is measured from the phasing signal that follows it, so 60, 90, 120 and 240 lines per minute are all read. The stop tone ends the chart, and the tone itself is trimmed off the bottom of the picture.\n\nHow far the receiver is off tune is measured from the phasing signal and reported in hertz, because a mistuned radiofax produces a picture whose shades are all wrong for no visible reason. It is reported rather than silently corrected.\n\nIt also opens an instrument window drawn as a marine facsimile recorder - phase lamps, illuminated IOC and line-rate selectors, a line counter, a centre-zero tuning meter and a paper slot with the chart feeding out of it - so you can tell within seconds whether the ten-minute chart now arriving will be worth having, with a log of the transmission's events beneath it.\n\nSlant correction is deliberately not attempted: unlike SSTV and APT, radiofax carries no sync inside the picture, so there is nothing to re-anchor a drifting line clock against. Written clean-room from published format specifications and from the meteorological services' own broadcast schedules.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "wefax-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/wefax-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "171b83481449ea2c8f9cce282878f254027aef8276a46564310fd9da3ea3cde7",
+          "sizeBytes": 188416
+        }
+      ]
+    },
+    {
       "id": "cw-decoder",
       "name": "Morse (CW) Decoder",
       "version": "1.0.0",
@@ -132,6 +157,106 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/rtty-decoder-1.0.0-abi3-linux-x64.so",
           "sha256": "c871fd0eaa8fe61ef77efac9799787b1a1e7e1cc078c84670a8d8e41c8fed4ef",
           "sizeBytes": 21624
+        }
+      ]
+    },
+    {
+      "id": "weather-decoder",
+      "name": "433 MHz Weather Sensor Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IQ_DECODER"
+      ],
+      "summary": "Reads the outdoor temperature and humidity sensors on 433.92 MHz (Oregon Scientific v2.1 and v3.0).",
+      "description": "Decodes the little battery-powered temperature and humidity transmitters that come with a home weather station, on 433.92 MHz, and prints each reading: sensor model, channel, temperature to a tenth of a degree, relative humidity and the low-battery flag.\n\nSUPPORTED PROTOCOLS: Oregon Scientific version 2.1 and version 3.0, and only those. Sensors identified by name are the THGR122NX / THGN123N, THGR810 / THGN801, THGR8101 and BTHR968 (temperature and humidity), and the THN132N / THR238NF and THWR800 (temperature only). A sensor whose identity code is not one of those is still reported - its code, channel, rolling code and battery state - but its measurements are not decoded, because the data layout differs from sensor to sensor and guessing one is how a decoder reports a temperature that was never transmitted. Acurite, LaCrosse, Nexus and the other 433 MHz sensor families use different protocols and are not decoded.\n\nEvery message is checked against the protocol checksum, against Manchester coding rules, and against its digits being decimal, so noise does not turn into weather. Sensors send each reading more than once; repeats within five seconds are folded into one line, while a genuinely new reading is always shown.\n\nThis decoder works on raw I/Q rather than demodulated audio: the signal is on-off keying, so what it needs is the envelope of the band. 250 kS/s is plenty and is what the preset asks for - a wider span only piles the rest of a busy band on top of the sensor. The receiver DC offset is tracked and removed before detection, so a zero-IF dongle such as an RTL-SDR - whose offset sits exactly where these sensors do - hears them.\n\nIt also fits an INSTRUMENT WINDOW: a weather station's base unit, with a channel panel for each of the three remote sensors showing its temperature in seven-segment digits, its humidity and a low-battery symbol, a channel it has not heard showing dashes exactly as the real console does, and the last hundred readings logged beneath it.\n\nWritten clean-room from the published Oregon Scientific RF protocol description; no decoder implementation was consulted.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "weather-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/weather-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "8be2f55b061d26cea9b2bdc1005f0922bcbca3ea5a400c3d1cf9eb98619c28b0",
+          "sizeBytes": 152576
+        }
+      ]
+    },
+    {
+      "id": "twotone-decoder",
+      "name": "Two-Tone Paging Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_DECODER"
+      ],
+      "summary": "Reads fire and EMS two-tone pages, and reports the tones even when they match no table.",
+      "description": "Decodes two-tone sequential paging - the \"fire tone-out\" that dispatch centres have used to alert fire and EMS crews since the 1960s and still use. A first tone of about a second, a second tone of about three, and every pager whose two reeds match that pair opens up.\n\nThe decoder measures both tones and then looks them up, which is the other way round from how these things are usually built and is the point of it. A department's tone pair is a local fact, so a page whose tones are in none of the published tables is still reported, with its two frequencies, its two durations and the gap between them - which is everything you need to programme a pager or identify the department. A decoder that stayed silent because it did not recognise the tones would be throwing away the only thing you were listening for.\n\nWhere the tones ARE recognised it names the format and reconstructs the code: a Motorola cap code, a GE Type 99 three digit code, a Reach code, or a Plectron pair. The tables are Motorola Quick Call II, GE Type 99, Reach and Plectron, transcribed from the published Midian Electronics tone signaling charts. Tones from different formats sit within 1% of each other in 115 places, so a pair is checked against each format's own code plan rather than against one flat list, and where a pair is a legal code in more than one format all of them are named.\n\nLong group calls and single-tone calls are reported too. Tune the receiver to your dispatch channel in NFM; there are no presets because these channels are allocated locally and a shipped frequency would send almost everyone to a dead one.\n\nIt also opens an instrument window drawn as the equipment it replaces - a fire station's two-tone alert monitor, with a red alert lamp that blinks while a page is held, both measured tones indexed on an engraved frequency scale with their durations, the code and the format on glass, and the last hundred pages as a call log beneath.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "twotone-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/twotone-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "5f4f605479e69499c86245dbe4c80c5a8d306c9944ff4df4b9f61a1d6436489d",
+          "sizeBytes": 194048
+        }
+      ]
+    },
+    {
+      "id": "vor-decoder",
+      "name": "VOR Navigation Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_DECODER"
+      ],
+      "summary": "Reads the radial you are on from an aviation VOR beacon, and its Morse ident.",
+      "description": "A VHF omnidirectional range is a ground beacon that tells every aircraft in range which bearing from the station it is on, and it does that by transmitting two 30 Hz signals whose phase difference IS the bearing. This reads them and prints the answer once a second: the radial you are sitting on, clockwise from magnetic north at the station, and the reciprocal course that would take you to it - both of them, because confusing the two is the classic way to read a VOR backwards.\n\nIt reads the station's callsign as well. Every VOR sends two or three letters in Morse at about seven words a minute, three times in each half minute, and without them a bearing is a number from nowhere in particular.\n\nIt also opens an instrument window - the cockpit course indicator the reading belongs on, with the compass card turned to your radial, the ident and its Morse on the glass beneath, an OBS knob that selects a course and swings the deviation bar and the TO/FROM flag from the bearing being received, and a NAV warning flag across the face whenever there is no valid signal.\n\nSET THE CHANNEL WIDE. Tune anywhere from 108.000 to 117.950 MHz in AM, and make the channel AT LEAST ABOUT 22 kHz wide. That is the one thing you have to get right and the one thing that fails silently: the bearing reference rides on a 9,960 Hz subcarrier that a normal 6 or 10 kHz AM filter removes entirely, and what is left still sounds exactly like a VOR. Rather than sit there producing nothing, the decoder says so in as many words when the subcarrier is missing.\n\nThere are no preset frequencies, deliberately. Every other decoder here ships them because a mode lives on the same frequency the world over; VOR channels are assigned station by station, so any list would be wrong for almost everyone who installed it. Find your local beacon on a chart, or turn on the Airports and Navaids plugin, which knows where they are.\n\nNothing is invented from an empty channel: the decoder wants both 30 Hz signals present, at the strengths the standard specifies, before it will report a bearing at all. Written clean-room from ICAO Annex 10, Volume I, section 3.3, with the Morse alphabet reused from this project's own CW decoder. Conventional and Doppler VOR both read correctly - the standard requires them to look the same from the receiver's side - and the bearing is magnetic, as the station transmits it, with no variation applied.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "vor-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/vor-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "029e7e5adbdecf80c91e14c8eb72716d0bb34491ab5118335efe012d1b0b2806",
+          "sizeBytes": 196608
+        }
+      ]
+    },
+    {
+      "id": "acars-decoder",
+      "name": "ACARS Aircraft Datalink Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_DECODER"
+      ],
+      "summary": "Decodes the short data messages airliners send on the AM airband.",
+      "description": "Airliners exchange short text messages with their airline and with air traffic control over ordinary VHF AM - position reports, departure clearances, weather requests, engine data, and the occasional message typed by a human. This decodes them and prints one line per message: which aircraft sent it, by registration, the message label, the flight number, and the text.\n\nIt brings its own instrument window as well, drawn as the thermal message printer fitted to an airliner's flight deck: the latest message's header on a strip of paper coming out of the slot, a counter of how many have been printed, and the roll itself listed underneath.\n\nTune it with one of the presets - 131.550 MHz over North America, 131.725 MHz over Europe - and LEAVE THE SQUELCH OPEN. A transmission is a burst lasting a fraction of a second, and a squelch that has to open first will have missed the start of it.\n\nEvery message carries a 16-bit check sequence and every character carries a parity bit, and nothing is printed unless both agree. A burst that arrives damaged produces no line rather than a line with the wrong aeroplane in it.\n\nWritten from the published description of the air-ground protocol: 2400 bit/s minimum shift keying on AM, characters of seven ASCII bits and an odd parity bit, and the block check sequence verified against ten real ACARS blocks published in the CRC RevEng catalogue.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "acars-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/acars-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "7104415f00722578b2df871f70b101ff816ffba1984a38095bebed7e8ad6f026",
+          "sizeBytes": 199680
         }
       ]
     },
@@ -224,6 +349,31 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.6.0-abi3-linux-x64.so",
           "sha256": "aa06b3f8228eb006138df222034de4d76fe2381474553e331425c8a309087076",
           "sizeBytes": 115424
+        }
+      ]
+    },
+    {
+      "id": "ert-decoder",
+      "name": "ERT Utility Meter Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IQ_DECODER"
+      ],
+      "summary": "Reads the 900 MHz bursts North American gas, water and electricity meters transmit.",
+      "description": "Decodes ERT (Encoder-Receiver-Transmitter) automatic meter reading messages - the short bursts that Itron gas, water and electricity meters send in the North American 900 MHz ISM band so a passing utility vehicle can read them. For each meter it hears it reports the meter's ID, what it measures, the cumulative reading and the two tamper counters.\n\nTHIS IS A NORTH AMERICAN SYSTEM. The band, the meters and the protocol are used in the United States and Canada; there are no ERT meters to hear in the UK, Europe or most of the rest of the world, so outside North America this plugin will correctly report nothing at all.\n\nSTANDARD CONSUMPTION MESSAGES (SCM) ONLY. That is the 96-bit message every generation of ERT endpoint sends and it is the one whose layout and checksum are both published. The later SCM+ and IDM messages are deliberately not decoded: SCM+ has no published bit layout, and while IDM's does exist the polynomial of its CRCs does not, so an IDM reading could be shown but never checked. A reading that cannot be validated is worse than no reading, because nothing downstream can tell it is wrong.\n\nEvery frame is validated against the message's 16-bit BCH checksum and anything that fails is discarded rather than shown as a phantom meter. The checksum could also repair two damaged bits and this decoder deliberately does not let it, because correcting errors makes noise about a thousand times more likely to be accepted as a real meter - and a meter transmits the same reading eight times over, so a missed frame costs nothing. A meter that repeats itself is printed once every five seconds rather than every time it is heard, while a reading that has actually changed is always printed at once.\n\nThis decoder works on raw I/Q rather than demodulated audio. A meter's transmission hops across several MHz, so a wide slice of band hears more of it: the presets ask for 2.4 MS/s, one at the 912.600 MHz commonly used for this and one at 915 MHz for the middle of the band, which is worth trying if the first hears nothing. The receiver's own DC offset is tracked and removed before detection, so a zero-IF dongle such as an RTL-SDR - the usual receiver at these frequencies, and one whose offset would otherwise swamp every burst - hears what it should.\n\nIt also opens an INSTRUMENT WINDOW drawn as a utility meter: the newest reading on a liquid-crystal register with that meter's number, commodity lamp and tamper flags, and beneath it a roster of every meter heard, newest first, with how long ago each of them last transmitted.\n\nWritten clean-room from published patent and specification descriptions of the message format; no ERT decoder implementation was read. The frame layout and the checksum polynomial are corroborated by two patents twenty-one years apart, and the polynomial is additionally re-derived from coding theory in the plugin's own test.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "ert-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ert-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "e12e8b4c11de2a37f2a64eade5c6c498a0cb6615882c98ea56b894e5df7a49be",
+          "sizeBytes": 173056
         }
       ]
     },
@@ -398,6 +548,32 @@
       ]
     },
     {
+      "id": "flex-decoder",
+      "name": "FLEX Pager Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_DECODER"
+      ],
+      "summary": "Decodes Motorola FLEX pager messages at 1600 bps from NFM audio.",
+      "description": "Decodes the Motorola FLEX paging protocol from demodulated narrowband FM audio and emits one line of text per page: CAPCODE, message type and message.\n\n1600 bps 2-level FSK only, which is one of the four speed and modulation combinations FLEX defines. This is not a silent limitation: a frame's synchronisation is always sent at 1600 bps whatever speed follows it, and it names that speed, so the decoder recognises a 3200 or 6400 bps transmitter and says so once rather than appearing to do nothing.\n\nAlphanumeric, numeric and tone-only pages are decoded, for both short (21-bit) and long (two-word) addresses, and the CAPCODE is computed the way the standard's own appendix defines it. Receive polarity is detected automatically. The BCH(31,21) error correcting code is implemented to its full capability: one- and two-bit errors in a word are corrected and anything worse is discarded, with the damage marked in the affected message rather than hidden. Written clean-room from the published specification and pinned to that specification's own worked examples.\n\nIt also contributes an instrument window: the host draws the decoder as a 1990s alphanumeric pager, with the latest page on a four-line liquid-crystal display, the capcode and unread count on its counters, and the last fifty-two pages in the message memory beneath it.",
+      "legalNotice": "This plugin decodes third-party radio paging messages. In the United Kingdom it is an offence under section 48 of the Wireless Telegraphy Act 2006 to intercept a message you are not authorised to receive, or to disclose its contents. Comparable restrictions apply in many other jurisdictions, and some permit reception but prohibit disclosure or use. Paging traffic frequently carries personal data, including medical information.\n\nThis plugin is distributed separately from the application, and is not included in it, so that installing it is your informed decision. You are responsible for ensuring that your use of it is lawful where you are.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "flex-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/flex-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "9a9856dab4ccd1ad932f068c28b102c49bdab26044cc09138c570ef44cfc5cc1",
+          "sizeBytes": 189952
+        }
+      ]
+    },
+    {
       "id": "eas-decoder",
       "name": "EAS / SAME Alert Decoder",
       "version": "1.0.0",
@@ -432,9 +608,35 @@
       ]
     },
     {
+      "id": "epirb-decoder",
+      "name": "406 MHz Distress Beacon Decoder (EPIRB / ELT / PLB)",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IQ_DECODER"
+      ],
+      "summary": "Decodes COSPAS-SARSAT 406 MHz distress beacons - the 15 Hex ID, country, beacon type and encoded position.",
+      "description": "Decodes the bursts that maritime EPIRBs, aviation ELTs and personal locator beacons transmit on 406 MHz when they are activated. Each burst gives the beacon's 15 hexadecimal character identity - the number a rescue co-ordination centre looks up in the national beacon register - together with the country of registration, which coding protocol the beacon uses, what kind of beacon it is, and, for the location protocols, the position it has encoded from its own navigation receiver.\n\nTHIS IS FOR MONITORING, AND HEARING ONE IS A REAL EMERGENCY. A 406 MHz beacon is not a hobby transmission: every burst decoded here, unless it is marked as a test, is a distress alert from somebody who has activated a beacon. If you hear one, report it to your national rescue co-ordination centre. Do not treat it as a curiosity, do not assume somebody else has heard it, and do not wait to see whether it repeats. Equally, never transmit on this band to test a receiver - the band exists for one purpose, and a false alert puts real people to work.\n\nA beacon transmits for about half a second once every fifty seconds, so patience and an antenna matter far more than any setting. The decoder works on raw I/Q rather than demodulated audio and copes with any sample rate from 8 kS/s upward, decimating internally to a 40 kHz working band - wide enough that one preset covers all four assigned channels at once. The receiver's own DC offset is measured and removed before anything else, so a zero-IF dongle such as an RTL-SDR, whose local-oscillator leakage would otherwise sit on top of the beacon, hears what it should.\n\nThe 160 ms unmodulated carrier at the head of every burst is used to measure the beacon's exact frequency and phase before a single bit is judged, so bursts well off the tuned centre, and beacons whose bit clock is at the edge of tolerance, still decode. Both error-correcting codes in the message are checked: up to three damaged bits in the identity field and two in the position field are repaired and the repair is declared, and any burst the codes cannot account for is discarded rather than shown as a beacon that does not exist. Beacons radiating in self-test mode, and messages using the test protocols, are labelled as tests.\n\nIt also fits an INSTRUMENT WINDOW: a distress-beacon alarm panel with a red DISTRESS lamp, the 15 Hex ID on a seven-segment readout, engraved plates for country, protocol and position, a centre-zero meter for the beacon's carrier error and a log of every burst heard.\n\nWritten clean-room from the published COSPAS-SARSAT specifications C/S T.001 (beacon specification and message coding) and C/S T.012 (channel assignment plan), with country names from the ITU Maritime Identification Digit table. No off-air beacon burst has been decoded - deliberately radiating one to test a decoder would put a rescue co-ordination centre to work - so the proof is the specification's own worked examples, which the self-test reproduces bit for bit.",
+      "legalNotice": "THIS IS NOT AN ALERTING DEVICE AND IS NOT PART OF THE COSPAS-SARSAT SYSTEM. Real alerting is done by the satellites and the rescue co-ordination centres; this plugin only prints what your receiver happened to hear. A receiver tuned elsewhere, switched off, or without a usable antenna will miss a beacon completely, and nothing here sounds an alarm.\n\nIf it does decode a beacon that is not marked as a test, treat that as an emergency and report it to your national rescue co-ordination centre with the frequency, the time and the 15 Hex ID.\n\nReceiving is lawful. TRANSMITTING ON 406.0-406.1 MHz IS NOT: the band is reserved internationally for distress beacons, a false alert diverts search and rescue resources from real casualties, and it is an offence in most jurisdictions. Do not put a beacon on the air, or a recording of one, to test this.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "epirb-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/epirb-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "2ab179e5864bb7ab3fa8bb4eac620dc1e30effc09bad65191af3c4bf453ed1d7",
+          "sizeBytes": 222720
+        }
+      ]
+    },
+    {
       "id": "satellites",
       "name": "Satellites",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -449,18 +651,18 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "satellites-1.0.2-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.2-abi3-win-x64.dll",
-          "sha256": "1bdd8aaf445344d669425409340c37423fa81b9c43405c54faf6679ffb1f34d9",
-          "sizeBytes": 331264
+          "file": "satellites-1.0.3-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.3-abi3-win-x64.dll",
+          "sha256": "aac39a62c94d2a078a670d78d6f27022e3b18ceaa7db33d94d7a222b1d007380",
+          "sizeBytes": 331776
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "satellites-1.0.2-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.2-abi3-linux-x64.so",
-          "sha256": "d4a4254a4419b7bc2bc38efb3818e55e8253ca3340b82492c43a02ea92e26e03",
-          "sizeBytes": 836016
+          "file": "satellites-1.0.3-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.3-abi3-linux-x64.so",
+          "sha256": "1a219ab1b38f4701e7072e563e0b7f4c75c78070120a95697282644edafbbd7f",
+          "sizeBytes": 836112
         }
       ]
     },
