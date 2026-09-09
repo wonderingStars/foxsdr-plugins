@@ -188,7 +188,7 @@
     {
       "id": "twotone-decoder",
       "name": "Two-Tone Paging Decoder",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -203,17 +203,25 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "twotone-decoder-1.0.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/twotone-decoder-1.0.0-abi3-win-x64.dll",
-          "sha256": "5f4f605479e69499c86245dbe4c80c5a8d306c9944ff4df4b9f61a1d6436489d",
+          "file": "twotone-decoder-1.0.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/twotone-decoder-1.0.1-abi3-win-x64.dll",
+          "sha256": "97c20b776514abd7b8c0ed98d4c0720734e44146e4bdb8426f2d691400db5a0d",
           "sizeBytes": 194048
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "twotone-decoder-1.0.1-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/twotone-decoder-1.0.1-abi3-linux-x64.so",
+          "sha256": "3dd1513ec525ad9d2c6673ceec7477603964264c13849bc8ec45029be68d1b2d",
+          "sizeBytes": 44328
         }
       ]
     },
     {
       "id": "vor-decoder",
       "name": "VOR Navigation Decoder",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -228,10 +236,18 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "vor-decoder-1.0.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/vor-decoder-1.0.0-abi3-win-x64.dll",
-          "sha256": "029e7e5adbdecf80c91e14c8eb72716d0bb34491ab5118335efe012d1b0b2806",
-          "sizeBytes": 196608
+          "file": "vor-decoder-1.0.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/vor-decoder-1.0.1-abi3-win-x64.dll",
+          "sha256": "0c245be023b689d9a9e50fcd956cc63271319ff9adf1afc8c90728418a520c58",
+          "sizeBytes": 198144
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "vor-decoder-1.0.1-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/vor-decoder-1.0.1-abi3-linux-x64.so",
+          "sha256": "0c65fdbff6a7f30ea52ae0860eab59df9c3337786aaa9d7cfb8865b4aebb83f6",
+          "sizeBytes": 35368
         }
       ]
     },
@@ -636,7 +652,7 @@
     {
       "id": "satellites",
       "name": "Satellites",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -651,18 +667,18 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "satellites-1.0.3-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.3-abi3-win-x64.dll",
-          "sha256": "aac39a62c94d2a078a670d78d6f27022e3b18ceaa7db33d94d7a222b1d007380",
-          "sizeBytes": 331776
+          "file": "satellites-1.0.4-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.4-abi3-win-x64.dll",
+          "sha256": "1d252b2600b65c1d4be1242f7fbf5a95a31d166a786b12e5e93dda56d6b1b0ef",
+          "sizeBytes": 379904
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "satellites-1.0.3-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.3-abi3-linux-x64.so",
-          "sha256": "1a219ab1b38f4701e7072e563e0b7f4c75c78070120a95697282644edafbbd7f",
-          "sizeBytes": 836112
+          "file": "satellites-1.0.4-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.4-abi3-linux-x64.so",
+          "sha256": "a24f81ce69fc3dfaacf89428c1d29114dcc9e036207c9c8814193050efee34bf",
+          "sizeBytes": 876144
         }
       ]
     },
