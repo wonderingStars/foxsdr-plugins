@@ -718,7 +718,7 @@
     {
       "id": "goes",
       "name": "GOES Weather Satellites (HRIT / LRIT)",
-      "version": "0.1.0",
+      "version": "0.2.0",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -727,26 +727,26 @@
         "CASCADE_CAP_IMAGE_DECODER"
       ],
       "summary": "Decodes the direct broadcast from the GOES weather satellites over the Americas.",
-      "description": "The GOES satellites sit still over the Americas and broadcast, continuously and in the clear, what they are looking at: full-disk imagery from the Advanced Baseline Imager, the EMWIN text products that carry warnings and forecasts, and the administrative messages that go with them. This decoder takes that signal from raw I/Q all the way to the files it carries.\n\nThere are two links and it handles both. GOES 16, 18 and 19 send HRIT at 1694.1 MHz; the older GOES 13, 14 and 15 sent LRIT at 1691 MHz. Pick the preset for the one you are pointed at and the decoder chooses its own symbol rate, filter and framing to match. A panel shows the whole chain at once - whether the carrier and frame sync have locked, the signal-to-noise ratio, the bit error rate before error correction, how many frames arrived and how many the Reed-Solomon layer had to repair, which virtual channels the satellite is using, and what files are being built.\n\nA word about what you need, because this one is not a wire aerial. GOES is geostationary - about 36 000 km away, in a fixed spot in the sky - so it takes a dish of roughly a metre and a low-noise amplifier for the 1.7 GHz band. The reward is that it never sets: point it once and it works all day.\n\nTHE ONE LIMITATION OF THIS FIRST RELEASE, stated plainly. GOES-R imagery is Rice compressed, and this version does not yet carry that decompressor. Pictures from the older LRIT birds and any uncompressed product are drawn on screen; the compressed GOES-R imagery is written to disk as standard .lrit files, which any xRIT tool will open, and the panel says so rather than showing an empty picture. Text products arrive as text. The decompressor is the next piece of work.\n\nWritten from the published specifications - the CCSDS synchronization and channel coding, space data link and space packet standards, the CGMS LRIT/HRIT Global Specification and NOAA's own LRIT documents - with the clause each block came from recorded beside it. The test suite carries a complete GOES transmitter and checks the randomiser, the Reed-Solomon dual basis and the convolutional encoder against numbers printed in those standards rather than against the decoder's own opinion.",
-      "legalNotice": "This decoder was written from public specifications and is MIT licensed. goestools by Pieter Noordhuis (BSD 2-Clause, Copyright (c) 2017 Pieter Noordhuis) was read as a reference for the handful of transmitter behaviours the published documents do not state; no code was copied from it. See src/goes/NOTICE in the plugin repository for the full attribution.",
+      "description": "The GOES satellites sit still over the Americas and broadcast, continuously and in the clear, what they are looking at: full-disk imagery from the Advanced Baseline Imager, the EMWIN text products that carry warnings and forecasts, and the administrative messages that go with them. This decoder takes that signal from raw I/Q all the way to the files it carries.\n\nThere are two links and it handles both. GOES 16, 18 and 19 send HRIT at 1694.1 MHz; the older GOES 13, 14 and 15 sent LRIT at 1691 MHz. Pick the preset for the one you are pointed at and the decoder chooses its own symbol rate, filter and framing to match. A panel shows the whole chain at once - whether the carrier and frame sync have locked, the signal-to-noise ratio, the bit error rate before error correction, how many frames arrived and how many the Reed-Solomon layer had to repair, which virtual channels the satellite is using, and what files are being built.\n\nA word about what you need, because this one is not a wire aerial. GOES is geostationary - about 36 000 km away, in a fixed spot in the sky - so it takes a dish of roughly a metre and a low-noise amplifier for the 1.7 GHz band. The reward is that it never sets: point it once and it works all day.\n\nGOES-R imagery is Rice compressed and this version decompresses it: a full-disk ABI image is drawn on screen, named by its band, as the older LRIT pictures already were. EMWIN text products arrive as text (they come zipped, and that is handled too). A product whose compression the decoder does not know is still written to disk as a standard .lrit file any xRIT tool will open, and the panel says so rather than showing an empty picture. One honest caveat: the decompressor is proven against the standard's reference streams and NOAA's published sample files, and no Rice-compressed product straight off a satellite has been through it yet - the first real dish pass is the test that counts.\n\nWritten from the published specifications - the CCSDS synchronization and channel coding, space data link and space packet standards, the CGMS LRIT/HRIT Global Specification and NOAA's own LRIT documents - with the clause each block came from recorded beside it. The test suite carries a complete GOES transmitter and checks the randomiser, the Reed-Solomon dual basis and the convolutional encoder against numbers printed in those standards rather than against the decoder's own opinion.",
+      "legalNotice": "This decoder was written from public specifications and is MIT licensed. goestools by Pieter Noordhuis (BSD 2-Clause, Copyright (c) 2017 Pieter Noordhuis) was read as a reference for the handful of transmitter behaviours the published documents do not state; no code was copied from it. libaec (BSD 2-Clause, Mathis Rosenhauer and the Deutsches Klimarechenzentrum) was consulted for the meaning of the seven flag bits in the Rice header record, which no standard defines; no code was copied from it either. See src/goes/NOTICE in the plugin repository for the full attribution.",
       "minSupportedVersion": "0.1.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
       "platforms": [
         {
           "os": "windows",
           "arch": "x64",
-          "file": "goes-0.1.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/goes-0.1.0-abi3-win-x64.dll",
-          "sha256": "3caa8203aa1b942c21632c33e119e4cb602d71ae03c3bdc94c6999f7e6ec89a8",
-          "sizeBytes": 275456
+          "file": "goes-0.2.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/goes-0.2.0-abi3-win-x64.dll",
+          "sha256": "7ef15f230ec1cf21f6713bae5db5f66625ef985eb373def927e7fac3776773ec",
+          "sizeBytes": 297984
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "goes-0.1.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/goes-0.1.0-abi3-linux-x64.so",
-          "sha256": "f39554983f2ae0386cb6d62709a8538efc6e9457a7bfb22298d3529065ad4d5e",
-          "sizeBytes": 110136
+          "file": "goes-0.2.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/goes-0.2.0-abi3-linux-x64.so",
+          "sha256": "c2e0f2dcfe1f0ad105c4856d41a7e9d59d2ab788104954845591711066f71388",
+          "sizeBytes": 142064
         }
       ]
     }
