@@ -652,7 +652,7 @@
     {
       "id": "satellites",
       "name": "Satellites",
-      "version": "1.0.5",
+      "version": "1.1.0",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -660,25 +660,25 @@
         "CASCADE_CAP_TRACK_SOURCE"
       ],
       "summary": "Tracks satellites on the map, predicts passes, and Doppler-corrects a downlink.",
-      "description": "Satellite tracking built into the receiver: the ISS, amateur birds and weather satellites drawn live on the map with their predicted ground track, a pass table for your own station - when each one rises, how high it gets, where to look - and Doppler correction that keeps the radio on a moving downlink through a pass.\n\nOrbits come from CelesTrak element sets, fetched automatically and cached for offline use. Configuration is one commented text file the plugin writes on first run (the panel names its location): your latitude and longitude, which satellites to track by name or NORAD number, and optionally one satellite's downlink frequency to Doppler-correct. Retuning the radio additionally needs the 'allow tuning' permission on this plugin's row - a plugin cannot grant itself the VFO.\n\nThe orbital model is SGP4, written clean-room from the published Spacetrack/AIAA model papers and verified against the published verification tables to their own printing precision - about seven micrometres. Near-earth satellites only: deep-space orbits (GPS, geostationary) need a model this plugin deliberately does not implement, and are refused rather than plotted wrongly.\n\nFoxSDR 0.64.0 draws the predicted ground track dashed, as a prediction should be; on older versions the line simply draws solid.",
+      "description": "Satellite tracking built into the receiver: the ISS, amateur birds and weather satellites drawn live on the map with their predicted ground track, a pass table for your own station - when each one rises, how high it gets, where to look - and Doppler correction that keeps the radio on a moving downlink through a pass.\n\nOrbits come from CelesTrak element sets, fetched automatically and cached for offline use. Configuration is one commented text file the plugin writes on first run (the panel names its location): your latitude and longitude, which satellites to track by name or NORAD number, and optionally one satellite's downlink frequency to Doppler-correct. Retuning the radio additionally needs the 'allow tuning' permission on this plugin's row - a plugin cannot grant itself the VFO.\n\nThe orbital model is SGP4, written clean-room from the published Spacetrack/AIAA model papers and verified against the published verification tables to their own printing precision - about seven micrometres.\n\nThe GOES weather satellites are tracked too (1.1.0). They are geostationary, which SGP4 does not propagate, so they are placed from their own mean elements instead - GOES 18 and GOES 19 land within a tenth of a degree of the slots NOAA publishes for them. A geostationary bird is drawn as a fixed point and gets a live look-angle row - always in view, with where to point - rather than a pass list, because it never rises or sets. GOES 16, 18 and 19 are in the default configuration.\n\nFoxSDR 0.64.0 draws the predicted ground track dashed, as a prediction should be; on older versions the line simply draws solid.",
       "minSupportedVersion": "1.0.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
       "platforms": [
         {
           "os": "windows",
           "arch": "x64",
-          "file": "satellites-1.0.5-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.5-abi3-win-x64.dll",
-          "sha256": "4c52d0f72846045c432ab6f4008446e9c006e70daf79cf79e9faff1ed534bd62",
-          "sizeBytes": 381952
+          "file": "satellites-1.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.1.0-abi3-win-x64.dll",
+          "sha256": "ae6ef6bb675e0b0df4d7385bccc3ca1ccf7a4882a2f16eebd25abb4bbbcbe6de",
+          "sizeBytes": 387072
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "satellites-1.0.5-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.0.5-abi3-linux-x64.so",
-          "sha256": "2c7b91e7a3922784825d71ad88821ce24438cfb4a292072b8012f38cf45ae1ea",
-          "sizeBytes": 887056
+          "file": "satellites-1.1.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.1.0-abi3-linux-x64.so",
+          "sha256": "f368c610fc2c6855635d1977a8a4e58417b7f8c165c6e07de34402f97d7c78a0",
+          "sizeBytes": 895384
         }
       ]
     },
