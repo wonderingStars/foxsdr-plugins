@@ -337,7 +337,7 @@
     {
       "id": "adsb-decoder",
       "name": "ADS-B Aircraft Decoder",
-      "version": "1.7.1",
+      "version": "1.8.0",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -346,25 +346,25 @@
         "CASCADE_CAP_TRACK_SOURCE"
       ],
       "summary": "Plots aircraft at 1090 MHz with flight trails, callsign, altitude and speed.",
-      "description": "Decodes Mode S / ADS-B transmissions from aircraft at 1090 MHz and reports callsign, position, altitude, ground speed, track and vertical rate. Every frame is validated against the 24-bit Mode S CRC. A frame carrying a single damaged bit is repaired - the CRC identifies which bit, so a weak aircraft at the edge of range is heard rather than lost - and anything the CRC cannot account for is discarded rather than shown as phantom aircraft. Positions are recovered from even/odd CPR frame pairs.\n\nVersion 1.7.0 hears weaker aircraft. The test that decides whether a burst is a transmission at all demanded about twice the signal-to-noise other decoders ask for, which cost roughly four decibels of sensitivity - on the bench, frames that were decoded 13 times in 60 at a given strength are now decoded 53 times in 60, and on a real antenna the same five minutes of sky went from 27 aircraft to 40. Expect more distant aircraft. Nothing was loosened about the CRC, and sixty seconds of pure noise still produces no aircraft at all.\n\nThis decoder works on raw I/Q rather than demodulated audio, so it needs a receiver capable of 1090 MHz at 2 MS/s or more; 2.4 MS/s or higher is recommended, because at exactly 2 MS/s one sub-sample timing alignment in eight is unrecoverable in principle. A 1090 MHz antenna makes far more difference than any setting. The receiver's own DC offset is tracked and removed before detection, so a zero-IF dongle such as an RTL-SDR - whose offset would otherwise bury every aircraft not on top of the antenna - hears what it should.\n\nAirborne and surface positions, callsign, velocity, vertical rate, geometric height, squawk and emergency status are decoded, and each aircraft draws a flight trail on the map. Aircraft that stop transmitting are released rather than accumulating for the session. Written clean-room from the published Mode S specification.",
+      "description": "Decodes Mode S / ADS-B transmissions from aircraft at 1090 MHz and reports callsign, position, altitude, ground speed, track and vertical rate. Every frame is validated against the 24-bit Mode S CRC. A frame carrying a single damaged bit is repaired - the CRC identifies which bit, so a weak aircraft at the edge of range is heard rather than lost - and anything the CRC cannot account for is discarded rather than shown as phantom aircraft. Positions are recovered from even/odd CPR frame pairs.\n\nVersion 1.8.0 reports what KIND of aircraft each one is, and the map draws it. Every aircraft broadcasts a category alongside its callsign - light aeroplane, airliner, heavy, helicopter, glider, microlight, unmanned - and that was being discarded. It is now decoded and passed to the host, which gives each its own silhouette on the map and on the radar scope. Measured over six minutes of real sky, 32 of the 33 aircraft that identified themselves stated a category; the one that did not keeps the plain aeroplane shape, as does anything heard by an older host.\n\nVersion 1.7.0 hears weaker aircraft. The test that decides whether a burst is a transmission at all demanded about twice the signal-to-noise other decoders ask for, which cost roughly four decibels of sensitivity - on the bench, frames that were decoded 13 times in 60 at a given strength are now decoded 53 times in 60, and on a real antenna the same five minutes of sky went from 27 aircraft to 40. Expect more distant aircraft. Nothing was loosened about the CRC, and sixty seconds of pure noise still produces no aircraft at all.\n\nThis decoder works on raw I/Q rather than demodulated audio, so it needs a receiver capable of 1090 MHz at 2 MS/s or more; 2.4 MS/s or higher is recommended, because at exactly 2 MS/s one sub-sample timing alignment in eight is unrecoverable in principle. A 1090 MHz antenna makes far more difference than any setting. The receiver's own DC offset is tracked and removed before detection, so a zero-IF dongle such as an RTL-SDR - whose offset would otherwise bury every aircraft not on top of the antenna - hears what it should.\n\nAirborne and surface positions, callsign, velocity, vertical rate, geometric height, squawk and emergency status are decoded, and each aircraft draws a flight trail on the map. Aircraft that stop transmitting are released rather than accumulating for the session. Written clean-room from the published Mode S specification.",
       "minSupportedVersion": "1.0.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
       "platforms": [
         {
           "os": "windows",
           "arch": "x64",
-          "file": "adsb-decoder-1.7.1-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.7.1-abi3-win-x64.dll",
-          "sha256": "c8a799aaa747d377fa331d7a1d759fefd05621fa091dff414cc0007096846c8c",
-          "sizeBytes": 311808
+          "file": "adsb-decoder-1.8.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.8.0-abi3-win-x64.dll",
+          "sha256": "ddb796854a8fe228087b29abc2f18a964bedd6e0681fb5456b9beaa37480a8ea",
+          "sizeBytes": 313344
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "adsb-decoder-1.7.1-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.7.1-abi3-linux-x64.so",
-          "sha256": "079f43c8cb1da282edb138fe9cb219bcbf9b8fde8814912eaf06b161a432da19",
-          "sizeBytes": 115424
+          "file": "adsb-decoder-1.8.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.8.0-abi3-linux-x64.so",
+          "sha256": "f60b239ba935a9f9d6d6f8e28be1b2e672d14937a359469541ac1d35d01db7b6",
+          "sizeBytes": 115496
         }
       ]
     },
