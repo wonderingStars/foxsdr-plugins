@@ -335,6 +335,39 @@
       ]
     },
     {
+      "id": "workbench",
+      "name": "Decoder Workbench",
+      "version": "0.1.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IQ_DECODER"
+      ],
+      "summary": "Decodes several ACARS channels at once from one radio, merged into a single window.",
+      "description": "ACARS uses six frequencies and they all sit inside 1.70 MHz, so a receiver sampling at 2.4 MS/s is already receiving every one of them at the same time. Until now the application could still only decode one, because the ACARS decoder works on demodulated audio and the receiver can only demodulate one channel at a time - which is what the six presets on that plugin are for.\n\nThis plugin takes the raw stream instead, splits the channels out of it, and runs a separate ACARS receiver on each one. Every message lands in the same window with the frequency it arrived on at the start of the line, so you can watch the whole band rather than picking a channel and hoping. Its panel lists every channel, whether your radio can currently reach it, the signal on it and how many messages it has carried.\n\nTune with the preset and it centres where all six are in range. Channels outside the span your radio is sampling are listed as out of range rather than quietly ignored, and tuning elsewhere moves the receivers with you.\n\nNeeds a receiver that can sample at a rate divisible down to a whole number of samples per bit - 2.4, 1.2 or 0.24 MS/s all work. A rate that cannot be (2.048 MS/s, for instance) is refused with a line saying so rather than decoding silently wrong. The ACARS demodulator itself is the same one the ACARS plugin uses, unchanged; this plugin is the part that lets you run six of it.",
+      "minSupportedVersion": "0.99.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "workbench-0.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/workbench-0.1.0-abi3-win-x64.dll",
+          "sha256": "f7b43236f517a63c1dd6fe4fef8d374272ab154f1969104032a187854e35ca56",
+          "sizeBytes": 189440
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "workbench-0.1.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/workbench-0.1.0-abi3-linux-x64.so",
+          "sha256": "fc07680ebffa50372ca1bbc1c109ddd8c3fcb8fb4e84e486e3ee1f5cd9d267b7",
+          "sizeBytes": 45096
+        }
+      ]
+    },
+    {
       "id": "adsb-decoder",
       "name": "ADS-B Aircraft Decoder",
       "version": "1.8.0",
