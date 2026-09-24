@@ -345,7 +345,7 @@
     {
       "id": "openmaptiles-basemap",
       "name": "Map Imagery (OpenStreetMap)",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -360,18 +360,18 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "openmaptiles-basemap-1.1.1-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.1.1-abi3-win-x64.dll",
-          "sha256": "91e6d2a33390d0601d54736adcb374f52d4c8882148ff78a340899044331989f",
-          "sizeBytes": 284672
+          "file": "openmaptiles-basemap-1.1.2-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.1.2-abi3-win-x64.dll",
+          "sha256": "0137a83c38d343093f6ace55b8af77f676f65885e2a8afe68a22bc584c4a31ca",
+          "sizeBytes": 285184
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "openmaptiles-basemap-1.1.1-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.1.1-abi3-linux-x64.so",
-          "sha256": "103dea6fa411fbbc8024d0276e5a6a96606358ae46110f587e8092ba1dba8261",
-          "sizeBytes": 901296
+          "file": "openmaptiles-basemap-1.1.2-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.1.2-abi3-linux-x64.so",
+          "sha256": "a7d511521484398537ee0746b83fb1f3a7a733650cc9bc3df71c2fc1e55a828d",
+          "sizeBytes": 906040
         }
       ]
     },
