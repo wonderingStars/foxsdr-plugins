@@ -219,6 +219,72 @@
       ]
     },
     {
+      "id": "selcal-decoder",
+      "name": "SELCAL Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_DECODER"
+      ],
+      "summary": "Reads the four-letter calls HF ground stations send to alert one aircraft, and says when a call is not to specification.",
+      "description": "SELCAL - selective calling - is how an aeronautical radio station on HF gets the attention of one aircraft's crew without making them listen to the whole frequency. The station sends the aircraft's four-letter code as two one-second pulses of two simultaneous tones, and the flight deck chimes. This decodes those calls: one line each, \"SELCAL AB-CD\", with the four measured tones, both pulse lengths and the gap between them.\n\nIt knows all 32 tones of the ICAO table, including the 16 added in November 2022, and names a code that uses them as a 32-tone code. Each pulse is timed to the sample, so the timing the standard sets - pulses of 1.0 plus or minus 0.25 seconds, a gap of 0.2 plus or minus 0.1 - is actually checked.\n\nA call that does not meet the standard is still reported, marked \"SELCAL?\" with the reason in words: a pulse too short or too long, a gap out of range, a tone that is in no table (with its measured frequency and how far it is from the nearest one), a tone used twice, or a first pulse whose second never came. On a fading HF channel that is often the real call, damaged, and hiding it would hide what you were listening for.\n\nThe presets tune ten North Atlantic HF frequencies from the ICAO NAT families that Shanwick, Gander and the other oceanic stations work - listen in USB on the listed frequency, with no offset. A receiver a few hertz off still decodes: every tone is accepted within 1.5 percent and the error is printed.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "selcal-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/selcal-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "6c6dcc371e77b247a8a0f1c6d7e13699c414cbdda18640ca2046519015d51a00",
+          "sizeBytes": 197120
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "selcal-decoder-1.0.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/selcal-decoder-1.0.0-abi3-linux-x64.so",
+          "sha256": "2af76e054ce555aad746a0f578f728f1c19643057a8831c30e300a5c70ce2927",
+          "sizeBytes": 46640
+        }
+      ]
+    },
+    {
+      "id": "ft8-decoder",
+      "name": "FT8 Decoder",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_DECODER"
+      ],
+      "summary": "Decodes FT8, the WSJT-X weak-signal amateur mode, slot by slot, in WSJT-X's own layout.",
+      "description": "FT8 is the weak-signal amateur mode WSJT-X introduced in 2017 and now the busiest thing on the HF bands: 15-second transmissions, started on the UTC clock, each carrying one short message - a CQ, a callsign pair with a signal report or a locator, a 73. This decodes every one it can hear in each slot and prints them the way WSJT-X does: the slot's UTC time, the signal-to-noise ratio, the time offset, the audio frequency and the message.\n\nTune a preset and leave it running. The presets are WSJT-X's own FT8 dial frequencies from 160 m to 2 m, in USB with a 3 kHz channel; the messages appear at the end of each 15-second slot. Like WSJT-X, FT8 needs this computer's clock to be right to within about a second, so keep it synchronised.\n\nStandard QSO messages and free text are decoded. It reaches down to about -18 dB; WSJT-X, which also subtracts each decoded signal and decodes again, goes a few dB further. The SNR column follows WSJT-X's own convention so the two can be compared. This is a receiver only: it never transmits.\n\nBuilt on ft8_lib by Karlis Goba (YL3JG), MIT licence, and KISS FFT by Mark Borgerding, BSD 3-clause licence: Copyright (c) 2003-2010 Mark Borgerding, all rights reserved; provided by the copyright holders and contributors \"as is\" and without any express or implied warranties. The full licence texts are in the FoxSDR plugins repository under third_party/ft8_lib.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "ft8-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ft8-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "37a95e9e37ffdcf410259d4313873ae0baf96733e89545a675099fa022757f81",
+          "sizeBytes": 254976
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "ft8-decoder-1.0.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ft8-decoder-1.0.0-abi3-linux-x64.so",
+          "sha256": "a8ac6d8c32e422b8ab96e5ab150eee4bf78b0a104dfb48dc55b801ed59b94c44",
+          "sizeBytes": 113080
+        }
+      ]
+    },
+    {
       "id": "vor-decoder",
       "name": "VOR Navigation Decoder",
       "version": "1.0.1",
