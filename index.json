@@ -6,7 +6,7 @@
     {
       "id": "survey-engine",
       "name": "Survey Engine",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -14,25 +14,25 @@
         "CASCADE_CAP_IQ_DECODER"
       ],
       "summary": "Leave it running and come back to a list of what is transmitting near you.",
-      "description": "A waterfall tells you whether something is on a frequency while you are watching it. This answers the other question - what is around you at all - which needs days rather than minutes and therefore needs nobody sitting there. Point it at a band, leave it on a machine that is on anyway, and come back to the frequencies that were actually used, how wide they were, how strong they got, and what fraction of the visits they were present for.\n\nIt reads the whole receiver bandwidth at once rather than one channel at a time, so a 2 MHz slice is surveyed per dwell, and it steps across the band on its own. Stepping needs the 'allow tuning' permission on its row - a plugin cannot grant itself the VFO - and without it the survey still works perfectly well on whatever you have tuned, and says so rather than appearing broken.\n\nFindings go to survey.csv beside its configuration, rewritten every dwell so it is always current, and read back at startup so a survey resumes across a restart instead of being erased by one.\n\nWHAT IT WILL NOT TELL YOU. It does not know who is transmitting; no power spectrum does. The guess column is derived from the occupied bandwidth alone and always carries a question mark - 'NFM?' means 'about 12 kHz wide, which is what narrowband FM looks like', not 'this is narrowband FM', and never 'this is the local taxi firm'. A band name is shown where one is known, from an editable file of ITU allocations that ships with sections for all three regions; naming the actual operator of a channel needs a licence register, which is somebody else's compiled work and not ours to ship. If you have one, paste its rows into that file and it stays on your machine.\n\nVersion 0.1.0 is a first release and is marked as such: the detector has been run against real air and against synthesised spectra with known answers, but not against many aerials or many bands.",
+      "description": "A waterfall tells you whether something is on a frequency while you are watching it. This answers the other question - what is around you at all - which needs days rather than minutes and therefore needs nobody sitting there. Point it at a band, leave it on a machine that is on anyway, and come back to the frequencies that were actually used, how wide they were, how strong they got, and what fraction of the visits they were present for.\n\nIt reads the whole receiver bandwidth at once rather than one channel at a time, so a 2 MHz slice is surveyed per dwell, and it steps across the band on its own. Stepping needs the 'allow tuning' permission on its row - a plugin cannot grant itself the VFO - and without it the survey still works perfectly well on whatever you have tuned, and says so rather than appearing broken.\n\nFindings go to survey.csv beside its configuration, rewritten every dwell so it is always current, and read back at startup so a survey resumes across a restart instead of being erased by one.\n\nWHAT IT WILL NOT TELL YOU. It does not know who is transmitting; no power spectrum does. The guess column is derived from the occupied bandwidth alone and always carries a question mark - 'NFM?' means 'about 12 kHz wide, which is what narrowband FM looks like', not 'this is narrowband FM', and never 'this is the local taxi firm'. A band name is shown where one is known, from an editable file of ITU allocations that ships with sections for all three regions; naming the actual operator of a channel needs a licence register, which is somebody else's compiled work and not ours to ship. If you have one, paste its rows into that file and it stays on your machine.\n\nVersion 0.1.1 corrects where a signal is written down: 0.1.0 put every centre half a bin high (about 1.2 kHz at 2.4 MS/s). A survey.csv written by 0.1.0 is corrected once when it is read back, so a station near a channel boundary stays one row rather than becoming two. It is still an early release: the detector has been run against real air and against synthesised spectra with known answers, but not against many aerials or many bands.",
       "minSupportedVersion": "0.1.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
       "platforms": [
         {
           "os": "windows",
           "arch": "x64",
-          "file": "survey-engine-0.1.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/survey-engine-0.1.0-abi3-win-x64.dll",
-          "sha256": "a54d17f2255b6a6407c23b7050c2314536cfe82b70a5c88a7ff69eb7d9b0b63e",
-          "sizeBytes": 271872
+          "file": "survey-engine-0.1.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/survey-engine-0.1.1-abi3-win-x64.dll",
+          "sha256": "a8303bbe49b148cab9a0c7615b2c4a87d99c8633eca416bb2838e502ba2a2536",
+          "sizeBytes": 274944
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "survey-engine-0.1.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/survey-engine-0.1.0-abi3-linux-x64.so",
-          "sha256": "fa80b0af84e6bebcd47180c774aa896d75f51fecde56e075b120a747dc366dbf",
-          "sizeBytes": 68264
+          "file": "survey-engine-0.1.1-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/survey-engine-0.1.1-abi3-linux-x64.so",
+          "sha256": "2754049254f14ad4fe3ea2de18bea929b9b8d2ab550a761450d59e9d263e2a98",
+          "sizeBytes": 72080
         }
       ]
     },
@@ -846,6 +846,40 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/goes-0.2.0-abi3-linux-x64.so",
           "sha256": "c2e0f2dcfe1f0ad105c4856d41a7e9d59d2ab788104954845591711066f71388",
           "sizeBytes": 142064
+        }
+      ]
+    },
+    {
+      "id": "nearby-signal-catch",
+      "name": "Nearby Signal Catch",
+      "version": "0.1.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IQ_DECODER"
+      ],
+      "summary": "Notices a transmitter far stronger than everything else - usually one close by - and brings the receiver to it.",
+      "description": "Works like the Close Call feature on Uniden scanners (Close Call is a trademark of Uniden; this plugin is not made or endorsed by Uniden). It watches the whole band your radio is sampling and catches a transmission that stands far above everything else in it - which usually means a handheld or a mobile close by - then marks it on the spectrum, raises a notice on its plate and logs it: the time, the frequency, the peak level and how long it was up.\n\nIT MEASURES STRENGTH, NOT DISTANCE. A strong signal usually means a nearby transmitter, but a distant one with a big aerial on a hill can be just as strong, and the same signal reads differently at a different gain setting. A hit needs both a level (default -40 dBFS) and a margin over the band's noise floor (default 30 dB), held for 200 ms, so a spike or a burst of interference is not reported.\n\nModes, on its plate: Off; Alert only (the default - it never moves the receiver); Tune (moves the VFO onto a hit, holds while it lasts and goes back to where you were two seconds after it ends, unless you retuned meanwhile); Sweep (between hits, steps the receiver across a chosen set of bands - handheld bands, 2 m and 70 cm, PMR446, airband, marine VHF, or wider VHF and UHF ranges; turning the dial yourself stops the sweep until you choose Sweep again, and a slice your radio cannot tune is skipped and said rather than retried). Tune and Sweep need GRANT RECEIVER CONTROL on its plate and work exactly as Alert only without it. Stopping the plugin or revoking control during a hold leaves the receiver on the hit - it is no longer allowed to move it back - and it says where. Keys set the level, the margin and the bands, and ignore a frequency that is always strong (a local transmitter mast); all of it is remembered.\n\nOn the patch page it is an I/Q part: its hits reach a Text out. A patch radio is never tuned. There is no alert sound - a plugin's only way to make sound would silence the transmission it has just caught. Needs FoxSDR 0.99.31 or later for marks, tuning and remembered settings; older versions show the hits as text only.",
+      "legalNotice": "This plugin finds strong transmissions and, if you allow it, moves your receiver onto them so that you hear them. It decodes nothing itself, but what you then listen to may be other people's radio traffic. In the United Kingdom it is an offence under section 48 of the Wireless Telegraphy Act 2006, without lawful authority, to use radio apparatus with intent to obtain information about the contents, sender or addressee of a message of which you are not an intended recipient, or to disclose such information; comparable restrictions apply in many other jurisdictions. What you may listen to depends on the service and on where you are. You are responsible for ensuring your use of this plugin is lawful.",
+      "minSupportedVersion": "0.1.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "nearby-signal-catch-0.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/nearby-signal-catch-0.1.0-abi3-win-x64.dll",
+          "sha256": "bf89651b8c570abce1ff339fdfd1c41b7540c265f39b2a073bea490f2be5ecaa",
+          "sizeBytes": 243712
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "nearby-signal-catch-0.1.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/nearby-signal-catch-0.1.0-abi3-linux-x64.so",
+          "sha256": "ad58ac266ce52c4c1bce4f05eefa0757c45e7860e76f75636279a60bc96f82c3",
+          "sizeBytes": 87872
         }
       ]
     }
