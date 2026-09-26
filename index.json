@@ -97,7 +97,7 @@
     {
       "id": "cw-decoder",
       "name": "Morse (CW) Decoder",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -105,25 +105,25 @@
         "CASCADE_CAP_DECODER"
       ],
       "summary": "Reads Morse code and reports the sender's speed.",
-      "description": "Turns received Morse into text. Nothing has to be told to it: the decoder finds the tone, works out the speed from the signal itself, and follows an operator who speeds up or slows down mid-transmission. Anything from about 5 to 40 words per minute is read, and the speed it has settled on is reported alongside the text - which is the one number that explains a poor decode.\n\nFarnsworth sending, where the characters are sent fast but the gaps between them are stretched, is handled properly. Decoders that assume even spacing turn it into correctly-spelled words broken into single letters.\n\nPut the receiver in CW mode with a narrow filter; the plugin's presets set that up on the CW calling frequencies of each band. An empty band produces an empty screen rather than invented letters, which matters more than it sounds: text on screen from a dead frequency is far harder to disbelieve than nothing at all.\n\nThe code table is transcribed from ITU-R Recommendation M.1677-1 and cross-checked against an independent published table.",
+      "description": "Turns received Morse into text. It reads the station you tune to the 700 Hz note - where CW mode puts a carrier on the dial frequency, and where every preset puts its station. It follows that station up to 60 Hz either way, for tuning slop and drift, but it does not search the channel for other signals: a station further off the note is not read until you tune it there. The speed and the spacing are worked out from the signal itself, and learnt again after every pause of about twenty dot lengths - a second at 25 words per minute, two at 12, about five at 5, and longer after wide word spacing, never more than six seconds - so the other station's reply at its own speed, or an operator who slows down after such a pause, is read at the new speed. Anything from about 5 to 45 words per minute is read, and up to about 50 when the key edges are sharp (3 ms or less); faster sending with softer edges prints nothing. The speed it has settled on is reported alongside the text - which is the one number that explains a poor decode. A keyer's weighting and soft key edges are allowed for; a straight key's uneven timing and a bug's long dashes are read too, the bug much less reliably: in testing, a bug with uneven spacing lost 40 to 55% of its characters. For slower sending it narrows its own filter around the note, down to about 40 Hz, which reads a weak signal that a wide filter loses in the noise.\n\nA 3 kHz channel often holds more than one signal. A word is printed only if what produced it was keyed like Morse. In testing, twelve minutes each of RTTY, MFSK, Olivia, an FT8-like signal, MSK and fading or switched carriers on the note mostly printed nothing. The worst printed a few stray letters a minute: RTTY with one tone on the note about four, a wide Olivia signal about a dozen, and a carrier switched on and off at random about the same. 1.0.0 printed hundreds a minute. A stretch of a digital signal can still pass for Morse now and then.\n\nFarnsworth sending, where the characters are sent fast but the gaps between them are stretched, is read as words - tested down to 18-WPM characters at 5 WPM overall, where the first word can still come out split. Decoders that assume even spacing turn it into correctly-spelled words broken into single letters.\n\nThe presets tune the CW calling frequencies of each amateur band, and one tunes SAQ Grimeton: the 1924 Alexanderson alternator in Sweden, a World Heritage site, which sends Morse on 17.2 kHz on a few occasions a year. Like the others it tunes in CW mode, on 17.2 kHz itself, so SAQ's carrier arrives as the same 700 Hz note. SAQ has to arrive on that note to be read: the older way of tuning it, 16.4 kHz in USB, puts it at 800 Hz, where this decoder prints nothing. 17.2 kHz is very low frequency (VLF): receiving it needs a radio or sound card that reaches that low, or an up-converter.\n\nAn empty band produces an empty screen rather than invented letters, which matters more than it sounds: text on screen from a dead frequency is far harder to disbelieve than nothing at all.\n\nThe code table is transcribed from ITU-R Recommendation M.1677-1 and cross-checked against an independent published table.",
       "minSupportedVersion": "1.0.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
       "platforms": [
         {
           "os": "windows",
           "arch": "x64",
-          "file": "cw-decoder-1.0.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/cw-decoder-1.0.0-abi3-win-x64.dll",
-          "sha256": "2dffa60dc899731e5af2e8c8b012ad081d9f440c5de0b6dfed48d2699f852f1d",
-          "sizeBytes": 162816
+          "file": "cw-decoder-1.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/cw-decoder-1.1.0-abi3-win-x64.dll",
+          "sha256": "499bebdc4d76109c5c3e444af0b97cdd1c853b2a493b4525cd994bf89376233d",
+          "sizeBytes": 202752
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "cw-decoder-1.0.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/cw-decoder-1.0.0-abi3-linux-x64.so",
-          "sha256": "9421769f7f1ccbec82fe79d27925bd13e1b58f3cf4bc42eefaa99b98de073d6f",
-          "sizeBytes": 29792
+          "file": "cw-decoder-1.1.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/cw-decoder-1.1.0-abi3-linux-x64.so",
+          "sha256": "511534ea3f0edd77cc4868cf255250233d65105d6b702c572a2c49ca5929b92f",
+          "sizeBytes": 67672
         }
       ]
     },
