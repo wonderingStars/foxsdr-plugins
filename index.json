@@ -529,7 +529,7 @@
     {
       "id": "ais-decoder",
       "name": "AIS Ship Tracking Decoder",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -538,32 +538,32 @@
         "CASCADE_CAP_TRACK_SOURCE"
       ],
       "summary": "Decodes AIS ship positions and voyage data on the marine band.",
-      "description": "Decodes AIS - the Automatic Identification System that ships broadcast for collision avoidance - and reports vessel identity, position, speed, course and heading, together with ship name, callsign, type, destination and draught where the vessel sends them. Output includes a standard !AIVDM sentence for every frame that passes the checksum, so it can be fed to charting software.\n\nBoth AIS channels (161.975 and 162.025 MHz) are decoded at the same time from a single receiver: tune to 162.000 MHz and both are covered. This decoder works on raw I/Q rather than demodulated audio and needs 192 kS/s.\n\nClass A and Class B position reports and static voyage data are parsed into fields; other message types are still reported with their type and sender. Written clean-room from the published ITU-R M.1371 specification.",
+      "description": "Decodes AIS - the Automatic Identification System that ships broadcast for collision avoidance - and reports vessel identity, position, speed, course and heading, together with ship name, callsign, type, destination and draught where the vessel sends them. Output includes a standard !AIVDM sentence for every frame that passes the checksum, so it can be fed to charting software.\n\nBoth AIS channels (161.975 and 162.025 MHz) are decoded at the same time from a single receiver: tune to 162.000 MHz and both are covered. This decoder works on raw I/Q rather than demodulated audio and needs 192 kS/s.\n\nVessels are plotted on the map, labelled with the ship's name once a Class A (or extended Class B) vessel has sent it, and by MMSI otherwise.\n\nClass A and Class B position reports and static voyage data are parsed into fields; other message types are still reported with their type and sender. Written clean-room from the published ITU-R M.1371 specification.",
       "minSupportedVersion": "1.0.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
       "platforms": [
         {
           "os": "windows",
           "arch": "x64",
-          "file": "ais-decoder-1.0.1-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ais-decoder-1.0.1-abi3-win-x64.dll",
-          "sha256": "05794173e1f97ee1e0aa32b74b5daec92238af8a45c94cba3b24153149a87567",
+          "file": "ais-decoder-1.0.2-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ais-decoder-1.0.2-abi3-win-x64.dll",
+          "sha256": "f5519cf608070fb7e7627cc728f783e808b5f3054eb53d35656ace0e86f30fa3",
           "sizeBytes": 191488
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "ais-decoder-1.0.1-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ais-decoder-1.0.1-abi3-linux-x64.so",
-          "sha256": "14a08430f42ec05a3d61d145ccab0378f874f4e373f450773dcc3ae18c0e64c8",
-          "sizeBytes": 43304
+          "file": "ais-decoder-1.0.2-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ais-decoder-1.0.2-abi3-linux-x64.so",
+          "sha256": "9d660f42932c7251022b336d5f2bc253494246c50b311c817d5a07780ecd5204",
+          "sizeBytes": 43288
         }
       ]
     },
     {
       "id": "aprs-decoder",
       "name": "APRS / AX.25 Packet Decoder",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -572,25 +572,25 @@
         "CASCADE_CAP_TRACK_SOURCE"
       ],
       "summary": "Decodes APRS and AX.25 packet radio from 144.800 MHz NFM audio.",
-      "description": "Decodes Bell 202 AFSK packet radio - the 1200 bps mode used by APRS worldwide - from demodulated narrowband FM audio, and emits one line of text per frame. Frames are validated against the AX.25 frame check sequence, so corrupted packets are discarded rather than shown as garbled text. Position reports are parsed into latitude and longitude, in both the uncompressed and base-91 compressed forms, along with timestamps, status reports and addressed messages. Any frame type it does not parse is still shown verbatim rather than dropped. Mic-E encoding is not yet parsed into fields. Written clean-room from the AX.25 v2.2 and APRS 1.0.1 specifications.",
+      "description": "Decodes Bell 202 AFSK packet radio - the 1200 bps mode used by APRS worldwide - from demodulated narrowband FM audio, and emits one line of text per frame. Frames are validated against the AX.25 frame check sequence, so corrupted packets are discarded rather than shown as garbled text. Position reports are parsed into latitude and longitude, in both the uncompressed and base-91 compressed forms, along with timestamps, status reports and addressed messages. Any frame type it does not parse is still shown verbatim rather than dropped. Mic-E encoding is not yet parsed into fields. Stations are plotted on the map: one that moves draws a trail of the last five minutes, and an altitude sent in the comment (/A=) is reported with its position. Written clean-room from the AX.25 v2.2 and APRS 1.0.1 specifications.",
       "minSupportedVersion": "1.0.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
       "platforms": [
         {
           "os": "windows",
           "arch": "x64",
-          "file": "aprs-decoder-1.0.1-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aprs-decoder-1.0.1-abi3-win-x64.dll",
-          "sha256": "746901aec916ab4d8ad46dc2528b6203e8aea5dd50a5ef9ff0462bf39cbc92a3",
-          "sizeBytes": 190464
+          "file": "aprs-decoder-1.0.2-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aprs-decoder-1.0.2-abi3-win-x64.dll",
+          "sha256": "9e27be1538d79190ac121d2a39a139c6564fbd8c634f5012903312f274d854cf",
+          "sizeBytes": 194048
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "aprs-decoder-1.0.1-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aprs-decoder-1.0.1-abi3-linux-x64.so",
-          "sha256": "b970a057535011a97260e30bc126bb5ed3e475de286cbda34b740d5de8092173",
-          "sizeBytes": 30712
+          "file": "aprs-decoder-1.0.2-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/aprs-decoder-1.0.2-abi3-linux-x64.so",
+          "sha256": "353d839c5575c73d5319d67f3200af63f21bee05ff69818436ec305c53e39b63",
+          "sizeBytes": 31096
         }
       ]
     },
