@@ -254,33 +254,33 @@
     {
       "id": "ft8-decoder",
       "name": "FT8 Decoder",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
       "capabilities": [
         "CASCADE_CAP_DECODER"
       ],
-      "summary": "Decodes FT8, the WSJT-X weak-signal amateur mode, slot by slot, in WSJT-X's own layout.",
-      "description": "FT8 is the weak-signal amateur mode WSJT-X introduced in 2017 and now the busiest thing on the HF bands: 15-second transmissions, started on the UTC clock, each carrying one short message - a CQ, a callsign pair with a signal report or a locator, a 73. This decodes every one it can hear in each slot and prints them the way WSJT-X does: the slot's UTC time, the signal-to-noise ratio, the time offset, the audio frequency and the message.\n\nTune a preset and leave it running. The presets are WSJT-X's own FT8 dial frequencies from 160 m to 2 m, in USB with a 3 kHz channel; the messages appear at the end of each 15-second slot. Like WSJT-X, FT8 needs this computer's clock to be right to within about a second, so keep it synchronised.\n\nStandard QSO messages and free text are decoded. It reaches down to about -18 dB; WSJT-X, which also subtracts each decoded signal and decodes again, goes a few dB further. The SNR column follows WSJT-X's own convention so the two can be compared. This is a receiver only: it never transmits.\n\nBuilt on ft8_lib by Karlis Goba (YL3JG), MIT licence, and KISS FFT by Mark Borgerding, BSD 3-clause licence: Copyright (c) 2003-2010 Mark Borgerding, all rights reserved; provided by the copyright holders and contributors \"as is\" and without any express or implied warranties. The full licence texts are in the FoxSDR plugins repository under third_party/ft8_lib.",
+      "summary": "Decodes FT8, the WSJT-X weak-signal amateur mode, slot by slot, in WSJT-X's own layout - and, only if you switch it on, reports what it hears to PSK Reporter.",
+      "description": "FT8 is the weak-signal amateur mode WSJT-X introduced in 2017 and now the busiest thing on the HF bands: 15-second transmissions, started on the UTC clock, each carrying one short message - a CQ, a callsign pair with a signal report or a locator, a 73. This decodes every one it can hear in each slot and prints them the way WSJT-X does: the slot's UTC time, the signal-to-noise ratio, the time offset, the audio frequency and the message.\n\nTune a preset and leave it running. The presets are WSJT-X's own FT8 dial frequencies from 160 m to 2 m, in USB with a 3 kHz channel; the messages appear at the end of each 15-second slot. Like WSJT-X, FT8 needs this computer's clock to be right to within about a second, so keep it synchronised.\n\nStandard QSO messages and free text are decoded. It reaches down to about -18 dB; WSJT-X, which also subtracts each decoded signal and decodes again, goes a few dB further. The SNR column follows WSJT-X's own convention so the two can be compared. This is a receiver only: it never transmits.\n\nPSK REPORTER (new in 1.1.0, OFF unless you switch it on). When you type your callsign and locator into its settings and switch 'Report to PSK Reporter' on, it sends your callsign, your locator, the decoder's own name and version, and each station it decodes - callsign, frequency, signal report, mode and the time - to pskreporter.info, which shows them PUBLICLY on its map as heard by your callsign. (It has no intermodulation-distortion measurement of its own, so that optional field always goes as zero.) Nothing is sent while the switch is off. This plugin can read FoxSDR's receiver position - GPS, 'Set RX here', or a typed location - as a 6-character Maidenhead square, and uses it to prefill the Locator box ONCE, the first time one is set; after that the box is yours, including if you clear it. Reports go no more than once every five minutes - a little sooner only when many new stations fill one report at once - and each station at most once an hour unless it moves to another band or dial frequency. A report is only ever sent from the RECEIVER, with a real radio open and running in USB on a steady dial - never from the patch page, a sound-card source, or an I/Q recording being played back, and not while a second FT8 decoder is open elsewhere - because each of those would be a public claim about a station that was never actually live at that frequency at that time. Lookups are IPv4 only. Its 'FT8 - PSK Reporter' window shows what it is doing.\n\nThe settings boxes appear in FoxSDR 0.99.43 and later. On an older FoxSDR this version still loads and decodes exactly as 1.0.0 did - there is just nowhere to type a callsign, so it never reports, and its window says which FoxSDR it needs.\n\nBuilt on ft8_lib by Karlis Goba (YL3JG), MIT licence, and KISS FFT by Mark Borgerding, BSD 3-clause licence: Copyright (c) 2003-2010 Mark Borgerding, all rights reserved; provided by the copyright holders and contributors \"as is\" and without any express or implied warranties. The full licence texts are in the FoxSDR plugins repository under third_party/ft8_lib.",
       "minSupportedVersion": "1.0.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
       "platforms": [
         {
           "os": "windows",
           "arch": "x64",
-          "file": "ft8-decoder-1.0.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ft8-decoder-1.0.0-abi3-win-x64.dll",
-          "sha256": "37a95e9e37ffdcf410259d4313873ae0baf96733e89545a675099fa022757f81",
-          "sizeBytes": 254976
+          "file": "ft8-decoder-1.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ft8-decoder-1.1.0-abi3-win-x64.dll",
+          "sha256": "bf20e56e9d0c3a16634788d5a5959d33dc1773bda57a5c95ac81bdd88d9d7128",
+          "sizeBytes": 316416
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "ft8-decoder-1.0.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ft8-decoder-1.0.0-abi3-linux-x64.so",
-          "sha256": "a8ac6d8c32e422b8ab96e5ab150eee4bf78b0a104dfb48dc55b801ed59b94c44",
-          "sizeBytes": 113080
+          "file": "ft8-decoder-1.1.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/ft8-decoder-1.1.0-abi3-linux-x64.so",
+          "sha256": "2afd79739b67611caae3726bf8465074dd41f5445fe940164423bd2dd00282e5",
+          "sizeBytes": 210400
         }
       ]
     },
