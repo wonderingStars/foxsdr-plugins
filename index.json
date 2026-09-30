@@ -882,6 +882,74 @@
           "sizeBytes": 87872
         }
       ]
+    },
+    {
+      "id": "dmr-monitor",
+      "name": "DMR Monitor (data only, EXPERIMENTAL)",
+      "version": "0.1.1",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_DECODER"
+      ],
+      "summary": "EXPERIMENTAL - DMR signalling only: talkgroups, radio IDs, colour code and flags. No voice decoded, no decryption; not yet confirmed off air.",
+      "description": "Decodes the DMR (ETSI TS 102 361) burst structure from demodulated audio and reports what a burst's signalling carries: colour code, whether a call is a group or private call, the talkgroup or destination radio, the source radio ID, the emergency flag, and whether the burst is flagged encrypted. A voice burst is recognised and counted; its payload is never examined.\n\nDMR ONLY. This release wires up DMR alone. Frame-sync and Network ID constants for P25 Phase 1, and a frame-sync-plus-header receiver for D-STAR, exist in the plugin's source tree and pass their own unit tests, but neither is connected to this plugin: 0.1.1 decodes nothing but DMR. The D-STAR code stops short of a usable header even on its own terms - it finds the frame sync and collects the raw bits that follow, but the descrambler, deinterleaver and Viterbi decoder the standard requires to recover them are not yet written, so even a direct capture would fail the header check today. NXDN is not implemented at all; it is named only as a future goal in the source comments.\n\nNO VOICE, IN SOFTWARE OR HARDWARE, IN THIS RELEASE. DMR's vocoder (AMBE+2) is patent encumbered, so it is not implemented in software and cannot legally be added to a plugin. The only lawful route to audio is a hardware DVSI AMBE dongle the user owns, whose patent licence travels with the device. This plugin's source tree contains a tested packet-framing library for talking to one - the request/response envelope only, never a vocoder bit - but nothing in this shipped module calls it: there is no way to attach a dongle in 0.1.1. That packet layer is itself unverified against real hardware, because no DVSI device has been tested against it.\n\nEXPERIMENTAL, AND NOT YET VERIFIED AGAINST A REAL SIGNAL. Every check runs against a synthetic transmitter built from the same reading of the standard, plus several checks anchored to properties the standard states independently of that transmitter (the Golay (20,8) code's three-error correction, the BPTC interleaver being a genuine permutation, the six SYNC patterns' complement relationship) - stronger than pure self-agreement, but no DMR burst captured off air has been decoded yet. Version 0.1.1 says EXPERIMENTAL for that reason.\n\nNeeds demodulated NFM audio on a DMR channel (12.5 kHz, 4800 symbols/s 4-level FSK). The one preset lands on 446.000 MHz NFM as a starting point only: DMR channels are locally coordinated, so there is no frequency this plugin could publish that would be right for more than a handful of installs - find your own repeater's frequency and tune there.\n\nWritten clean-room from ETSI TS 102 361-1 and -2, both freely published; DSD, DSD+, mbelib, OP25 and SDRTrunk (all GPL/AGPL) were not read.",
+      "legalNotice": "This plugin decodes DMR signalling: talkgroups, radio IDs, colour codes and flags. It does not decode voice and does not decrypt anything - an encrypted call is reported as encrypted and nothing more. In the United Kingdom it is an offence under section 48 of the Wireless Telegraphy Act 2006 to intercept a message you are not authorised to receive, or to disclose it; using this plugin to receive transmissions that are not your own can be such an offence, and comparable restrictions apply in many other jurisdictions. Install it only if you accept that you alone are responsible for how you use it.",
+      "minSupportedVersion": "0.1.1",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "dmr-monitor-0.1.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/dmr-monitor-0.1.1-abi3-win-x64.dll",
+          "sha256": "e2a2e30800a716d1355a44c89d1d704e0ac97504e3f07643a7580a22580f2a79",
+          "sizeBytes": 171008
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "dmr-monitor-0.1.1-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/dmr-monitor-0.1.1-abi3-linux-x64.so",
+          "sha256": "bcca98d66dfaec974c2c7dc9e52889795d01f0bb7bcde33cb50649e9000cd342",
+          "sizeBytes": 34872
+        }
+      ]
+    },
+    {
+      "id": "tetra-decoder",
+      "name": "TETRA Monitor (data only)",
+      "version": "0.1.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IQ_DECODER"
+      ],
+      "summary": "Decodes the TETRA air interface - cell identity, system information and clear messages. No voice, no decryption.",
+      "description": "Decodes the downlink of a TETRA cell from raw I/Q (ETSI EN 300 392-2: pi/4-DQPSK, 18 ksymbol/s, 25 kHz continuous transmission) and reports what the network broadcasts about itself:\n\n- the cell's identity from the BSCH synchronization PDU: country code (MCC), network code (MNC), colour code, and the timeslot, frame and multiframe numbers;\n- the SYSINFO broadcast on the BNCH: main carrier, frequency band, offset, duplex spacing, location area, and the security and encryption flags the cell carries;\n- the AACH access assignment, which says whether a slot is control or traffic;\n- MAC-RESOURCE channel grants, with the granted address and whether the grant is encrypted.\n\nIT DECODES NO VOICE AND DECRYPTS NOTHING. A traffic channel carrying speech is detected and labelled 'voice - not decoded (the TETRA speech codec needs ETSI's permission, which has been requested)'. The TETRA speech codec (ETSI EN 300 395) is not present - no ACELP, no ETSI reference code - and no TEA or other decryption is implemented; an encrypted transmission is shown as encrypted and nothing more.\n\nWritten clean-room from ETSI EN 300 392-2 V3.8.1 alone; no third-party TETRA decoder was read. Every transcribed constant - the CRC block code, the RCPC puncturing, the block interleaving, the scrambling, the Reed-Muller code - is checked in the plugin's own test against a property the standard states independently, so a slip breaks a relationship rather than mis-decoding silently. Version 0.1.0: verified against a synthetic transmitter built from the standard, and NOT yet against a real cell off air.",
+      "legalNotice": "This plugin decodes TETRA transmissions: network and cell identities, system information, and messages sent in clear. It does not decode voice and does not decrypt anything. It is supplied for testing and development with your own equipment - a transmitter and receiver joined by cable through an attenuator, or inside a screened (RF-shielded) room. In the United Kingdom it is an offence under section 48 of the Wireless Telegraphy Act 2006 to intercept a message you are not authorised to receive, and to disclose it; using this plugin to receive transmissions that are not your own can be such an offence, and equivalent restrictions apply in many other jurisdictions. Install it only if you accept that you alone are responsible for how you use it.",
+      "minSupportedVersion": "0.1.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "tetra-decoder-0.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/tetra-decoder-0.1.0-abi3-win-x64.dll",
+          "sha256": "2a3bd4eb8032746346b4c82d320354ad2cf5df2f50ab8b7b498e64a1b2df0f88",
+          "sizeBytes": 234496
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "tetra-decoder-0.1.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/tetra-decoder-0.1.0-abi3-linux-x64.so",
+          "sha256": "8b9dcb7d4c548eccece413fcc67d2a95859a5850d15ac95a1d535e2245bd4597",
+          "sizeBytes": 74000
+        }
+      ]
     }
   ]
 }
