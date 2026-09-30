@@ -31,6 +31,7 @@ open the plugin browser and press Browse.
 | **Inmarsat-C / EGC** 0.1.0 | SafetyNET maritime broadcasts | Raw I/Q, 24 kS/s | ⚠ **EXPERIMENTAL — has never decoded a real signal** |
 | **DMR Monitor** 0.1.1 | DMR signalling only: talkgroups, radio IDs, colour code, emergency/encrypted flags. No voice | NFM audio, 12.5 kHz DMR channel | ⚠ **EXPERIMENTAL — not yet confirmed against a real off-air burst.** No software voice decoding (patent-encumbered vocoder); no hardware dongle support in this release either. **Legal notice must be accepted before install** |
 | **TETRA Monitor** 0.1.0 | TETRA cell identity, system information, clear messages. No voice, no decryption | Raw I/Q, 18 ksymbol/s | ⚠ **Verified only against a synthetic transmitter — not yet decoded a real cell off air.** **Legal notice must be accepted before install** |
+| **Demod Analyzer (EXPERIMENTAL)** 0.1.0 | Nothing is decoded to a message; it ANALYSES a digitally modulated signal — BPSK, QPSK, 8PSK or 16-QAM with a confidence, symbol rate, carrier, roll-off, EVM, MER, SNR, timing/phase jitter, IQ imbalance, and the Gray-mapped bits | Raw I/Q, any rate: the live receiver's VFO channel, or a cs8/cu8/cs16/cf32/WAV recording it reads itself | ⚠ **EXPERIMENTAL — not yet tried against a real off-air signal.** One combined dashboard picture; the file path is typed, there is no file picker |
 | **Example RMS Reporter** 2.0.0 | Nothing; reports audio level | NFM audio | Reference plugin and template |
 
 All are MIT-licensed and were written clean-room from published

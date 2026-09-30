@@ -950,6 +950,39 @@
           "sizeBytes": 74000
         }
       ]
+    },
+    {
+      "id": "demod-analyzer",
+      "name": "Demod Analyzer (EXPERIMENTAL)",
+      "version": "0.1.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IMAGE_DECODER"
+      ],
+      "summary": "EXPERIMENTAL - works out what a digitally modulated signal is (BPSK, QPSK, 8PSK or 16-QAM) and measures it, live or from a recording; not yet tried against a real off-air signal.",
+      "description": "Reads a digitally modulated I/Q signal - the live receiver's VFO channel, or a recording it reads itself - and works out what it is: BPSK, QPSK, 8PSK or 16-QAM, with a confidence, chosen by which constellation the burst actually fits best rather than by the smallest error alone (which QPSK can win inside 8PSK or 16-QAM by cheating). Everything needed to get there is found automatically: the occupied band and the burst inside it, the symbol rate from the signal's own cyclostationary line, the carrier frequency, the raised-cosine roll-off, symbol timing and carrier phase, then EVM, MER, an SNR measured against the recording's own silence where there is one, timing and phase jitter, and I/Q gain and phase imbalance. Every recovered symbol becomes Gray-mapped bits - printable on the plate (PRINT BITS) or written whole, with every measurement, by EXPORT to a text file and a per-symbol CSV.\n\nLIVE OR A FILE. Live, it reads the receiver's VFO channel exactly as set - whatever it is tuned and opened to - and re-analyses roughly twice a second. From a file, the path is typed into *I/Q file* in the plugin's settings, because the host gives plugins no file-open dialog: cs8 (HackRF `hackrf_transfer -r`), cu8 (RTL-SDR `rtl_sdr`), cs16, cf32 (GNU Radio `.cfile`), or WAV at 8/16/24/32-bit PCM or float. Everything else - forcing a modulation or symbol rate, a sync word to resolve the phase ambiguity, the matched filter, roll-off, sampling offset - is a setting with an automatic default that can be typed over.\n\nONE DASHBOARD PICTURE. The host gives a decoder exactly one image, so the constellation (density map with the ideal points and decision boundaries), the eye, the spectrum (carrier and occupied band marked), symbol power over the burst, and I/Q after the matched filter all share that one picture rather than a window each. The same numbers are also a panel table, and a line reaches Decoder output whenever the verdict changes.\n\nEXPERIMENTAL - PUBLISHED WITHOUT EVER HAVING SEEN A REAL OFF-AIR SIGNAL. Every figure in the plugin's own notes is checked by `test_demodan` against a synthetic transmitter the test itself builds from the published constellation and Gray mappings, at several signal-to-noise ratios, on both Windows and Linux - never against a capture from a real modulator. The clearest way this can go wrong: a file read with the wrong sign convention - cs8 read as cu8, or the reverse - folds the constellation into something that still looks like a genuine, if noisy, 16-QAM (confidence 0.5-0.7, EVM around 25%); the EVM figure is the tell, not the verdict alone.\n\nAsks for no permission beyond the ordinary decoder capabilities - it only ever reads the channel already open, and never asks to move the VFO. Needs FoxSDR 0.99.43+ for the settings form, plate keys and spectrum marks; an older host still gets the live picture and measurements with every setting at its default.\n\nWritten from the published estimators alone - Oerder & Meyr 1988 for symbol timing, Gardner 1986 for the tracking loop, Pauluzzi & Beaulieu 2000 for the M2M4 SNR estimate, Swami & Sadler 2000 for the classification cumulants - no other analyser's source was read.",
+      "minSupportedVersion": "0.1.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "demod-analyzer-0.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/demod-analyzer-0.1.0-abi3-win-x64.dll",
+          "sha256": "8bdbbe63cab638ef8cc7b2fded176770bff4a89c24176db95082c02199706700",
+          "sizeBytes": 466944
+        },
+        {
+          "os": "linux",
+          "arch": "x64",
+          "file": "demod-analyzer-0.1.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/demod-analyzer-0.1.0-abi3-linux-x64.so",
+          "sha256": "e42f756fcdd1939429573f30ffbe70a1d0aa0fb5cd080811844aa0a65b7f9920",
+          "sizeBytes": 320336
+        }
+      ]
     }
   ]
 }
