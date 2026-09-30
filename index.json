@@ -751,7 +751,7 @@
     {
       "id": "satellites",
       "name": "Satellites",
-      "version": "1.1.1",
+      "version": "1.1.2",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -766,18 +766,18 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "satellites-1.1.1-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.1.1-abi3-win-x64.dll",
-          "sha256": "17d2764895d94e729fc367a1bf44312fab3c05ccdd9faf0f4b7f4d3e5d4832b3",
-          "sizeBytes": 389120
+          "file": "satellites-1.1.2-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.1.2-abi3-win-x64.dll",
+          "sha256": "628a9b6359f6863ecf7457260104e0463a219ba9053013902b135b25b6c07203",
+          "sizeBytes": 388608
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "satellites-1.1.1-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.1.1-abi3-linux-x64.so",
-          "sha256": "95149927f28f79f6b323ce90a901cdaa36add9870706808f989ac38d38ffa188",
-          "sizeBytes": 899688
+          "file": "satellites-1.1.2-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/satellites-1.1.2-abi3-linux-x64.so",
+          "sha256": "d1b69ac5fd7e11e653632b4740a023b3d0107cae847d7725b05739295f8de7ed",
+          "sizeBytes": 899712
         }
       ]
     },
