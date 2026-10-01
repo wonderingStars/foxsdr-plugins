@@ -919,16 +919,16 @@
     },
     {
       "id": "tetra-decoder",
-      "name": "TETRA Monitor (data only)",
-      "version": "0.1.0",
+      "name": "TETRA Monitor (data only, no voice)",
+      "version": "0.1.1",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
       "capabilities": [
         "CASCADE_CAP_IQ_DECODER"
       ],
-      "summary": "Decodes the TETRA air interface - cell identity, system information and clear messages. No voice, no decryption.",
-      "description": "Decodes the downlink of a TETRA cell from raw I/Q (ETSI EN 300 392-2: pi/4-DQPSK, 18 ksymbol/s, 25 kHz continuous transmission) and reports what the network broadcasts about itself:\n\n- the cell's identity from the BSCH synchronization PDU: country code (MCC), network code (MNC), colour code, and the timeslot, frame and multiframe numbers;\n- the SYSINFO broadcast on the BNCH: main carrier, frequency band, offset, duplex spacing, location area, and the security and encryption flags the cell carries;\n- the AACH access assignment, which says whether a slot is control or traffic;\n- MAC-RESOURCE channel grants, with the granted address and whether the grant is encrypted.\n\nIT DECODES NO VOICE AND DECRYPTS NOTHING. A traffic channel carrying speech is detected and labelled 'voice - not decoded (the TETRA speech codec needs ETSI's permission, which has been requested)'. The TETRA speech codec (ETSI EN 300 395) is not present - no ACELP, no ETSI reference code - and no TEA or other decryption is implemented; an encrypted transmission is shown as encrypted and nothing more.\n\nWritten clean-room from ETSI EN 300 392-2 V3.8.1 alone; no third-party TETRA decoder was read. Every transcribed constant - the CRC block code, the RCPC puncturing, the block interleaving, the scrambling, the Reed-Muller code - is checked in the plugin's own test against a property the standard states independently, so a slip breaks a relationship rather than mis-decoding silently. Version 0.1.0: verified against a synthetic transmitter built from the standard, and NOT yet against a real cell off air.",
+      "summary": "Decodes the TETRA air interface - cell identity, system information and clear messages. Plays no audio: no voice, no decryption.",
+      "description": "Decodes the downlink of a TETRA cell from raw I/Q (ETSI EN 300 392-2: pi/4-DQPSK, 18 ksymbol/s, 25 kHz continuous transmission) and reports what the network broadcasts about itself:\n\n- the cell's identity from the BSCH synchronization PDU: country code (MCC), network code (MNC), colour code, and the timeslot, frame and multiframe numbers;\n- the SYSINFO broadcast on the BNCH: main carrier, frequency band, offset, duplex spacing, location area, and the security and encryption flags the cell carries;\n- the AACH access assignment, which says whether a slot is control or traffic;\n- MAC-RESOURCE channel grants, with the granted address and whether the grant is encrypted.\n\nIT PLAYS NO AUDIO: IT DECODES NO VOICE AND DECRYPTS NOTHING. A traffic channel carrying speech is detected and labelled 'voice - not decoded (the TETRA speech codec needs ETSI's permission, which FoxSDR does not have)'. The TETRA speech codec (ETSI EN 300 395) is not present - no ACELP, no ETSI reference code - and no TEA or other decryption is implemented; an encrypted transmission is shown as encrypted and nothing more.\n\nOnly TETRA decodes here. If no TETRA cell has synchronised after 10 seconds of signal, the panel says so: TETRA is pi/4-DQPSK in 25 kHz channels, and an analogue FM or DMR signal on the same band will not decode.\n\nWritten clean-room from ETSI EN 300 392-2 V3.8.1 alone; no third-party TETRA decoder was read. Every transcribed constant - the CRC block code, the RCPC puncturing, the block interleaving, the scrambling, the Reed-Muller code - is checked in the plugin's own test against a property the standard states independently, so a slip breaks a relationship rather than mis-decoding silently. Version 0.1.1: verified against a synthetic transmitter built from the standard, and NOT yet against a real cell off air. 0.1.1 changes no decoding: it names the plugin 'TETRA Monitor (data only, no voice)' inside FoxSDR, says first that it plays no audio, and says when no TETRA cell is found.",
       "legalNotice": "This plugin decodes TETRA transmissions: network and cell identities, system information, and messages sent in clear. It does not decode voice and does not decrypt anything. It is supplied for testing and development with your own equipment - a transmitter and receiver joined by cable through an attenuator, or inside a screened (RF-shielded) room. In the United Kingdom it is an offence under section 48 of the Wireless Telegraphy Act 2006 to intercept a message you are not authorised to receive, and to disclose it; using this plugin to receive transmissions that are not your own can be such an offence, and equivalent restrictions apply in many other jurisdictions. Install it only if you accept that you alone are responsible for how you use it.",
       "minSupportedVersion": "0.1.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
@@ -936,18 +936,18 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "tetra-decoder-0.1.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/tetra-decoder-0.1.0-abi3-win-x64.dll",
-          "sha256": "2a3bd4eb8032746346b4c82d320354ad2cf5df2f50ab8b7b498e64a1b2df0f88",
-          "sizeBytes": 234496
+          "file": "tetra-decoder-0.1.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/tetra-decoder-0.1.1-abi3-win-x64.dll",
+          "sha256": "728c40007c5c828e21f32721b78b551ad3bbde47fa3db0721b149fe9424e0901",
+          "sizeBytes": 236544
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "tetra-decoder-0.1.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/tetra-decoder-0.1.0-abi3-linux-x64.so",
-          "sha256": "8b9dcb7d4c548eccece413fcc67d2a95859a5850d15ac95a1d535e2245bd4597",
-          "sizeBytes": 74000
+          "file": "tetra-decoder-0.1.1-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/tetra-decoder-0.1.1-abi3-linux-x64.so",
+          "sha256": "57049e788884dee1fbbd243c478df6191f63c5ae4ff70c7a4846c4061778f9d4",
+          "sizeBytes": 78624
         }
       ]
     },
