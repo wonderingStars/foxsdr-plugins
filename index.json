@@ -975,6 +975,32 @@
           "sizeBytes": 320336
         }
       ]
+    },
+    {
+      "id": "radiosonde-decoder",
+      "name": "Radiosondes (EXPERIMENTAL)",
+      "version": "0.1.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IQ_DECODER",
+        "CASCADE_CAP_TRACK_SOURCE"
+      ],
+      "summary": "EXPERIMENTAL - the block CRC and Reed-Solomon layout have not yet been confirmed on frames from a real flight, so it may decode nothing until then. Follows Vaisala RS41 weather-balloon sondes on 400-406 MHz: serial, position, height, climb rate and wind.",
+      "description": "Decodes the Vaisala RS41 radiosonde, the weather balloon's transmitter, on 400-406 MHz. Given raw I/Q from a Radio (2.4 MS/s suggested; any rate from about 20 kS/s works), it searches the capture for carriers itself, because a sonde's frequency is set at the launch site and nobody tells you, and follows them as they drift. For each sonde it reports the serial number, position, height, climb rate and wind, and draws its trail on the map as a balloon silhouette. Up to four sondes are followed at once, anywhere in the capture. Three presets cover the band: 400-402, 402-404 and 404-406 MHz. On the patch page, wire it to a Radio to search the whole capture, or to a Channel for the one sonde in it, and its map output into a Map.\n\nEXPERIMENTAL - PUBLISHED WITHOUT EVER HAVING SEEN A REAL FLIGHT. The frame format was written from a published protocol description (bazjo/RS41_Decoding's, plus Vaisala's own datasheet; no decoder's source was read) and is checked by the plugin's own test against frames the test builds itself. Two choices the description leaves open have not been confirmed on frames from a real flight: which CRC-16 variant covers each block, and how the 48 parity bytes and the data are split between the two Reed-Solomon codewords. The test's frames share those choices, so it cannot catch a wrong one. If either is wrong the plugin will report no sondes at all, so it may decode nothing until someone checks it against a real RS41.\n\nWhat it does not do: no temperature, humidity or pressure (the calibration maths for them has no usable published description), no landing prediction, and no sonde other than the RS41.\n\nIt was asked for through the app's feature-request box on 2026-10-02, for weather-balloon tracking.\n\nWindows only so far: no Linux build exists yet, and the store offers no Linux download of this plugin until one is published.",
+      "minSupportedVersion": "0.1.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "radiosonde-decoder-0.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/radiosonde-decoder-0.1.0-abi3-win-x64.dll",
+          "sha256": "cc098d5c018a6dc7e5b8083799e7ddf694750581549d84e2fdc0e6bdb95ec885",
+          "sizeBytes": 212992
+        }
+      ]
     }
   ]
 }
