@@ -493,6 +493,32 @@
       ]
     },
     {
+      "id": "wmbus-decoder",
+      "name": "Wireless M-Bus Meter Decoder (EXPERIMENTAL)",
+      "version": "0.1.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IQ_DECODER"
+      ],
+      "summary": "Reads the 868 MHz bursts European heat, water, gas and electricity meters transmit, and decrypts your own with your own keys.",
+      "description": "Decodes Wireless M-Bus (EN 13757-4, OMS) telegrams - the short bursts European utility meters send at 868 MHz so a walk-by or drive-by receiver can read them. Modes S (868.30 MHz), T and C (868.95 MHz) are all heard at once from one wide slice of band. For each telegram it reports the meter's manufacturer letters, number, version and kind (water, gas, heat, electricity, heat cost allocator and so on), the signal level, and the data records it carries: the register, instantaneous values, dates and status.\n\nEXPERIMENTAL, AND NEVER YET SEEN A REAL METER. It was written clean-room from published documents only. It decodes and decrypts every complete example telegram in OMS Specification Volume 2 Annex N exactly, and passes a self-test against a transmitter written by the same author, but the physical-layer details that only the paid EN 13757-4 states (the 3-out-of-6 table's mapping, the Manchester and NRZ conventions, frame format B) are listed in the README as unverified, and an encoder and a decoder written by one author can agree with each other and both be wrong.\n\nENCRYPTED METERS. Most meters encrypt their readings (AES-128, OMS security modes 5 and 7). Without the meter's key the telegram is still named and counted but no reading is shown. The plugin has one text setting, AES keys, in which you may list `meter number=32 hex digits` pairs for meters YOU own or are authorised to read; a wrong key is reported as wrong, never shown as data. The plugin does not guess, search for or ask for keys.\n\nEvery block of every telegram is checked against the 16-bit CRC and anything that fails is discarded or reported as refused, never shown as a reading. It opens an INSTRUMENT WINDOW drawn as a utility meter: the newest reading on a register, and beneath it a roster of every meter heard, with signal level, mode, whether a key was used and how long ago each last transmitted.\n\nThe presets tune 868.95 MHz (T and C), 868.30 MHz (S) and 868.625 MHz, which holds all three at 2.4 MS/s. Any rate from 250 kS/s to 61.44 MS/s works; 2.4 MS/s is suggested. Nothing leaves your machine: no network, no files written, and the keys stay in FoxSDR's own settings.",
+      "legalNotice": "Wireless M-Bus telegrams carry a meter's number and, once decrypted, its consumption: personal data about whoever lives there. Receive and decode only your own meters, or meters you are authorised to read, and enter AES keys only for those. Using or disclosing the content of messages not addressed to you can be an offence in your country (in the UK, Wireless Telegraphy Act 2006 s.48). This plugin never transmits and sends nothing off your machine.",
+      "minSupportedVersion": "0.1.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "wmbus-decoder-0.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/wmbus-decoder-0.1.0-abi3-win-x64.dll",
+          "sha256": "f5cab84d88fbc14163e78a7dd5b704fe455b5047c485a85872acae884f3f5cff",
+          "sizeBytes": 230400
+        }
+      ]
+    },
+    {
       "id": "aircraft-info",
       "name": "Aircraft Info (registry lookup)",
       "version": "1.1.0",
@@ -629,6 +655,33 @@
       ]
     },
     {
+      "id": "hfdl-decoder",
+      "name": "HFDL Aircraft Datalink Decoder (EXPERIMENTAL)",
+      "version": "0.1.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_DECODER",
+        "CASCADE_CAP_TRACK_SOURCE"
+      ],
+      "summary": "EXPERIMENTAL - unverified against real signals. HFDL, the HF half of airliners' ACARS: squitters, log-ons, messages and positions, from USB audio.",
+      "description": "READ THIS FIRST. This decoder is EXPERIMENTAL: it has never decoded a real HFDL transmission, and it will most likely decode nothing until it has been corrected against a real capture. It is published at version 0.1.0 to make that status explicit.\n\nHFDL is the HF half of airliners' ACARS: 1800 symbol/s PSK on a 1440 Hz audio carrier in a USB channel, thirteen slots to a 32-second frame. The outline of that physical layer - the symbol rate, the carrier, the pulse, the constellations and data rates, the frame, the 249 ms pre-key tone - is published, and this follows it. What lies below the outline is in ARINC 635 and ICAO Doc 9741, which are paid documents and were not read, and about sixty values were reconstructed: the preamble's symbols, the probe symbols, the convolutional code, the scrambler, the interleaver, the constellation labelling, the PDU layouts, the CRC's byte order and the position encoding. The plugin passes a 155-check self-test, but that test uses a transmitter built from the same reconstructed values, so the two agree with each other and would agree if the values were wrong. **If any of them is wrong, this plugin decodes nothing off air, and that is the most likely outcome.**\n\nWhat it does regardless: it finds each burst by its published pre-key tone, measures the carrier to a fraction of a hertz, and says so - 'pre-key tone seen at 1440.2 Hz, preamble not recognised' - so a user with a real signal learns that the plugin heard it and where its carrier sat. It is published so that anyone who can record a real HFDL channel can help correct it.\n\nIf the reconstruction happens to be right it prints ground-station squitters (which station, which frequencies it announces), log-ons, ACARS messages and aircraft position reports, one line each, names anything it cannot decode by type and length rather than dropping it, refuses any PDU whose CRC fails, brings an instrument window drawn as the cockpit message printer, and draws aircraft positions on the map. Those positions come from an encoding that has not been confirmed, so every label says so.\n\nTune one of the twelve presets (ground stations from the HFDL system table) in USB with no offset, in a 3 kHz channel; the plugin needs USB audio at 12 kHz. It has no equaliser, so a real HF channel's multipath will cost it. Written clean-room from the published documents; no HFDL decoder was read. Built for Windows only so far.",
+      "legalNotice": "HFDL carries messages between airliners and their airlines and air traffic control - operational and weather messages, engine and fuel data, crew and passenger-related traffic - and aircraft position reports. They are not addressed to you. In the United Kingdom it is an offence under section 48 of the Wireless Telegraphy Act 2006 to intercept a message you are not authorised to receive, or to disclose its contents, and comparable restrictions apply in many other jurisdictions; some permit reception but forbid disclosure or use. This plugin is distributed separately from the application, and is not included in it, so that installing it is your informed decision. You are responsible for ensuring that your use of it is lawful where you are.\n\nSeparately: this plugin is EXPERIMENTAL. Its decoding of the HFDL air interface rests on constants that have never been checked against a real transmission, and it will most likely decode nothing at all. Do not rely on it for any purpose, and in particular do not rely on it for aviation-safety information. A position it draws on the map comes from an encoding that has not been confirmed and may be wrong.",
+      "minSupportedVersion": "0.1.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "hfdl-decoder-0.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/hfdl-decoder-0.1.0-abi3-win-x64.dll",
+          "sha256": "ff699940b65e48b11302f71eee412ae287764445369584f313cd4ce66134d6fa",
+          "sizeBytes": 268800
+        }
+      ]
+    },
+    {
       "id": "pocsag-decoder",
       "name": "POCSAG Pager Decoder",
       "version": "1.0.2",
@@ -749,6 +802,33 @@
       ]
     },
     {
+      "id": "navtex-dsc-decoder",
+      "name": "NAVTEX & DSC (marine)",
+      "version": "1.0.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_DECODER",
+        "CASCADE_CAP_TRACK_SOURCE"
+      ],
+      "summary": "Decodes NAVTEX maritime safety warnings (518, 490 and 4209.5 kHz) and GMDSS Digital Selective Calling on VHF channel 70 and the HF distress and safety frequencies, and plots DSC positions.",
+      "description": "Decodes the two text services a ship's radio keeps watch on. NAVTEX is the navigational and meteorological warning broadcast from coast stations on 518 kHz (international, English), 490 kHz and 4209.5 kHz (national): SITOR collective B-mode, 100 Bd, every character sent twice and checked for four marks and three spaces, framed ZCZC B1B2B3B4 ... NNNN. Each message is printed whole under a header naming the transmitter letter, the subject and the message number and counting the characters the second copy repaired and the ones neither copy could supply, which are printed as an asterisk. Digital Selective Calling is the GMDSS's calling system: distress alerts, all-ships urgency and safety calls, and individual calls and their acknowledgements, 1200 Bd on VHF channel 70 and 100 Bd on 2187.5, 4207.5, 6312, 8414.5, 12577 and 16804.5 kHz. A call prints as one line - format, category, the sender's MMSI, the nature of distress, the position and the UTC time where the call carries them - and a call whose error-check character does not match is refused and named, never printed as if it were good. A call that carries a position (a distress alert, a distress relay or acknowledgement, a position acknowledgement) also puts that vessel on the map.\n\nTUNE UPPER SIDEBAND, 1.7 kHz BELOW THE PUBLISHED FREQUENCY. NAVTEX and HF DSC frequencies are published as the centre of the two tones, which a single-sideband transmitter sends 1.7 kHz above its carrier: for 518 kHz tune 516.3 kHz USB. The presets already do this. Tuning the published frequency decodes nothing; tuning lower sideband puts the tones the wrong way round and the plugin says so once in five minutes. VHF channel 70 is 156.525 MHz in narrowband FM, with no offset.\n\nWHAT IT DOES NOT DO. It is an audio decoder and does not know the frequency, so a NAVTEX header shows the transmitter letter and not the NAVAREA. It reads the 7-unit signals the right way up only: selectively addressed NAVTEX transmissions are sent inverted so that only the station called prints them, and are not decoded. A NAVTEX message whose preamble is damaged is not printed; every repeat of a message is printed; and a DSC call with an unreadable character is refused, not guessed. It decodes no DSC telephone-number or automatic-connection messages.\n\nIt fits a TELEPRINTER instrument window with the printed lines on its paper, and offers ten presets.\n\nWritten clean-room from ITU-R M.625, M.476, M.540, M.493 and M.541 and the IMO NAVTEX Manual (MSC.1/Circ.1403); no NAVTEX or DSC decoder was read. The 32 7-unit signals and all 128 DSC characters are checked in the plugin's own test against the Recommendations' tables, and the NAVTEX messages it transmits are the IMO manual's own worked examples. No real NAVTEX or DSC transmission has been decoded - a DSC distress alert is not something to radiate to test a decoder - and no Recommendation publishes a numerically complete DSC call, so the DSC calls in the test are built from the message tables: they prove the decoder agrees with the transmitter, not with a ship. Windows only so far.",
+      "legalNotice": "THIS IS NOT A GMDSS WATCH RECEIVER AND IS NOT PART OF THE GMDSS. Nothing in this plugin sounds an alarm. A receiver that is tuned elsewhere, switched off, or without a usable antenna misses a call completely, and a line on a screen is no substitute for the radio watch the SOLAS Convention requires a ship to keep.\n\nA DISTRESS ALERT DECODED HERE IS REAL. If it decodes a DSC distress alert, relay or acknowledgement, or a NAVTEX message with subject letter D, contact the coastguard or your national rescue co-ordination centre with the frequency, the time, the MMSI and the position. Do not assume somebody else has heard it, and do not wait to see whether it repeats. Never transmit a distress alert or any DSC call to test a receiver: a false alert puts real people to work.\n\nReceiving is lawful. TRANSMITTING ON THE DSC DISTRESS AND SAFETY FREQUENCIES, OR ON 518, 490 OR 4209.5 kHz, IS NOT: those channels are reserved internationally for distress and safety traffic, and transmitting on them without authority is an offence in most jurisdictions.\n\nMost DSC calls are addressed to a particular ship or coast station: individual and group calls, their acknowledgements and position replies. Distress, urgency, safety and all-ships calls and NAVTEX broadcasts are meant for everybody; the addressed ones are not. In the United Kingdom it is an offence under section 48 of the Wireless Telegraphy Act 2006 to intercept a message you are not authorised to receive, or to disclose its contents, and comparable restrictions apply in many other jurisdictions. This plugin is distributed separately from the application, and is not included in it, so that installing it is your informed decision. You are responsible for ensuring that your use of it is lawful where you are.",
+      "minSupportedVersion": "1.0.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "navtex-dsc-decoder-1.0.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/navtex-dsc-decoder-1.0.0-abi3-win-x64.dll",
+          "sha256": "aa5b8f9557b53871b354a2be4e752cd9947bc01d29d0a824ec17461a08095717",
+          "sizeBytes": 215552
+        }
+      ]
+    },
+    {
       "id": "satellites",
       "name": "Satellites",
       "version": "1.1.2",
@@ -811,6 +891,31 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/apt-decoder-1.0.0-abi3-linux-x64.so",
           "sha256": "b470d8f4a4ce0a3eca72a03fee9365b8f3fa71192a9d9292e6e07903ff17873c",
           "sizeBytes": 25776
+        }
+      ]
+    },
+    {
+      "id": "lrpt-decoder",
+      "name": "Meteor-M LRPT Weather Pictures (EXPERIMENTAL)",
+      "version": "0.1.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IMAGE_DECODER"
+      ],
+      "summary": "EXPERIMENTAL - has never decoded a real Meteor-M signal. Meteor-M weather-satellite pictures on 137 MHz.",
+      "description": "READ THIS FIRST. This decoder is EXPERIMENTAL. It has never decoded a real Meteor-M signal, and on a real pass it will not draw a picture. Everything from the radio down to the data packets is written from published CCSDS documents and tested against the numbers printed in them; the last layer, the one that turns an image packet into pixels, is a reconstruction, because the operator's description of Meteor-M's image packets could not be obtained. On a real pass it should find the carrier, lock on, report error corrections and name the packet types it hears - and then refuse each image packet, out loud, rather than draw a wrong picture. It is published so that anyone who can supply that description, or a raw I/Q recording of a pass, can help finish it.\n\nWhat it does. It reads raw I/Q at any sample rate from 144 kS/s to 61.44 MS/s and needs nothing set up: it searches 20 kHz either side of the tuned frequency for the carrier, so Doppler and a dial that is not exact are dealt with, works out which way round the constellation is (an inverted spectrum included), and follows you if you retune mid-pass. It decodes both QPSK and offset QPSK (OQPSK) at once and tells you which it locked to: the 2014 satellite is reported to send QPSK, the current ones OQPSK, but that rests on two secondary sources and no operator document, so both are tried. Presets for 137.100 and 137.900 MHz. The picture is three grey channels side by side, building line by line, and the log reports the carrier, the lock, the error rates and the packet types heard. At a sample rate too low for the signal it says so, in words, and does nothing else.\n\nWhat it does not do: decode the operator's picture format (yet); make a colour composite; calibrate the channels or put the picture on the map; or run the 80 000 symbols a second rate - it is fixed at 72 000. It pairs with the Satellites plugin, which says when a satellite is overhead.\n\nWritten clean-room from CCSDS 131.0-B, 732.0-B and 133.0-B and ITU-T T.81. Its test builds its own transmitter and decodes the picture at eight sample rates up to 61.44 MS/s with a carrier offset, clock error, DC offset and noise, as QPSK and as offset QPSK; down to 2.5 dB (QPSK) or 3.0 dB (offset QPSK) energy-per-symbol to noise it recovers the whole picture, and in pure noise it never locks.\n\nWindows only so far.",
+      "minSupportedVersion": "0.1.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "lrpt-decoder-0.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/lrpt-decoder-0.1.0-abi3-win-x64.dll",
+          "sha256": "e945230723855c77f5aade4ec02188d426f2b6457e8d148819d77dc7ab7f13cb",
+          "sizeBytes": 225280
         }
       ]
     },
@@ -940,6 +1045,33 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/tetra-decoder-0.1.2-abi3-win-x64.dll",
           "sha256": "da13f1bc1d9902b0c4f2dc5cae5b23956d2c4763d3d43d10ce0069090d100d4a",
           "sizeBytes": 242176
+        }
+      ]
+    },
+    {
+      "id": "vdl2-decoder",
+      "name": "VDL Mode 2 (EXPERIMENTAL)",
+      "version": "0.1.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IQ_DECODER",
+        "CASCADE_CAP_TRACK_SOURCE"
+      ],
+      "summary": "EXPERIMENTAL - never yet decoded a real aircraft. Decodes the VHF airband digital data link: ACARS messages and ground station announcements, from raw I/Q.",
+      "description": "EXPERIMENTAL: THIS HAS NEVER DECODED A SIGNAL FROM AN AEROPLANE. It was written from ICAO Annex 10 and the ETSI VDL Mode 2 standards, and tested only against a transmitter built from the same reading of them, so a green test shows the receiver and that transmitter agree with each other and says nothing about the air. Fifteen details of the signal could not be confirmed from any document; if one is wrong it decodes nothing, and that is the likely outcome until someone with a real recording corrects it. Do not rely on it for anything.\n\nVDL Mode 2 is the digital data link airliners use in the VHF airband: 8-phase differential PSK at 10 500 symbols/s in 25 kHz channels, 136.975 MHz worldwide and a handful of regional channels between 136.1 and 136.975 MHz. This decodes it from raw I/Q at any receiver rate from 32 kS/s to 61.44 MS/s: the channel the receiver is tuned to and every channel of 136.700 to 136.975 MHz that falls inside the band, up to twelve at once, each as its own receiver. A rate of 1.024 MS/s or more centred on 136.8375 MHz covers all twelve.\n\nIt prints one line per frame: the frequency, who sent it and to whom (an aircraft's 24-bit ICAO address, a ground station's), and for an ACARS message the registration, label, block, message sequence number, flight and text. The ground stations' XID frames - including the announcement each sends about every two minutes - are decoded and named, with the parameters they carry: the station's own position, nearby airports, the frequencies to try. A message the error-correcting code mended is marked with how many octets it mended. A burst it cannot mend is refused and named, never shown in part; every frame is checked by its 16-bit frame check sequence. Every frame it recognises but does not decode is named with its length rather than dropped.\n\nIt brings an instrument window drawn as the flight-deck message printer, and a track source: the positions an XID frame states, each to a tenth of a degree, about 11 km, never guessed from a message's text.\n\nWHAT IT DOES NOT DO: it does not decode the controller-pilot data link (CPDLC), ADS-C or any other ATN message - they are named and their length given. It uses hard decisions only, so its sensitivity is that of the standard's basic receiver. It will not decode a carrier more than about 3.5 kHz off frequency, so a receiver that is not calibrated to about 20 ppm may miss everything. It plays no audio. It reassembles nothing: a message sent in several blocks is shown block by block.\n\nWritten clean-room from ICAO Annex 10 Volume III Chapter 6 and ETSI EN 301 841-1 and -2; no VDL Mode 2 decoder was read. Every constant is cited to its document and clause where it is defined.\n\nWindows only so far: no Linux build exists, and the catalogue lists a Windows build alone.",
+      "legalNotice": "This plugin decodes third-party aircraft data link messages: the text airliners and their ground stations send each other, which can include operational, commercial and sometimes personal information. In the United Kingdom it is an offence under section 48 of the Wireless Telegraphy Act 2006 to intercept a message you are not authorised to receive, or to disclose its contents. Comparable restrictions apply in many other jurisdictions, and some permit reception but prohibit disclosure or use.\n\nThis plugin is distributed separately from the application, and is not included in it, so that installing it is your informed decision. You are responsible for ensuring that your use of it is lawful where you are.\n\nIt is also EXPERIMENTAL and has never decoded a real signal. It is not a safety tool and must never be relied on for anything to do with the operation of an aircraft.",
+      "minSupportedVersion": "0.1.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "vdl2-decoder-0.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/vdl2-decoder-0.1.0-abi3-win-x64.dll",
+          "sha256": "054d19e94ff4c35dbc119ef0386384fd01cebe640c69f8a1f4b1cfd487a0824f",
+          "sizeBytes": 270848
         }
       ]
     },
