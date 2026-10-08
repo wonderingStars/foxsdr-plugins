@@ -7,7 +7,8 @@ for download from inside the app.
 This repository holds **distribution artefacts only** — the catalogue index and
 the plugin binaries it names. Nothing here is required to *use* FoxSDR; the
 application ships with no plugins and contacts this repository only when you
-open the plugin browser and press Browse.
+open the plugin store (the first time in a session) or press its check key,
+and, from 0.99.72, when you open a plugin's page, to fetch its pictures.
 
 > **These plugins need FoxSDR 0.14.0 or newer.** They are built against plugin
 > ABI 3, and the host requires an exact ABI match. On an older FoxSDR every
@@ -21,28 +22,25 @@ open the plugin browser and press Browse.
 
 ## Available plugins
 
-| Plugin | What it decodes | Needs | Notes |
-|---|---|---|---|
-| **ADS-B** 1.0.0 | Aircraft position, callsign, altitude, velocity at 1090 MHz | Raw I/Q, ≥2 MS/s (2.4 recommended) | ✅ **Verified against real aircraft.** Airborne messages; surface position not yet parsed |
-| **AIS** 1.0.0 | Ship identity, position, course, voyage data | Raw I/Q, 192 kS/s | Decodes both marine channels at once; emits `!AIVDM` |
-| **APRS / AX.25** 1.0.0 | Amateur packet radio, 144.800 MHz | NFM audio | Mic-E not yet parsed into fields |
-| **POCSAG** 1.0.0 | Pager messages, all three bit rates | NFM audio | **Legal notice must be accepted before install** |
-| **EAS / SAME** 1.0.0 | US Emergency Alert System and NOAA Weather Radio alert headers | NFM audio | Seven NOAA Weather Radio presets; **not an alerting device** — notice must be accepted |
-| **Inmarsat-C / EGC** 0.1.0 | SafetyNET maritime broadcasts | Raw I/Q, 24 kS/s | ⚠ **EXPERIMENTAL — has never decoded a real signal** |
-| **DMR Monitor** 0.1.1 | DMR signalling only: talkgroups, radio IDs, colour code, emergency/encrypted flags. No voice | NFM audio, 12.5 kHz DMR channel | ⚠ **EXPERIMENTAL — not yet confirmed against a real off-air burst.** No software voice decoding (patent-encumbered vocoder); no hardware dongle support in this release either. **Legal notice must be accepted before install** |
-| **TETRA Monitor (data only, no voice)** 0.1.2 | TETRA cell identity, system information, clear messages. **Plays no audio**: no voice, no decryption | Raw I/Q, 18 ksymbol/s; receiver sample rate 40 kS/s to 9.072 MS/s | ⚠ **Verified only against a synthetic transmitter — not yet decoded a real cell off air.** **Legal notice must be accepted before install.** 0.1.2 fixes a crash at very high sample rates (30.72 MS/s was reported) and refuses any receiver rate outside that range, saying why. **Windows and Linux builds.** The Linux 0.1.2 module was built and tested on GitHub's own runners on 2026-10-07; a Linux copy of 0.1.1 is offered the update |
-| **Demod Analyzer (EXPERIMENTAL)** 0.1.0 | Nothing is decoded to a message; it ANALYSES a digitally modulated signal — BPSK, QPSK, 8PSK or 16-QAM with a confidence, symbol rate, carrier, roll-off, EVM, MER, SNR, timing/phase jitter, IQ imbalance, and the Gray-mapped bits | Raw I/Q, any rate: the live receiver's VFO channel, or a cs8/cu8/cs16/cf32/WAV recording it reads itself | ⚠ **EXPERIMENTAL — not yet tried against a real off-air signal.** One combined dashboard picture; the file path is typed, there is no file picker |
-| **Radiosondes (EXPERIMENTAL)** 0.1.0 | Vaisala RS41 weather-balloon sondes on 400–406 MHz: serial, position, height, climb rate and wind, with a trail on the map; up to four at once. No temperature, humidity or pressure, no landing prediction | Raw I/Q, any rate from about 20 kS/s (2.4 MS/s suggested) | ⚠ **EXPERIMENTAL — the block CRC and Reed-Solomon layout have not yet been confirmed on frames from a real flight, so it may decode nothing until then.** **Windows build only so far** |
-| **Meteor-M LRPT (EXPERIMENTAL)** 0.1.0 | Meteor-M N2-3 / N2-4 weather-satellite pictures on 137.100 and 137.900 MHz: three image channels side by side, building line by line through a pass | Raw I/Q, any rate from 144 kS/s (1.024 MS/s suggested) | ⚠ **EXPERIMENTAL — has never decoded a real signal, and on a real pass will not draw a picture.** The radio, error-correction and packet layers follow published CCSDS documents; the picture layer is a reconstruction, so on a real pass it should lock and name the packets, then say plainly that it cannot draw the image. **Windows build only so far** |
-| **VDL Mode 2 (EXPERIMENTAL)** 0.1.0 | The VHF airband digital data link: ACARS messages (registration, label, flight, text) and ground-station XID frames (position, airports, frequencies); every other frame is named with its length, never dropped | Raw I/Q, any rate from 32 kS/s to 61.44 MS/s; up to twelve channels of 136.700–136.975 MHz at once | ⚠ **EXPERIMENTAL — not yet decoded a real aeroplane.** Checked only against a transmitter written from the same reading of ICAO Annex 10 and ETSI EN 301 841; fifteen details could not be confirmed from a document, and if one is wrong it decodes nothing. No CPDLC or ADS-C. **Legal notice must be accepted before install.** **Windows build only so far** |
-| **HFDL (EXPERIMENTAL)** 0.1.0 | HFDL, the HF half of airliners' ACARS: ground-station squitters, log-ons, ACARS messages and aircraft position reports, with an instrument window and the positions on the map | USB audio, 12 kHz; a 3 kHz channel | ⚠ **EXPERIMENTAL — has never decoded a real signal and will most likely decode nothing until corrected against a capture.** About sixty values below the published outline of the physical layer are reconstructions, and the self-test uses a transmitter built from the same table, so it proves agreement and nothing more. Map positions come from an unconfirmed encoding. **Legal notice must be accepted before install.** **Windows build only so far** |
-| **NAVTEX & DSC (marine)** 1.0.0 | NAVTEX maritime safety warnings (518, 490 and 4209.5 kHz) printed whole, and Digital Selective Calling on VHF channel 70 and the HF distress and safety frequencies: format, category, sender MMSI, nature of distress, position and UTC; calls with a position are plotted as vessels | USB audio (VHF: NFM), 12 kHz | ⚠ **Never tried on a real signal:** the DSC calls in the test are built from the message tables, so they prove agreement with the test transmitter, not with a ship. **Not a GMDSS watch receiver — nothing sounds an alarm — and a distress alert decoded here is real.** Tune 1.7 kHz below the published frequency in USB (the presets do). **Legal notice must be accepted before install.** **Windows build only so far** |
-| **Wireless M-Bus meters (EXPERIMENTAL)** 0.1.0 | European utility meters at 868 MHz, modes S, T and C: manufacturer, meter number, kind, signal level and data records; AES-128 modes 5 and 7 are decrypted only for meters whose key you list in the plugin's one setting | Raw I/Q, any rate from 250 kS/s to 61.44 MS/s (2.4 MS/s suggested) | ⚠ **EXPERIMENTAL — never decoded a real meter.** Decodes every complete OMS Annex N example telegram exactly, but the 3-out-of-6 mapping, the Manchester and NRZ bit conventions and frame format B (paid EN 13757-4) are unverified. **Legal notice must be accepted before install.** **Windows build only so far** |
-| **Example RMS Reporter** 2.0.0 | Nothing; reports audio level | NFM audio | Reference plugin and template |
+The plugins on offer are the entries of [`index.json`](index.json), which is
+always current: each entry carries the plugin's name, version, maker, licence, a
+one-line summary, a longer description, what is new in this version, the shelf it
+is listed under (`category`), whether it is `experimental`, pictures of it at
+work where there are any, and a checksummed download for every platform it is
+built for. FoxSDR's plugin store reads that file and lists the plugins by shelf:
+aircraft, marine, satellites and weather, meters and paging, broadcast, and maps
+and tools. [`SCHEMA.md`](SCHEMA.md) describes every field.
 
-All are MIT-licensed and were written clean-room from published
-specifications. No third-party decoder implementation was consulted in writing
-any of them.
+A plugin marked `experimental` has never decoded a real signal. It is published
+so that someone who can receive the band can help correct it: do not rely on one
+for anything that matters, and in particular not for safety or distress traffic.
+Each plugin's own description says what it decodes, what it needs, what has and
+has not been tested, and whether a legal notice must be accepted before it
+installs.
+
+All are MIT-licensed (each entry states its licence). Most were written
+clean-room from published specifications; a plugin's description says how it
+was written, and FT8 Decoder, for example, is built on ft8_lib.
 
 ## Please read: how far these have been tested
 
@@ -114,7 +112,7 @@ so the client is deliberately strict:
 | Filenames | Strict allow-list; `..`, path separators and device names are rejected |
 | ABI | `abiVersion` must match the host exactly; mismatches cannot be installed |
 | Consent | Nothing installs automatically; the licence is shown first |
-| Privacy | No network access at all unless you open the plugin browser |
+| Privacy | No network access at all unless you open the plugin store; a plugin's pictures (0.99.72 and later) are fetched only when you open that plugin's page, from the URL in the index, carrying nothing else |
 
 TLS authenticates the transport, not the artefact. Pinning the digest in the
 index means a compromised mirror or a cache cannot substitute a different DLL.
