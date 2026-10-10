@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-10-10T14:13:30Z",
+  "generated": "2026-10-10T15:24:27Z",
   "note": "Plugin catalogue for FoxSDR. The application fetches ONLY this file until you explicitly install something. Every download is verified against the sha256 recorded here before it is placed in the plugins directory.",
   "plugins": [
     {
@@ -82,7 +82,7 @@
     {
       "id": "wefax-decoder",
       "name": "WEFAX Weather Fax Decoder",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -90,11 +90,11 @@
         "CASCADE_CAP_IMAGE_DECODER"
       ],
       "summary": "Receives HF weather charts from the meteorological services.",
-      "description": "Draws the weather charts that national meteorological services still broadcast on shortwave for shipping - surface analyses, wind and wave forecasts, ice charts and satellite pictures - line by line as they arrive. A chart takes about ten minutes.\n\nTUNE 1.9 kHz BELOW THE PUBLISHED FREQUENCY, in USB. That is the rule for every radiofax station in the world and it is the one thing that stops a working receiver from decoding anything at all: schedules list the assigned frequency, and the picture lives 1.9 kHz under it. The plugin's presets have the offset already applied and show both numbers, for Hamburg/Pinneberg, Northwood and the US Coast Guard station at Boston.\n\nNothing has to be set. The transmission's own start tone says which index of cooperation is in use - 576 for the usual charts, 288 for the coarser ones - and the line rate is measured from the phasing signal that follows it, so 60, 90, 120 and 240 lines per minute are all read. The stop tone ends the chart, and the tone itself is trimmed off the bottom of the picture.\n\nHow far the receiver is off tune is measured from the phasing signal and reported in hertz, because a mistuned radiofax produces a picture whose shades are all wrong for no visible reason. It is reported rather than silently corrected.\n\nIt also opens an instrument window drawn as a marine facsimile recorder - phase lamps, illuminated IOC and line-rate selectors, a line counter, a centre-zero tuning meter and a paper slot with the chart feeding out of it - so you can tell within seconds whether the ten-minute chart now arriving will be worth having, with a log of the transmission's events beneath it.\n\nSlant correction is deliberately not attempted: unlike SSTV and APT, radiofax carries no sync inside the picture, so there is nothing to re-anchor a drifting line clock against. Written clean-room from published format specifications and from the meteorological services' own broadcast schedules.",
+      "description": "Draws the weather charts that national meteorological services still broadcast on shortwave for shipping - surface analyses, wind and wave forecasts, ice charts and satellite pictures - line by line as they arrive. A chart takes about ten minutes.\n\nTUNE 1.9 kHz BELOW THE PUBLISHED FREQUENCY, in USB. That is the rule for every radiofax station in the world and it is the one thing that stops a working receiver from decoding anything at all: schedules list the assigned frequency, and the picture lives 1.9 kHz under it. The plugin's presets have the offset already applied for Hamburg/Pinneberg, Northwood and the US Coast Guard station at Boston.\n\nThe station guide opens beside the decoder before a signal is heard. It lists Northwood's and DWD Hamburg's official and USB dial frequencies, and names their station-wide weather products. The products are not assigned to individual frequencies.\n\nNothing has to be set. The transmission's own start tone says which index of cooperation is in use - 576 for the usual charts, 288 for the coarser ones - and the line rate is measured from the phasing signal that follows it, so 60, 90, 120 and 240 lines per minute are all read. The stop tone ends the chart, and the tone itself is trimmed off the bottom of the picture.\n\nHow far the receiver is off tune is measured from the phasing signal and reported in hertz, because a mistuned radiofax produces a picture whose shades are all wrong for no visible reason. It is reported rather than silently corrected.\n\nIt also opens an instrument window drawn as a marine facsimile recorder - phase lamps, illuminated IOC and line-rate selectors, a line counter, a centre-zero tuning meter and a paper slot with the chart feeding out of it - so you can tell within seconds whether the ten-minute chart now arriving will be worth having, with a log of the transmission's events beneath it.\n\nSlant correction is deliberately not attempted: unlike SSTV and APT, radiofax carries no sync inside the picture, so there is nothing to re-anchor a drifting line clock against. Written clean-room from published format specifications and from the meteorological services' own broadcast schedules.",
       "category": "satellites-weather",
       "experimental": false,
-      "whatsNew": "1.0.0: first release.",
-      "published": "2026-09-07",
+      "whatsNew": "1.0.1: Adds the UK and European station guide and Northwood 2618.5 kHz USB preset.",
+      "published": "2026-10-10",
       "screenshots": [],
       "minSupportedVersion": "1.0.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
@@ -102,10 +102,10 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "wefax-decoder-1.0.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/wefax-decoder-1.0.0-abi3-win-x64.dll",
-          "sha256": "171b83481449ea2c8f9cce282878f254027aef8276a46564310fd9da3ea3cde7",
-          "sizeBytes": 188416
+          "file": "wefax-decoder-1.0.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/wefax-decoder-1.0.1-abi3-win-x64.dll",
+          "sha256": "2c8253bf06fbc2683a0662a1399df1d2d4d45e7309f6aca945c40b106f85ade4",
+          "sizeBytes": 206848
         }
       ]
     },
