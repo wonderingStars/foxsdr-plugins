@@ -52,7 +52,25 @@ on an address in the Irish block — and since the address and the callsign
 travel in different message types decoded by different code, that agreement is
 real evidence rather than a coincidence.
 
-**The other decoders have not yet been confirmed against a real off-air
+**POCSAG is confirmed on the tested UK signal.** A Windows 1.0.3 candidate
+displayed coherent 2400 bit/s alphanumeric messages from a USRP B200
+recording at 153.350 MHz and from a live receiver through the FoxSDR 0.99.74
+development build on 2026-10-09. The original reported transmission was
+unavailable for a before/after comparison, and no received payloads or pager
+identities are published here. Version 1.0.4 keeps text as the default and
+adds recent decoded messages to its settings page for current released ABI 3
+hosts; numeric and function-code modes remain available. Its own page showed
+known synthetic function-0 text in the default 520 by 300 window on released
+Windows FoxSDR 0.99.72 and 0.99.73, with both app runs exiting successfully.
+The final Windows 1.0.4 module also replayed the recorded B200 signal on
+released FoxSDR 0.99.73: coherent 2400 bit/s text remained visible in the
+default settings window after later tone-only traffic. That replay exited
+successfully. Its history keeps eight text/numeric messages and the most
+recent tone-only page separately, so tones cannot replace received text.
+Automatic flat NFM setup and preserving the tuned frequency require the new
+host reception flags, implemented by the 0.99.74 development build.
+
+**The remaining decoders have not yet been confirmed against a real off-air
 signal.** Each is validated against a test transmitter written from the same
 reading of the specification. That demonstrates the two halves agree with each
 other; it does not prove either is right about the standard.
