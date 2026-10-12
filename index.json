@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-10-12T18:09:36Z",
+  "generated": "2026-10-12T20:20:52Z",
   "note": "Plugin catalogue for FoxSDR. The application fetches ONLY this file until you explicitly install something. Every download is verified against the sha256 recorded here before it is placed in the plugins directory.",
   "plugins": [
     {
@@ -629,6 +629,37 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/wmbus-decoder-0.1.0-abi3-win-x64.dll",
           "sha256": "f5cab84d88fbc14163e78a7dd5b704fe455b5047c485a85872acae884f3f5cff",
           "sizeBytes": 230400
+        }
+      ]
+    },
+    {
+      "id": "dab",
+      "name": "DAB / DAB+ Radio",
+      "version": "0.5.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IQ_DECODER",
+        "CASCADE_CAP_IMAGE_DECODER"
+      ],
+      "summary": "Plays one station of a DAB or DAB+ multiplex from Band III, with its text and slideshow; DAB+ sound needs ffmpeg installed on your computer.",
+      "description": "READ THIS FIRST. DAB+ sound needs a decoder on your computer. DAB+ stations are coded with HE-AAC, a patented codec, and this plugin contains no AAC decoder: it runs ffmpeg, which you install yourself (winget install Gyan.FFmpeg, or the download page at ffmpeg.org), as a separate program, handing it each station's audio and taking its sound back. FoxSDR does not ship ffmpeg and does not install it. The plugin finds ffmpeg on your PATH or in the places winget, Chocolatey and a hand install use, or at the path you give in the settings (with a BROWSE FILES key on FoxSDR 0.99.74 and later). Without it a DAB+ station is silent in FoxSDR, the panel says \"DAB+ sound needs ffmpeg\" and what to do about it, and the receiver's own audio carries on. DAB stations (MPEG-1 Layer II) need nothing: they are decoded inside the plugin. The program ffmpeg is yours, under its own licence, and the plugin only starts it and exchanges bytes with it.\n\nDecodes Eureka 147 DAB and DAB+ in Band III - the digital radio multiplexes carried across the UK and Europe. It synchronizes to the 96 ms transmission frame, reads the Fast Information Channel, lists the multiplex's name and every service on it, and plays one station through the receiver's own audio output: MPEG-1 Layer II for DAB, HE-AAC v2 (through ffmpeg) for DAB+. While it plays it shows the station's scrolling text - and, where the broadcaster tags it, which part is the title and which the artist - and the pictures of its slideshow.\n\nYOU PICK THE STATION IN THE PLUGIN'S OWN WINDOW. The panel numbers every audio service (#0, #1, ...). Type a number into Service number, or part of a name into Station name ('planet' finds 'Planet Rock'; a name wins over a number), or press the NEXT STATION and PREVIOUS STATION keys to step through the list. Each multiplex remembers the station you last chose on it, so tuning back to a block resumes where you were. A dab.cfg file beside the plugin's data still works for choosing a station, and is the only way on a FoxSDR older than 0.99.43, which draws no boxes.\n\nIT NEEDS EXACTLY 2.048 MS/s and says so. At that rate every duration in the standard is a whole number of samples, so the 2048-point transform, the guard interval and the null symbol all line up with no resampler in the way; at 2.4 MS/s not one of them does. Both the RTL-SDR family and the USRP B200 offer the rate, and the preset asks for it along with the block.\n\nSixteen presets: the three UK national ensembles by name - 12B for BBC National DAB, 11D for Digital One, 11A for SDL National - and thirteen more Band III blocks in wide use across Europe. The complete 5A to 13F raster is built in, so tuning by hand to a block that is not in the list still names it. The panel shows whether the receiver is synchronized, the signal-to-noise ratio, the carrier offset and, while it is searching, how deep the null symbol it can see is - the number that tells 'there is no DAB transmitter on this block' from 'there is one and it cannot be decoded'. When a DAB+ station is playing it also shows what the decoder program is doing: whether it was found, its process, and how many units of audio it has been sent.\n\nWHAT HAS BEEN HEARD, AND WHAT HAS NOT. Most of it is tested against a DAB transmitter written for the test from the standards: the built plugin end to end in transmission mode I, and the demodulator in all four modes. Off the air, in West Yorkshire on 2026-10-12 with a USRP B200 at 2.048 MS/s, it locked to BBC National DAB (block 12B) and to Digital One (11D) and played a station from each through FoxSDR. On 12B every Fast Information Block passed its check, 744 super frames decoded with no Reed-Solomon failure, the audio ran for 85 seconds with nothing dropped, and NEXT STATION and PREVIOUS STATION changed station; the station's scrolling text came through as well. SDL National (11A) was marginal: about half its information blocks passed and the audio broke up, whatever the gain. On 2026-10-12 version 0.5.0 played a DAB+ station of Digital One (11D) through FoxSDR with ffmpeg found on the PATH - 662 super frames with no Reed-Solomon failure and 78 seconds of audio with nothing dropped - and with no ffmpeg anywhere the panel said what was needed and a DAB station of the same ensemble still played. NOT yet seen on a real signal: the slideshow pictures and the DL Plus title and artist tags - which is why this is still experimental. Those runs measured the audio's level and continuity; how it sounds was not recorded. Services are read in transmission mode I, the only one in service in Europe; the other three are demodulated and named, nothing more. It will not decode where the signal is weak or the aerial is not meant for Band III (174 to 240 MHz).\n\nNeeds FoxSDR 0.99.43 or later for the boxes; the two keys appear on the plugin's plate in FoxSDR's Fitted modules.\n\nWritten clean-room from ETSI EN 300 401, TS 102 563, TS 101 756 and the related ETSI specifications, and from ISO/IEC 14496-3's LOAS/LATM syntax for the framing it hands ffmpeg; no GPL DAB receiver, and no source of ffmpeg or any other AAC decoder, was used as source material. Layer II audio is decoded by kjmp2 by Martin J. Fiedler, included unmodified under the zlib licence with its notice intact. Slideshow pictures are decoded with stb_image by Sean Barrett, public domain or MIT. The plugin contains no AAC code: the Fraunhofer FDK AAC library that 0.4.0 carried is no longer compiled into it.",
+      "category": "broadcast",
+      "experimental": true,
+      "whatsNew": "0.5.0: DAB+ sound through a decoder on your computer (ffmpeg); the plugin ships no AAC code.",
+      "published": "2026-10-12",
+      "screenshots": [],
+      "minSupportedVersion": "0.4.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "dab-0.5.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/dab-0.5.0-abi3-win-x64.dll",
+          "sha256": "c044b203611ffb9d57f1541758f037d6db7cc5910bdec4f0a43464a72f8d720e",
+          "sizeBytes": 524288
         }
       ]
     },
