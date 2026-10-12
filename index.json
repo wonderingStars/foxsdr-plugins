@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-10-10T15:24:27Z",
+  "generated": "2026-10-12T18:09:36Z",
   "note": "Plugin catalogue for FoxSDR. The application fetches ONLY this file until you explicitly install something. Every download is verified against the sha256 recorded here before it is placed in the plugins directory.",
   "plugins": [
     {
@@ -1336,6 +1336,37 @@
       ]
     },
     {
+      "id": "propagation-tools",
+      "name": "Propagation Tools",
+      "version": "0.1.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IMAGE_DECODER"
+      ],
+      "summary": "Band conditions and solar indices, the NCDXF beacon schedule with tune presets, a meteor-shower calendar, and a world map with the grey line and a heat map of the bands likely to be open - by the built-in VOACAP.",
+      "description": "HF propagation in one picture and one table. The picture has five pages (NEXT PAGE key): a world map with the day and night sides, the grey line, the Sun, your locator, the 18 beacons of the NCDXF/IARU International Beacon Project and a heat map showing, for every 5-degree cell, the highest band of 80/40/30/20/17/15/12/10 m that looks usable from your locator, with a strip of solar flux, A and K indices, the last day of Kp, N0NBH's day and night band words, the beacons on air and the meteor shower of the day; the beacon schedule with bearing and distance from you and the seconds until each beacon next transmits; the meteor calendar with the radiant's altitude and azimuth from your locator; the solar numbers with a week of Kp and NOAA's three-day forecast; and a 24-hour by 8-band table for the path to a target locator. Five presets tune the receiver to the beacon frequencies (14.100, 18.110, 21.150, 24.930 and 28.200 MHz) in CW.\n\nWHAT MADE THE FIGURES. Every picture and panel names its engine. VOACAP, the prediction program of the US Voice of America and NTIA's Institute for Telecommunication Sciences (ITS), is the engine of choice, and it is BUILT IN: ITS's own Fortran program, translated to C and carried inside this plugin with ITS's data, nothing to install and no program started. It shows VOACAP's reliabilities, MUF and signal figures for your power, antenna and noise - monthly MEDIAN predictions, not today's conditions - and the map shows the most reliable band in each 5-degree cell. On ITS's own test circuits it agrees with ITS's program to the printed digit in most cells (a few long circuits differ; the plugin's README gives the counts), but it has never been compared with the air. If the built-in engine cannot run, or you ask for an antenna file only an installed VOACAP understands, the plugin can run a copy YOU have installed (ITS HFWIN32, free from its.ntia.gov) as a separate program. Without either the figures are EMPIRICAL: a rule of thumb (secant law and a hand-made F2 climatology, written out in the plugin's README) that is an INDICATION, not a prediction, never checked against measurements, and says so on every picture.\n\nNETWORK. The plugin makes four requests, only while one of its windows is open, never faster than each source asks, and backs off after a failure: https://www.hamqsl.com/solarxml.php (N0NBH, at most once an hour), and from services.swpc.noaa.gov (NOAA's Space Weather Prediction Center) the Kp history (every 30 minutes), the 10.7 cm flux and the 3-day forecast (every 3 hours). Each server learns your IP address and a user agent, 'FoxSDR-PropagationTools/0.1.0', and nothing else: your locator and your receiver's position are never sent anywhere. The last answer of each is kept on this machine (%LOCALAPPDATA%\\foxsdr\\propagation\\cache) and shown with its age when you are offline. There is a setting to switch all fetching off. The plugin never contacts voacap.com.\n\nThe built-in engine writes ITS's data (84 files, under 1 MB) into %LOCALAPPDATA%\\foxsdr\\propagation\\itshfbc the first time it is used, and scratch files there that it deletes after each run; nothing else is written and nothing is sent. If you point the plugin at an installed VOACAP it writes an input file into that install's run folder, starts voacapw.exe (a 32-bit ITS program) as a separate process, reads its output and deletes both files. It checks the file's header before starting it and refuses anything that is not a Windows program.\n\nVOACAP: Institute for Telecommunication Sciences, NTIA, U.S. Department of Commerce, translated to C by the FoxSDR project with netlib's f2c and libf2c (AT&T, Lucent, Bellcore); their notices are in the plugin's README and the NTIA terms are in the legal notice. Solar data by N0NBH (hamqsl.com); Kp, flux and forecast from NOAA SWPC (public domain); coastline from Natural Earth (public domain); beacon schedule from ncdxf.org; meteor showers from the IMO's 2027 calendar. Needs FoxSDR 0.99.43 or later; the path field for an installed VOACAP needs 0.99.74 or later (the built-in engine needs nothing).",
+      "category": "maps-tools",
+      "experimental": true,
+      "whatsNew": "0.1.0: first release.",
+      "published": "2026-10-12",
+      "screenshots": [],
+      "legalNotice": "This plugin contains the VOACAP HF propagation software of the Institute for Telecommunication Sciences (ITS), NTIA, U.S. Department of Commerce, translated from Fortran to C by the FoxSDR project. NTIA's terms for copies and derivative works, word for word: \"Disclaimer: The downloads made available through links on this page contain software developed by NTIA. NTIA does not make any warranty of any kind, express, implied or statutory, including, without limitation, the implied warranty of merchantability, fitness for a particular purpose, non-infringement and data accuracy. NTIA does not warrant or make any representations regarding the use of the software or the results thereof, including but not limited to the correctness, accuracy, reliability or usefulness of the software or the results. You can use, copy, modify, and redistribute the NTIA-developed software upon your acceptance of these terms and conditions and upon your express agreement to provide appropriate acknowledgments of NTIA's ownership of and development of the software by keeping this exact text present in any copied or derivative works.\" The translation and its edits are the FoxSDR project's and carry no endorsement or warranty from NTIA/ITS or the U.S. Government. ITS's statement that its software is not subject to copyright protection is a statement about the United States. VOACAP's figures are monthly median predictions, not today's conditions. The full ITS and libf2c notices are in the plugin's README.",
+      "minSupportedVersion": "0.1.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "propagation-tools-0.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/propagation-tools-0.1.0-abi3-win-x64.dll",
+          "sha256": "aa0e891ca3229ac4b1a9f46d72b0f1921e660adc3bb886c2dba6451b5dcdf2f5",
+          "sizeBytes": 1986560
+        }
+      ]
+    },
+    {
       "id": "radiosonde-decoder",
       "name": "Radiosondes",
       "version": "0.1.0",
@@ -1363,6 +1394,100 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/radiosonde-decoder-0.1.0-abi3-win-x64.dll",
           "sha256": "cc098d5c018a6dc7e5b8083799e7ddf694750581549d84e2fdc0e6bdb95ec885",
           "sizeBytes": 212992
+        }
+      ]
+    },
+    {
+      "id": "packet-tnc",
+      "name": "Packet TNC (KISS)",
+      "version": "0.1.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_DECODER",
+        "CASCADE_CAP_TX_AUDIO"
+      ],
+      "summary": "A software TNC: packet radio for Winlink Express, APRS clients and other packet programs, over KISS on a local TCP port.",
+      "description": "A software TNC (the modem a packet program talks to). It decodes 1200 baud AFSK packet radio - AX.25, the mode behind APRS and Winlink over packet - from the receiver's NFM audio, and turns frames back into audio, and exposes both to any program that speaks KISS over TCP: Winlink Express on the same PC (Packet TNC Type KISS, serial port TCP, 127.0.0.1, port 8100), an APRS client, a packet BBS terminal.\n\nNETWORK: it opens ONE LISTENING TCP port, 127.0.0.1:8100 by default, for programs on this PC to connect to (up to four). It makes no outbound connection, fetches nothing, reports nothing and writes no file. Setting a bind address other than 127.0.0.1 puts the port on your network, where anything that can reach it can queue a frame for transmission; the plugin warns when you do, and FoxSDR still decides whether anything is keyed.\n\nIT TRANSMITS, BUT NEVER ON ITS OWN AUTHORITY. The plugin supplies audio and says when it wants the transmitter. FoxSDR keys it only if you have granted this plugin transmit (off by default, offered on its plate after it first asks), you have armed the transmitter on the TRANSMIT page (a timed window, every session), and the page is live. It never chooses frequency, power or mode: set the TRANSMIT page to DATA (flat). A frame that cannot go out is dropped after 30 seconds with the reason shown - not granted, not armed, channel busy, or the host did not key - on its panel, in the Decoder output and in the host log.\n\nIt listens before it talks: p-persistent CSMA as the KISS document describes it, with TXDELAY, P, SlotTime, TXTAIL and FullDuplex taken from the program's own KISS commands. The channel counts as busy while the squelch is open, the signal is above a threshold you set, or a packet was heard within the slot time. A keying never exceeds 40 seconds, inside the host's 60 second cap. ACKMODE frames are accepted and acknowledged; NORMAL is the mode that was tested.\n\nIts window shows the server and its clients, frames received and sent, whether the channel is clear or busy and why, the KISS parameters, the host's grant and arming state, and the last frames; every frame is also printed in the Decoder output. Two presets (144.800 MHz Europe, 144.390 MHz North America, the APRS channels) put the receiver in flat NFM; a Winlink gateway is on its own frequency, which you tune.\n\nNeeds a FoxSDR that offers transmit audio to plugins (host API level 2). On an older FoxSDR it still receives and serves KISS but cannot transmit, and says so. Receiving and the KISS server work on FoxSDR 0.99.43 or later; transmitting needs FoxSDR 0.99.74 or later (the TRANSMIT page's grant and ARM keys). NOT YET TRIED ON THE AIR: it has been tested only against a simulated host and a scripted KISS client; Winlink Express has not been run against it. Written clean room from the KISS and AX.25 documents; no Dire Wolf or other GPL code. Not affiliated with ARSFI or Winlink.",
+      "category": "maps-tools",
+      "experimental": true,
+      "whatsNew": "0.1.0: first release.",
+      "published": "2026-10-12",
+      "screenshots": [],
+      "legalNotice": "This plugin can make your radio TRANSMIT. A licensed amateur is required to transmit on amateur frequencies, and the operator must arm the transmitter on FoxSDR's TRANSMIT page for every session; nothing is radiated until you do. You alone are responsible for what your station emits: your licence, the frequency and band plan, your callsign and station identification, the deviation and bandwidth of the signal, the rules for third-party traffic and for the Winlink or packet network you connect to, and not interfering with other stations. The plugin's channel check is a courtesy, not a guarantee that a channel is free. Transmit only where, and as, your licence permits.\n\nIt is distributed separately from the application, and is not included in it, so that installing it is your informed decision. It is not affiliated with, endorsed by or sponsored by ARSFI or the Winlink Global Radio Email system.",
+      "minSupportedVersion": "0.1.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "packet-tnc-0.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/packet-tnc-0.1.0-abi3-win-x64.dll",
+          "sha256": "f40020ee234e350a78a5b94cea06c229e5f425d922c734401e4d3c91e976c57f",
+          "sizeBytes": 249856
+        }
+      ]
+    },
+    {
+      "id": "solar-system-view",
+      "name": "Solar System View",
+      "version": "0.1.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IMAGE_DECODER"
+      ],
+      "summary": "The Sun, planets and Moon drawn from orbital elements, with NASA's latest Sun pictures, the SOHO coronagraph, NASA's CME list, solar-wind readouts and the aurora forecast beside them.",
+      "description": "A picture of the solar system that turns by itself, and the space-weather pictures and numbers that go with it. The plugin contacts NASA and NOAA servers by itself, and only for what is on screen: sdo.gsfc.nasa.gov, services.swpc.noaa.gov and ccmc.gsfc.nasa.gov (https, GET only; what each is asked for, how often, and what it learns are listed below and in the plugin's README).\n\nFOUR PAGES, ONE PICTURE. SYSTEM draws the Sun, the eight planets on their orbits and the Moon beside the Earth, dated now, from Keplerian elements (JPL's approximate positions, 1800-2050) with no network at all; it spins slowly and answers the plugin's keys - ROTATE LEFT and RIGHT, TILT, ZOOM IN and OUT - with an option for logarithmic orbit radii so Mercury is not lost in the Sun. SUN shows one of eight pictures from NASA's Solar Dynamics Observatory (six AIA wavelengths, the HMI intensitygram and the magnetogram; NEXT CHANNEL) with how old it is and the solar-wind speed, density, Bz and Kp. CORONA shows the SOHO/LASCO C3 coronagraph and NASA DONKI's list of coronal mass ejections: time, speed, type, and whether DONKI's model has one reaching the Earth. AURORA draws NOAA's OVATION forecast over both poles and marks your locator if you type one into the settings. A table beside the picture carries the same numbers, with each planet's distance from the Earth and its elongation from the Sun.\n\nIt is a picture the plugin draws: plugins receive no mouse clicks, so nothing can be dragged - the keys on the plugin's plate do the turning. When a source stops answering, the last good data is shown with its age. NASA's own 'latest' Sun pictures were three weeks old on the day this was written (their web server had a storage failure); the plugin says when the same picture has been served for three refresh intervals, and the picture's own date label shows when the Sun was imaged.\n\nData: NASA/SDO (courtesy of NASA/SDO and the AIA, EVE, and HMI science teams), NOAA/SWPC, SOHO/LASCO (ESA and NASA), NASA DONKI (experimental research information; NOAA/SWPC is the official source), JPL's approximate planetary positions (Standish and Williams), Paul Schlyter's lunar series, and Natural Earth's coastline. Drawn by FoxSDR; not an official product of NASA or NOAA and not endorsed by either.\n\nExperimental: tested against responses recorded on 2026-10-12 and through a stand-in host, never inside FoxSDR's own window. Needs FoxSDR 0.99.43 or later. The picture is an image-decoder window, which the host may create only while the receiver is running; the table works either way.",
+      "category": "maps-tools",
+      "experimental": true,
+      "whatsNew": "0.1.0: first release.",
+      "published": "2026-10-12",
+      "screenshots": [],
+      "legalNotice": "This plugin contacts three servers on its own, over https, whenever a window of it is open and showing something that needs them: sdo.gsfc.nasa.gov (the SDO Sun pictures, at most one picture per channel every 15 minutes, only the channel on screen and the one before it), services.swpc.noaa.gov (solar wind every 5 minutes, Kp every 30, the LASCO picture every 15, the aurora grid every 10) and ccmc.gsfc.nasa.gov (NASA's DONKI CME list, once an hour). Each server sees your internet address and the plugin's name and version; the DONKI requests also carry two calendar dates. Nothing about you or your receiver is sent: the locator you may type into the settings stays on this computer. The SYSTEM page makes no request at all. Do not install it if you do not want those requests to leave your machine.",
+      "minSupportedVersion": "0.1.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "solar-system-view-0.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/solar-system-view-0.1.0-abi3-win-x64.dll",
+          "sha256": "78e05752f1f6e74cda3ecf27bba95ce7d9ee9e611c212c09433ce201e6e23ce7",
+          "sizeBytes": 540672
+        }
+      ]
+    },
+    {
+      "id": "radio-email",
+      "name": "Radio Email (Winlink-compatible)",
+      "version": "0.1.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_DECODER"
+      ],
+      "summary": "Read and send Winlink e-mail over the internet gateway: a mailbox, a compose form and the Winlink protocol; no radio link yet. Not affiliated with ARSFI or the Winlink team.",
+      "description": "Stage 1 of a Winlink-compatible radio e-mail client: it reads and sends e-mail through the Winlink INTERNET gateway (the \"Telnet\" session every Winlink client offers), using the same B2F protocol the radio sessions use. It makes NO radio transmission - the radio link is a later stage - and it does not create a Winlink account: use an existing Winlink client once to create yours and get the password. Not affiliated with or endorsed by ARSFI or the Winlink team; \"Winlink Global Radio Email\" is a registered trade mark of the Amateur Radio Safety Foundation, Inc.\n\nNETWORK. It opens one plain, UNENCRYPTED TCP connection to server.winlink.org, port 8772 (both changeable in the settings), only when you press CONNECT, or on the schedule you set with Auto-check (off by default; 5 minutes at the shortest), and never while its window is closed. The server learns your IP address, your callsign, your locator if you enter one, the software name and version, and everything in the messages you send and receive - messages are not private on Winlink. Your password is never sent: Winlink's secure login sends only a number worked out from the gateway's challenge and your password. No other server is contacted and nothing is reported anywhere.\n\nPASSWORD. The password field is write-only: what you type is stored protected on disk (Windows DPAPI, for your Windows user) and the field is emptied within a tenth of a second. FoxSDR keeps plugin settings in clear text and does not mask what you type, so for that moment it is visible and in the settings store.\n\nWHAT YOU GET. A panel with a mailbox (inbox, outbox, sent), the message you select and its text, eight command keys (CONNECT, QUEUE MESSAGE, DELETE DRAFT, next/previous message and page, MARK READ), a compose form in the settings (To, Cc, Subject, Message text, Attachment) and, in the Decoder output, the whole session log and every received message in full. Messages and attachments are kept as files under %LOCALAPPDATA%\\foxsdr\\radio-email\\<CALLSIGN>. Needs FoxSDR 0.99.43 or later; the attachment path field needs 0.99.74 or later (older versions hide it, so no attachments).\n\nEXPERIMENTAL - IT HAS NEVER TALKED TO THE REAL WINLINK SERVERS. It passes its own tests against a fake gateway and against wl2k-go, another author's Winlink implementation, run as a gateway and as a client on this machine, and agrees with the published protocol documents; whether the real servers accept this client is unverified (src/winlink/README.md lists the steps for a first live check). Windows only so far. Written from the public B2F and FBB protocol pages, RFC 1321 and the LZHUF algorithm; no GPL or AGPL Winlink client's code was read.",
+      "category": "maps-tools",
+      "experimental": true,
+      "whatsNew": "0.1.0: first release.",
+      "published": "2026-10-12",
+      "screenshots": [],
+      "legalNotice": "This plugin connects to the Winlink radio e-mail network, which is run by the Amateur Radio Safety Foundation, Inc. (ARSFI). FoxSDR and this plugin are not affiliated with or endorsed by ARSFI or the Winlink team; \"Winlink Global Radio Email\" is ARSFI's registered trade mark.\n\nWinlink is for licensed radio operators and authorised agencies: its terms say a new account's licence is validated and a user who cannot prove one is locked out. You need an amateur radio licence (or the authorisation of the agency you work for) and your own Winlink account and password, and you are responsible for using it within the rules of your licence. Winlink's terms and conditions apply to everything you send and receive through it - read them at https://winlink.org/terms_conditions . In short: messages are NOT private (gateway operators, administrators and, in some cases, authorities can read them); they are kept for 21 days; an account unused for 400 days is deleted; business use over amateur radio, obscene content and executable attachments are not allowed.\n\nWhen you press CONNECT, or on the automatic schedule you set, this plugin sends your callsign and the messages you wrote to server.winlink.org over an unencrypted connection. You are responsible for what you send.\n\nThis plugin is distributed separately from the application, and is not included in it, so that installing it is your informed decision.",
+      "minSupportedVersion": "0.1.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "radio-email-0.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/radio-email-0.1.0-abi3-win-x64.dll",
+          "sha256": "e990c4baf1911e2def5d69d1205fce2734615405bbb35a0ad54f94a5912f7655",
+          "sizeBytes": 620032
         }
       ]
     }
