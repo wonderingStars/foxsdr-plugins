@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-10-12T20:20:52Z",
+  "generated": "2026-10-13T00:47:28Z",
   "note": "Plugin catalogue for FoxSDR. The application fetches ONLY this file until you explicitly install something. Every download is verified against the sha256 recorded here before it is placed in the plugins directory.",
   "plugins": [
     {
@@ -1519,6 +1519,48 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/radio-email-0.1.0-abi3-win-x64.dll",
           "sha256": "e990c4baf1911e2def5d69d1205fce2734615405bbb35a0ad54f94a5912f7655",
           "sizeBytes": 620032
+        }
+      ]
+    },
+    {
+      "id": "nrsc5-radio-dynamic",
+      "name": "IBOC Radio (nrsc5 library)",
+      "version": "0.1.0",
+      "author": "FoxSDR project",
+      "licence": "MIT",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IQ_DECODER",
+        "CASCADE_CAP_IMAGE_DECODER"
+      ],
+      "summary": "Receive HD Radio (NRSC-5) stations with the libnrsc5 you already have (the one in NRSC5 Studio): digital audio, station and track information, album art, traffic and weather maps. The plugin contains no decoder.",
+      "description": "READ THIS FIRST. This plugin contains no decoder. It loads the libnrsc5 library you obtained with NRSC5 Studio (or built from nrsc5), a separate GPL v3 program, and uses it to decode the digital HD Radio signal that rides beside many FM stations (and some AM stations in the United States). Without that library it shows a panel that says so and does nothing else.\n\nWHAT YOU DO. Unpack NRSC5 Studio's Windows zip anywhere (its libnrsc5.dll is used as it is): the plugin looks in the usual places, including folders named nrsc5-studio in your Downloads and Desktop, and lists where it looked when it finds nothing. Or choose your own libnrsc5.dll with BROWSE FILES in the plugin's settings (FoxSDR 0.99.74 or later; on an older FoxSDR the search alone is used). It works with nrsc5 3.2.0 (the release NRSC5 Studio builds) and newer, and says in its panel which build it loaded and which features that build has.\n\nWHAT YOU GET. The programme audio of HD1 to HD8, played in place of the analogue audio while it is available, with the programmes the station announces marked; the station's name, slogan, message, identity and location; track title, artist, album and genre; album art, station logos and the traffic and weather maps some stations broadcast; emergency alerts; the signal's quality (MER, BER, service mode); and two marks on the spectrum showing the digital sidebands. A dashboard picture and a panel show all of it. Auto gain tunes the radio's first gain stage for the best digital signal; it needs the RADIO SETTINGS grant on the plugin's plate in Fitted modules and is off until you switch it on in the plugin's settings.\n\nNeeds a radio that gives FoxSDR at least about 0.6 MS/s with the station inside the band (an RTL-SDR at 2.4 MS/s is ideal) and FoxSDR 0.99.43 or later (the library path field's BROWSE FILES key needs 0.99.74, the current release). It reads the folder names in your Downloads, Desktop, user, Programs and Program Files folders to find NRSC5 Studio, and the library file it loads; it opens no network connection. Windows only so far: no Linux build exists, and the catalogue lists a Windows build alone.\n\nEXPERIMENTAL. This project has never heard an HD Radio station off the air: it has decoded one recorded capture (the sample that comes with nrsc5), and been tested against a simulated radio, but never against a live antenna inside FoxSDR. The medium wave (AM) path has not been tried against a real AM signal. See the notice shown before installation for the licence and patent position.",
+      "category": "broadcast",
+      "experimental": true,
+      "whatsNew": "0.1.0: first release.",
+      "published": "2026-10-12",
+      "screenshots": [
+        {
+          "file": "screenshots/nrsc5-radio-dynamic/1.png",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/screenshots/nrsc5-radio-dynamic/1.png",
+          "sha256": "11ba195e2551418f0c9d5082cd88b0594cea06be89958121ac417e46b47d00ee",
+          "sizeBytes": 15646,
+          "width": 1280,
+          "height": 800,
+          "caption": "The dashboard decoding the recorded HD Radio sample capture from the nrsc5 project through this plugin and a libnrsc5 built from nrsc5's source: station KUT, HD1 and HD2 announced, MER and BER bars."
+        }
+      ],
+      "legalNotice": "This plugin contains no decoder. It loads the libnrsc5 library you obtained with NRSC5 Studio or built from nrsc5 (GNU GPL v3); the HD Radio system and its audio codec are understood to be patented by iBiquity/Xperi and no licence is granted by anyone here.\n\nThe plugin itself is free software released under the MIT licence. libnrsc5 is a separate program's library, licensed by its authors under the GNU General Public License, version 3, and is not part of this plugin or of FoxSDR; the plugin finds it on your computer, checks the file, loads it and gives it I/Q samples. Whether you may lawfully use or redistribute a decoder for the HD Radio codec depends on where you are: you alone are responsible for assessing your own position. \"HD Radio\" is a trademark of iBiquity Digital Corporation; this project is not affiliated with or endorsed by iBiquity, Xperi, the authors of nrsc5 or NRSC5 Studio.\n\nTo find the library it lists the folders in your Downloads, Desktop, user, Programs and Program Files folders (names only) and opens the library file; it opens no network connection. It reads broadcast radio only, and has been tested against one recorded HD Radio capture and a simulated receiver, not yet against a live antenna inside FoxSDR.",
+      "minSupportedVersion": "0.1.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "nrsc5-radio-dynamic-0.1.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/nrsc5-radio-dynamic-0.1.0-abi3-win-x64.dll",
+          "sha256": "0ca5929b415113d26b1038ec781a768f669c40f260c87be684391d9966879267",
+          "sizeBytes": 1716224
         }
       ]
     }
