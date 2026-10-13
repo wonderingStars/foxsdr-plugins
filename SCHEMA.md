@@ -79,6 +79,21 @@ this file until the user explicitly installs something.
   From 0.99.72 the plugin store reads it to say what an uninstalled plugin
   is and what it reaches; once a plugin is fitted, the descriptor the host
   reads from the binary itself is authoritative and wins.
+- `platforms` has one row per build that exists. The host offers the row whose
+  `os` AND `arch` both equal its own (compared case-insensitively;
+  `PluginRepo::hostOs()` and `hostArch()`), and an entry with no such row shows
+  "no build for linux/arm64" (or whichever it is) instead of an install button.
+  The platforms the catalogue describes, and the file each one is named:
+
+  | `os` | `arch` | file | built by |
+  |---|---|---|---|
+  | `windows` | `x64` | `<id>-<version>-abi3-win-x64.dll` | MSVC, `tools/build_probe.bat` and the per-plugin `build.bat` |
+  | `linux` | `x64` | `<id>-<version>-abi3-linux-x64.so` | GCC on `ubuntu-22.04`, `.github/workflows/plugins-linux.yml` |
+  | `linux` | `arm64` | `<id>-<version>-abi3-linux-arm64.so` | GCC on `ubuntu-24.04-arm`, the same workflow (the aarch64 AppImage, Raspberry Pi 500+) |
+
+  `arch` is `x64` for x86-64 and `arm64` for AArch64, the two words `hostArch()`
+  returns. A plugin may ship on one platform before another: nothing requires
+  every row.
 
 ## Store fields (all optional; added for the 0.99.72 plugin store)
 
@@ -114,7 +129,11 @@ DLLs actually sitting in `plugins/`. Do not hand-edit it. The generator:
   releases sharing a URL would silently overwrite one another;
 - runs `tools/probe_plugin.exe` against each DLL to read the descriptor the
   binary *actually* declares, and **fails** on any disagreement over version,
-  ABI, licence or author;
+  ABI, licence or author (a module this machine cannot load, such as the Linux
+  x64 and arm64 builds seen from Windows, is checked against
+  `tools/probe-linux-x64.json` / `tools/probe-linux-arm64.json`, written on that
+  platform by `gen_index.py --emit-probe` and trusted only for the exact sha256
+  it recorded);
 - **fails** on a row with no `category` or one outside the six above, a row
   whose `name` or `summary` still carries `EXPERIMENTAL`, a `whatsNew` that
   does not start with the row's version, a version paragraph left in
