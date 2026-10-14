@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-10-13T20:49:48Z",
+  "generated": "2026-10-14T02:07:24Z",
   "note": "Plugin catalogue for FoxSDR. The application fetches ONLY this file until you explicitly install something. Every download is verified against the sha256 recorded here before it is placed in the plugins directory.",
   "plugins": [
     {
@@ -644,7 +644,7 @@
     {
       "id": "adsb-decoder",
       "name": "ADS-B Aircraft Decoder",
-      "version": "1.9.0",
+      "version": "1.9.1",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -656,8 +656,8 @@
       "description": "Decodes Mode S / ADS-B transmissions from aircraft at 1090 MHz and reports callsign, position, altitude, ground speed, track and vertical rate. Every frame is validated against the 24-bit Mode S CRC. A frame carrying a single damaged bit is repaired - the CRC identifies which bit, so a weak aircraft at the edge of range is heard rather than lost - and anything the CRC cannot account for is discarded rather than shown as phantom aircraft. A position is recovered from an even/odd CPR frame pair, or, as described below, from a single frame.\n\nOnce an aircraft has a position less than five minutes old, each position frame it sends updates that position: one frame is enough, with no pair to wait for. A new aircraft below about 32,000 ft and within 100 nautical miles of the receiver is placed from a single frame, against the receiver position set in FoxSDR, and the next frame pair confirms that position or corrects it. With FoxSDR 0.99.75 or newer, the aircraft the decoder hears but cannot place yet are listed in the target list as \"heard without a position\"; older versions do not list them.\n\nThis decoder works on raw I/Q rather than demodulated audio, so it needs a receiver capable of 1090 MHz at 2 MS/s or more; 2.4 MS/s or higher is recommended, because at exactly 2 MS/s one sub-sample timing alignment in eight is unrecoverable in principle. A 1090 MHz antenna makes far more difference than any setting. The receiver's own DC offset is tracked and removed before detection, so a zero-IF dongle such as an RTL-SDR - whose offset would otherwise bury every aircraft not on top of the antenna - hears what it should.\n\nAirborne and surface positions, callsign, velocity, vertical rate, geometric height, squawk and emergency status are decoded, and each aircraft draws a flight trail on the map. Aircraft that stop transmitting are released rather than accumulating for the session. Written clean-room from the published Mode S specification.",
       "category": "aircraft",
       "experimental": false,
-      "whatsNew": "1.9.0: Places aircraft sooner, and lists the ones it cannot place yet. An aircraft already on the map is now moved by every position frame it sends, not only by an even/odd pair, so a heard aircraft no longer waits for a matching pair between fixes. A new aircraft below about 32,000 ft within 100 nautical miles of the receiver is placed from its first frame, against the receiver position set in FoxSDR, and the next frame pair confirms or corrects it. With FoxSDR 0.99.75 or newer, the aircraft it hears but cannot place yet appear in the target list as \"heard without a position\".",
-      "published": "2026-10-12",
+      "whatsNew": "1.9.1: Three fixes measured on five minutes of recorded sky. Aircraft invented by noise no longer appear: a frame accepted only through the single-bit repair or an interrogator-coded DF11 now serves an aircraft already acquired by a clean frame and never acquires one (four phantoms in five minutes before, none after, every real aircraft still heard). An aircraft at cruise altitude is placed from its first frame once a pair has shown how far your station reaches, instead of waiting for an even/odd pair (7 to 41 seconds sooner on the recording). And with FoxSDR 0.99.78 or newer an aircraft at the edge of range stays on the map between its bursts, carried along its last course and speed for up to 180 seconds and marked as an estimate, instead of blinking off 60 seconds after its last fix. Older hosts see the 1.9.0 behaviour.",
+      "published": "2026-10-13",
       "screenshots": [
         {
           "file": "screenshots/adsb-decoder/1.png",
@@ -684,26 +684,26 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "adsb-decoder-1.9.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.9.0-abi3-win-x64.dll",
-          "sha256": "0d4fac2201402de0e9cc50dba4c76834b5c9d2f174d17ff2bbced0f2e72f3f6e",
-          "sizeBytes": 318464
+          "file": "adsb-decoder-1.9.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.9.1-abi3-win-x64.dll",
+          "sha256": "119b0cba83a1383708edc585a2926e504aca1f72d99af41c80e6506db69f2f7c",
+          "sizeBytes": 321536
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "adsb-decoder-1.9.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.9.0-abi3-linux-x64.so",
-          "sha256": "ba82dfb6bbef03ba17e488894bef4855dffd6fb2b1169b06d49a3e73ae1e6ff1",
-          "sizeBytes": 115712
+          "file": "adsb-decoder-1.9.1-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.9.1-abi3-linux-x64.so",
+          "sha256": "4f57c4ef1ad57b028652fffa4770cbeee95dbc834c4494af1eda9a4f7646a1fb",
+          "sizeBytes": 120136
         },
         {
           "os": "linux",
           "arch": "arm64",
-          "file": "adsb-decoder-1.9.0-abi3-linux-arm64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.9.0-abi3-linux-arm64.so",
-          "sha256": "bbd02cc4a2988af32d4931664814e14f60a8d45432accdbbb814dabbde92da1b",
-          "sizeBytes": 150064
+          "file": "adsb-decoder-1.9.1-abi3-linux-arm64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/adsb-decoder-1.9.1-abi3-linux-arm64.so",
+          "sha256": "dcddc1233346e2d711e780a86f1186642f515638c9f4e96af5c99e3748cb2642",
+          "sizeBytes": 150384
         }
       ]
     },
