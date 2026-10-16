@@ -67,8 +67,19 @@ released FoxSDR 0.99.73: coherent 2400 bit/s text remained visible in the
 default settings window after later tone-only traffic. That replay exited
 successfully. Its history keeps eight text/numeric messages and the most
 recent tone-only page separately, so tones cannot replace received text.
-Automatic flat NFM setup and preserving the tuned frequency require the new
-host reception flags, implemented by the 0.99.74 development build.
+Automatic flat NFM setup and preserving the tuned frequency are supported
+by released FoxSDR 0.99.74 and later.
+
+Version 1.0.5 adds **Show frame details**, off by default. The same panel can
+display each decoded message followed by its frame, polarity, per-page error
+counts and received raw hexadecimal codewords before correction. It retains
+up to 360 raw words per page and marks truncation explicitly. Existing history
+can reveal these details without restarting decoding or opening the shared
+Decoder window. The Windows DLL passed 107 checks three times; Linux x64 and
+arm64 modules each passed the same 107 checks and actual descriptor loading.
+Released FoxSDR 0.99.78 displayed known synthetic messages with raw and decoded
+details together, saved the option after a scripted checkbox click, and worked
+with the shared Decoder window closed. No new off-air reception is claimed.
 
 **The remaining decoders have not yet been confirmed against a real off-air
 signal.** Each is validated against a test transmitter written from the same

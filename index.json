@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-10-15T20:08:57Z",
+  "generated": "2026-10-16T17:15:05Z",
   "note": "Plugin catalogue for FoxSDR. The application fetches ONLY this file until you explicitly install something. Every download is verified against the sha256 recorded here before it is placed in the plugins directory.",
   "plugins": [
     {
@@ -1086,7 +1086,7 @@
     {
       "id": "pocsag-decoder",
       "name": "POCSAG Pager Decoder",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -1094,11 +1094,11 @@
         "CASCADE_CAP_DECODER"
       ],
       "summary": "Decodes POCSAG (CCIR Radiopaging Code No. 1) pager messages from NFM audio.",
-      "description": "Decodes POCSAG paging messages from NFM audio. Text is the default for every function code. Its persistent settings page displays the latest eight text or numeric messages, newest first, plus the most recent tone-only page on released ABI 3 hosts. Tone pages never replace text. Long pages wrap across rows; history is in memory. Numeric messages selects numbers instead. Use function codes takes priority, mapping function 3 to text and functions 0-2 to numeric. Searches 512, 1200 and 2400 bit/s and both polarities automatically.\n\nSix preset buttons select UK 153.350 MHz, DAPNET 439.9875 MHz (ham), or four US 900 MHz channels. Current released hosts leave de-emphasis unchanged and may retune to the first preset on opening. Hosts implementing the new reception flags (FoxSDR 0.99.74 development build or later) keep your tuned frequency, select NFM with a 20 kHz channel and de-emphasis Off, and open shared decoded output beside the settings page. Written from the published specification. Windows decoding was verified on the tested B200 signal at 153.350 MHz; no coverage guarantee.",
+      "description": "Decodes POCSAG paging messages from NFM audio. Text is the default for every function code. Its persistent settings page displays the latest eight text or numeric messages, newest first, plus the most recent tone-only page on released ABI 3 hosts. Tone pages never replace text. Long pages wrap across rows; history is in memory. Show frame details adds the zero-based address frame, received polarity, per-page corrected/discarded codeword counts and up to 360 raw hexadecimal codewords before correction. The raw words include the address, payload and any failed word closing the page, normalized for polarity; sync, idle and the next address are excluded. Truncation is marked explicitly. Message text stays first, with baud, RIC, function and type. Toggling details exposes retained history without interrupting decoding or requiring the shared Decoder window. Numeric messages selects numbers instead. Use function codes takes priority, mapping function 3 to text and functions 0-2 to numeric. Searches 512, 1200 and 2400 bit/s and both polarities automatically.\n\nSix preset buttons select UK 153.350 MHz, DAPNET 439.9875 MHz (ham), or four US 900 MHz channels. Older hosts leave de-emphasis unchanged and may retune to the first preset on opening. Released FoxSDR 0.99.74 and later keep your tuned frequency, select NFM with a 20 kHz channel and de-emphasis Off, and open shared decoded output beside the settings page. Written from the published specification. Windows decoding was verified on the tested B200 signal at 153.350 MHz; no coverage guarantee.",
       "category": "meters-paging",
       "experimental": false,
-      "whatsNew": "1.0.4: Adds persistent POCSAG settings with text as the default, optional numeric/function-code modes, the latest eight text or numeric messages plus the most recent tone-only page, and a UK 153.350 MHz preset. Tone pages never replace received text. The page shows decoded text on current released ABI 3 hosts. On hosts implementing the new reception flags, opening also preserves the tuned frequency and applies flat NFM audio automatically.",
-      "published": "2026-10-10",
+      "whatsNew": "1.0.5: Adds Show frame details beside each decoded message: address frame, polarity, per-page correction/discard counts and received raw hexadecimal codewords before BCH correction. Details also work for retained history without enabling shared Decoder output; message text stays first.",
+      "published": "2026-10-16",
       "screenshots": [],
       "legalNotice": "This plugin decodes third-party radio paging messages. In the United Kingdom it is an offence under section 48 of the Wireless Telegraphy Act 2006 to intercept a message you are not authorised to receive, or to disclose its contents. Comparable restrictions apply in many other jurisdictions, and some permit reception but prohibit disclosure or use. Paging traffic frequently carries personal data, including medical information.\n\nThis plugin is distributed separately from the application, and is not included in it, so that installing it is your informed decision. You are responsible for ensuring that your use of it is lawful where you are.",
       "minSupportedVersion": "1.0.0",
@@ -1107,26 +1107,26 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "pocsag-decoder-1.0.4-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/pocsag-decoder-1.0.4-abi3-win-x64.dll",
-          "sha256": "920767b3198e1f75ece651ac5e35e03513e3ff571f1144de9452ca596a4b4ff4",
-          "sizeBytes": 163840
+          "file": "pocsag-decoder-1.0.5-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/pocsag-decoder-1.0.5-abi3-win-x64.dll",
+          "sha256": "5aa30070fa82063c4f2d2f7d71df6a308d425011656d48e69eaaae6219358d1e",
+          "sizeBytes": 167424
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "pocsag-decoder-1.0.4-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/pocsag-decoder-1.0.4-abi3-linux-x64.so",
-          "sha256": "8ebef473b1bc1093d8eef0557c322f53eccefe586ee44521c2c880196784f60c",
-          "sizeBytes": 31256
+          "file": "pocsag-decoder-1.0.5-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/pocsag-decoder-1.0.5-abi3-linux-x64.so",
+          "sha256": "abed385df126fafa2edbe077dbe0e8fcffb9c1387feefd6d954ac0e5dc27a299",
+          "sizeBytes": 39528
         },
         {
           "os": "linux",
           "arch": "arm64",
-          "file": "pocsag-decoder-1.0.4-abi3-linux-arm64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/pocsag-decoder-1.0.4-abi3-linux-arm64.so",
-          "sha256": "a8d12c7d908f412f1616243a8169ddaf506ea4df301c8370565d3058648f7dab",
-          "sizeBytes": 73568
+          "file": "pocsag-decoder-1.0.5-abi3-linux-arm64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/pocsag-decoder-1.0.5-abi3-linux-arm64.so",
+          "sha256": "03f6d783fff921a708e75f09874a1412f34d84a349ece8e5064fc80976953d38",
+          "sizeBytes": 73664
         }
       ]
     },
