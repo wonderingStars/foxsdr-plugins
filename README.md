@@ -86,6 +86,21 @@ signal.** Each is validated against a test transmitter written from the same
 reading of the specification. That demonstrates the two halves agree with each
 other; it does not prove either is right about the standard.
 
+**RTTY 1.1.0 is the version to update to: 1.0.0 could not decode on its own
+presets.** The 1.0.0 presets requested a 500 Hz channel, which filtered the
+2125/2295 Hz tones out before the demodulator saw them; all four presets now
+request 3000 Hz, and a test holds the preset to the arithmetic that derives
+that figure. The release also adds the requested settings — baud 45.45, 50,
+75 or 100, shift 170, 425 or 850 Hz, and a Reverse switch alongside the
+automatic polarity detection — and corrects this catalogue's description:
+the character set is international ITA2 only and unshift-on-space is always
+applied; neither was ever selectable. The Windows DLL passed its 279-check
+suite three times against the exact published module; the Linux x64 and
+arm64 modules each passed the same 279 checks and actual descriptor loading
+in CI, with runtime requirements unchanged from 1.0.0. Decoding is verified
+against synthesised signals at every baud and shift at 8 and 48 kHz; no
+off-air reception is claimed.
+
 Where published reference data exists it has been used as an independent check,
 and those checks are real:
 
