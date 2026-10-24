@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-10-19T21:26:01Z",
+  "generated": "2026-10-24T12:58:56Z",
   "note": "Plugin catalogue for FoxSDR. The application fetches ONLY this file until you explicitly install something. Every download is verified against the sha256 recorded here before it is placed in the plugins directory.",
   "plugins": [
     {
@@ -190,7 +190,7 @@
     {
       "id": "rtty-decoder",
       "name": "RTTY Teleprinter Decoder",
-      "version": "1.1.0",
+      "version": "1.2.0",
       "author": "FoxSDR project",
       "licence": "MIT",
       "abiVersion": 3,
@@ -198,11 +198,11 @@
         "CASCADE_CAP_DECODER"
       ],
       "summary": "Decodes amateur and utility radioteletype on HF, 45.45 to 100 baud.",
-      "description": "Decodes RTTY - the radioteletype mode amateurs have used since mechanical teleprinters - and prints the text. The amateur standard of 45.45 baud with a 170 Hz shift is the default, and the settings offer 50, 75 and 100 baud and 425 and 850 Hz shifts for the faster and wider services. The tone pair stays centred as the shift changes, so the 170 Hz default keeps the exact 2125/2295 Hz tones, and a changed setting takes effect on a running decoder at once. The panel shows the mark and space frequencies in use; a stored setting that is no longer valid falls back to the default and says so rather than decoding silently wrong.\n\nWhich way round the two tones are sent is not standardised, and receiving through the wrong sideband inverts them again: four combinations, three of which produce fluent nonsense. Rather than ask you to choose, the decoder tries both and settles on whichever one is framing correctly, so a transmission decodes whether it is sent normal or reverse shift - and the panel names the polarity it settled on. The Reverse switch forces swapped mark and space instead, with no detection delay, for a station known to be sending inverted.\n\nTune on LSB, which is the amateur convention; the presets do that on the RTTY segment of each band, and ask for a channel wide enough to pass the tones. The settings boxes appear in FoxSDR 0.99.43 and later, and on FoxSDR 0.99.77 or later the baud, shift and Reverse rows of the plugin's own panel are keys that step the same settings.\n\nThe character set is the international (ITA2) alphabet, transcribed from ITU-T Recommendation S.1 and cross-checked against an independent published table, with unshift-on-space applied: after a space the shift reverts to letters, so one lost letters-shift character does not turn the rest of the line into figures.",
+      "description": "Decodes RTTY - the radioteletype mode amateurs have used since mechanical teleprinters - and prints the text. The amateur standard of 45.45 baud with a 170 Hz shift is the default, and the settings offer 50, 75 and 100 baud and 425, 450 and 850 Hz shifts for the faster and wider services, 450 Hz being the German weather service's maritime RTTY. The tone pair stays centred as the shift changes, so the 170 Hz default keeps the exact 2125/2295 Hz tones, and a changed setting takes effect on a running decoder at once. The panel shows the mark and space frequencies in use; a stored setting that is no longer valid falls back to the default and says so rather than decoding silently wrong.\n\nWhich way round the two tones are sent is not standardised, and receiving through the wrong sideband inverts them again: four combinations, three of which produce fluent nonsense. Rather than ask you to choose, the decoder tries both and settles on whichever one is framing correctly, so a transmission decodes whether it is sent normal or reverse shift - and the panel names the polarity it settled on. The Reverse switch forces swapped mark and space instead, with no detection delay, for a station known to be sending inverted.\n\nTune on LSB, which is the amateur convention; the presets do that on the RTTY segment of each band, and ask for a channel wide enough to pass the tones. A listed RTTY frequency is the centre of the tone pair, not the dial: in LSB the dial belongs 2.21 kHz above it, in USB 2.21 kHz below, and the panel says so. Three presets tune the German weather service's around-the-clock stations - DDK2 4583.0, DDH7 7646.0 and DDK9 10100.8 kHz - at the right dial. Tuned near one of them, the panel names it, gives the exact dial and says when you are on it, and sets its 50 baud and 450 Hz with one key. The settings boxes appear in FoxSDR 0.99.43 and later, and on FoxSDR 0.99.77 or later the baud, shift and Reverse rows of the plugin's own panel are keys that step the same settings.\n\nThe character set is the international (ITA2) alphabet, transcribed from ITU-T Recommendation S.1 and cross-checked against an independent published table, with unshift-on-space applied: after a space the shift reverts to letters, so one lost letters-shift character does not turn the rest of the line into figures.",
       "category": "broadcast",
       "experimental": false,
-      "whatsNew": "1.1.0: The presets now pass the tones. 1.0.0's presets asked for a 500 Hz channel, which filtered both tones out before the demodulator saw them - RTTY decoded nothing on its own presets at any setting. All four now ask for 3000 Hz. And the requested settings: baud 45.45, 50, 75 or 100, shift 170, 425 or 850 Hz, and a Reverse switch that forces swapped mark/space where the automatic polarity detection stays the default. Settings persist, apply to a running decoder at once, and their panel rows are pressable keys on FoxSDR 0.99.77 or later.",
-      "published": "2026-10-19",
+      "whatsNew": "1.2.0: Weather RTTY from the German weather service decodes. The 450 Hz shift is added (a typed 450 used to be refused and quietly became 170), and three presets tune DDK2, DDH7 and DDK9 at the right dial. A tester tuned DDK9's listed 10.100 MHz and got nothing at S9+10, because a listed frequency is the centre of the tones and the dial belongs 2.21 kHz away. Near a known station the panel now names it, gives the exact dial, says when you are on it, and sets its 50 baud and 450 Hz with one key; the panel also always shows the listed-frequency-to-dial rule.",
+      "published": "2026-10-24",
       "screenshots": [],
       "minSupportedVersion": "1.0.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
@@ -210,26 +210,26 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "rtty-decoder-1.1.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/rtty-decoder-1.1.0-abi3-win-x64.dll",
-          "sha256": "b8b1ebe74a7382ecedc04fce6a74befc707bb3e4f428883445175c12c0fea497",
-          "sizeBytes": 168960
+          "file": "rtty-decoder-1.2.0-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/rtty-decoder-1.2.0-abi3-win-x64.dll",
+          "sha256": "7ce46969e278d66a7516f23965b3bb0291bf12d8c95157c149e3ec87e23f2fff",
+          "sizeBytes": 171520
         },
         {
           "os": "linux",
           "arch": "x64",
-          "file": "rtty-decoder-1.1.0-abi3-linux-x64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/rtty-decoder-1.1.0-abi3-linux-x64.so",
-          "sha256": "407736428a13a49fae17374a9dea1943e8fd122501757aab7fd7b1abf9220c1d",
-          "sizeBytes": 35688
+          "file": "rtty-decoder-1.2.0-abi3-linux-x64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/rtty-decoder-1.2.0-abi3-linux-x64.so",
+          "sha256": "f1b3a9a8f52c578e9293b80f9a6ff8bf3a11ff30f2928668ff46983f76fed38a",
+          "sizeBytes": 39936
         },
         {
           "os": "linux",
           "arch": "arm64",
-          "file": "rtty-decoder-1.1.0-abi3-linux-arm64.so",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/rtty-decoder-1.1.0-abi3-linux-arm64.so",
-          "sha256": "3fffa5f0e8d6350b21eaf23c29a2eb34668dd7a7d4aad0ef9bec4e9768b624ca",
-          "sizeBytes": 73176
+          "file": "rtty-decoder-1.2.0-abi3-linux-arm64.so",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/rtty-decoder-1.2.0-abi3-linux-arm64.so",
+          "sha256": "111f801fba0ef6f0c5710c52762927bf47f04b11f46a1165d91b33a2146464eb",
+          "sizeBytes": 73312
         }
       ]
     },

@@ -86,20 +86,24 @@ signal.** Each is validated against a test transmitter written from the same
 reading of the specification. That demonstrates the two halves agree with each
 other; it does not prove either is right about the standard.
 
-**RTTY 1.1.0 is the version to update to: 1.0.0 could not decode on its own
-presets.** The 1.0.0 presets requested a 500 Hz channel, which filtered the
-2125/2295 Hz tones out before the demodulator saw them; all four presets now
-request 3000 Hz, and a test holds the preset to the arithmetic that derives
-that figure. The release also adds the requested settings — baud 45.45, 50,
-75 or 100, shift 170, 425 or 850 Hz, and a Reverse switch alongside the
-automatic polarity detection — and corrects this catalogue's description:
-the character set is international ITA2 only and unshift-on-space is always
-applied; neither was ever selectable. The Windows DLL passed its 279-check
-suite three times against the exact published module; the Linux x64 and
-arm64 modules each passed the same 279 checks and actual descriptor loading
-in CI, with runtime requirements unchanged from 1.0.0. Decoding is verified
-against synthesised signals at every baud and shift at 8 and 48 kHz; no
-off-air reception is claimed.
+**RTTY 1.2.0 reads the German weather service's RTTY.** A tester tuned DDK9's
+listed 10.100 MHz and got nothing at S9+10. A listed RTTY frequency is the
+centre of the tone pair, and the decoder listens for that pair at 2210 Hz of
+audio, so the LSB dial belongs 2.21 kHz above the listed figure; and the
+station's 450 Hz shift was not offered, so a typed 450 quietly became 170.
+1.2.0 adds the 450 Hz shift, presets for DDK2 (4583.0 kHz), DDH7 (7646.0 kHz)
+and DDK9 (10100.8 kHz) at the right dial, and a panel that names a nearby
+station, gives the exact dial, says when you are on it, and sets its 50 baud
+and 450 Hz with one key. The Windows DLL passed its 389-check suite three
+times against the exact published module; the Linux x64 and arm64 modules
+each passed the same 389 checks and actual descriptor loading in CI, with
+runtime requirements unchanged from 1.0.0. Decoding is verified against
+synthesised signals at every baud and shift at 8 and 48 kHz, including a
+DDK9-like signal in noise; no off-air reception is claimed.
+
+RTTY 1.0.0 could not decode on its own presets: they requested a 500 Hz
+channel, which filtered the tones out before the demodulator saw them. 1.1.0
+fixed that, and added the baud, shift and Reverse settings.
 
 Where published reference data exists it has been used as an independent check,
 and those checks are real:
