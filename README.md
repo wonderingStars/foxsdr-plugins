@@ -105,6 +105,18 @@ RTTY 1.0.0 could not decode on its own presets: they requested a 500 Hz
 channel, which filtered the tones out before the demodulator saw them. 1.1.0
 fixed that, and added the baud, shift and Reverse settings.
 
+**WEFAX 1.1.0 starts by hand and straightens by hand.** A listener asked for a
+way to start the Radiofax recorder manually and to adjust the slant. The
+recorder now has START NOW (print at once, with no start tone or phasing, at a
+line rate and IOC you set), STOP NOW, SLANT -10 / +10 ppm (+ for edges that run
+down to the right) with a Slant box for any figure, and SET LEFT EDGE followed
+by a click on the picture. A slant correction redraws the whole chart, even one
+already finished. The Windows DLL passed its 466-check suite three times
+against the exact published module; the Linux x64 and arm64 modules each passed
+the same 466 checks and actual descriptor loading in CI, with runtime
+requirements unchanged from 1.0.1. The slant is verified against a synthesised
+chart from a transmitter 300 ppm slow; no off-air reception is claimed.
+
 Where published reference data exists it has been used as an independent check,
 and those checks are real:
 
