@@ -38,7 +38,8 @@ Each plugin's own description says what it decodes, what it needs, what has and
 has not been tested, and whether a legal notice must be accepted before it
 installs.
 
-All are MIT-licensed (each entry states its licence). Most were written
+All are free to use and their source is not published (each entry states its
+licence). Most were written
 clean-room from published specifications; a plugin's description says how it
 was written, and FT8 Decoder, for example, is built on ft8_lib.
 

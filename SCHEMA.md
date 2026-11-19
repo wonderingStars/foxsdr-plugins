@@ -13,7 +13,7 @@ this file until the user explicitly installs something.
       "name": "POCSAG Pager Decoder",
       "version": "1.0.0",
       "author": "FoxSDR project",
-      "licence": "MIT",
+      "licence": "Free to use, source not published",
       "abiVersion": 3,
       "capabilities": ["CASCADE_CAP_DECODER"],
       "summary": "Decodes POCSAG paging transmissions to text.",
@@ -102,11 +102,13 @@ know, so older applications keep working and simply do not show these.
 
 | field | type | meaning |
 |---|---|---|
-| `category` | string | The shelf the store lists the plugin under: one of `aircraft`, `marine`, `satellites-weather`, `meters-paging`, `broadcast`, `maps-tools`. Absent or unknown lands on the store's OTHER shelf. The generator refuses any other value. |
+| `category` | string | The shelf the store lists the plugin under: one of `aircraft`, `marine`, `satellites-weather`, `meters-paging`, `broadcast`, `maps-tools`, `companions` (the Companion applications shelf, 2026-11-13). Absent or unknown lands on the store's OTHER shelf. The generator refuses any other value. |
 | `experimental` | bool | `true` for a plugin that has never decoded a real signal. The store draws a badge; the word `EXPERIMENTAL` is no longer part of `name` or the start of `summary`. |
 | `whatsNew` | string | One short paragraph about THIS version, starting `"<version>: "` (for example `"1.8.1: Keeps phantom aircraft off the map."`, or `"1.0.0: first release."`). Version history no longer goes in `description`, which stays a plain account of what the plugin does. |
 | `published` | string | `YYYY-MM-DD`: the day this version's binary was first committed to the development repository. Computed from git by the generator; omitted (with a warning) when git has no record. |
 | `screenshots` | array | Pictures for the plugin's page, in display order; an empty array or an absent key means none. Each is `{ "file", "url", "sha256", "sizeBytes", "width", "height", "caption" }`: a PNG at `screenshots/<id>/<name>.png`, 16:10 within 2 % (1040 x 650 preferred), at most 2 MiB, with a one-line `caption`. The application fetches pictures over `https://` only, asks for nothing but that `url`, and checks `sha256` before it shows one. |
+
+| `companion` | object | Only on a row of the `companions` shelf: a small plugin for a companion program, which is another person's open-source program that FoxSDR cannot contain and so starts as a separate application. `{ "upstream": "<the project's name>", "licence": "<the program's licence as it states it>", "whySeparate": "<one plain sentence for the store: why it is separate>", "program": { "file": "<name>.exe", "url": "", "sha256": "", "status": "unpublished" } }`. The programs are not published yet: `url` and `sha256` are EMPTY and `status` is `unpublished`; a store shows the program as not yet available and must not try to fetch it. When a program is published, `status` is `published` and `url` (https) and `sha256` (64 hex) are both filled; the application must check the hash of the file before it is ever run. The generator refuses any half-filled state. |
 
 The pictures live in `screenshots/<id>/` in this repository, and the
 generator reads `screenshots/<id>/<name>.png` with a one-line
