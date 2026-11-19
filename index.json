@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-11-18T23:17:22Z",
+  "generated": "2026-11-19T09:22:24Z",
   "note": "Plugin catalogue for FoxSDR. The application fetches ONLY this file until you explicitly install something. Every download is verified against the sha256 recorded here before it is placed in the plugins directory.",
   "plugins": [
     {
@@ -860,19 +860,19 @@
     {
       "id": "openmaptiles-basemap",
       "name": "Map Imagery (OpenStreetMap)",
-      "version": "1.3.0",
+      "version": "1.3.1",
       "author": "FoxSDR project",
       "licence": "Free to use, source not published",
       "abiVersion": 3,
       "capabilities": [
         "CASCADE_CAP_BASEMAP"
       ],
-      "summary": "Draws street-level OpenStreetMap tiles under the map. Works on install.",
-      "description": "Replaces the built-in coastline with real street-level map imagery, so aircraft, ships and stations are plotted over roads and place names instead of an outline. The map switches to the projection the tiles are drawn in while this is active, and back again when it is removed.\n\nINSTALLING IT IS THE WHOLE OF THE SETUP. It works on first run with nothing to configure, drawing OpenStreetMap tiles. Earlier versions shipped with no server and drew nothing until you wrote a config file; that is no longer the case.\n\nIf you would rather serve your own tiles - for more detail, for volume, or to be independent of somebody else's server - put a one-line openmaptiles.conf next to the plugin giving your server's address, and it uses that instead. Any server that publishes ordinary map tiles will do.\n\nMap data is (c) OpenStreetMap contributors, and that credit is displayed under the map whenever the tiles are on screen - the application will not draw a basemap it cannot credit.\n\nTiles are cached on disk, so an area you have looked at works again without a network, nothing is fetched twice, and only what you are actually looking at is ever requested. The cache is now kept under 2048 MB by default (oldest tiles removed first; the limit and an optional maximum age in days can be changed, and 0 means no limit).\n\nMORE SOURCES, WRITTEN BY YOU. A file named openmaptiles.sources can hold several named sources, and a Map source field in the settings picks one while the program runs. Each source can use {s} subdomains, @2x tiles and an API key read from the FOXSDR_TILE_KEY environment variable or typed in the Map key field - the key is never shown or put in a file name. There are grey and dimming filters, and an overlay (for example a weather layer) with its own opacity. A source or overlay without an attribution line is refused, and every source's credit is shown under the map. Only OpenStreetMap is on by default; since 1.3.0 a presets line in openmaptiles.conf adds named sources (OpenTopoMap, NASA GIBS, CARTO styles) with their credits, and CARTO needs your own API key. For any other provider it is up to you to follow that provider's terms. An offline folder of tiles can be used instead of, or before, the network. The maxzoom setting, which older versions read and ignored, now limits what is asked for.\n\nLIMITS. MBTiles files cannot be read (convert them to a folder of tiles first). The Map source field is a text box, not a list. Looking up the newest weather frame from a provider is not done; you type the time. The new features were tested against stand-in servers and tile folders, and have not been tried in the full application.",
+      "summary": "Draws street-level OpenStreetMap tiles under the aircraft, ship and station maps, not on the satellites map. Works on install.",
+      "description": "Replaces the built-in coastline with real street-level map imagery, so aircraft, ships and stations are plotted over roads and place names instead of an outline. The map switches to the projection the tiles are drawn in while this is active, and back again when it is removed. The satellites map is the exception: it keeps the built-in coastline, because the tiles are drawn in a projection that would tear a satellite's ground track apart, and it says so on that page while this plugin is running.\n\nINSTALLING IT IS THE WHOLE OF THE SETUP. It works on first run with nothing to configure, drawing OpenStreetMap tiles. Earlier versions shipped with no server and drew nothing until you wrote a config file; that is no longer the case.\n\nIf you would rather serve your own tiles - for more detail, for volume, or to be independent of somebody else's server - put a one-line openmaptiles.conf next to the plugin giving your server's address, and it uses that instead. Any server that publishes ordinary map tiles will do.\n\nWHAT IT TELLS A SERVER. Every tile it asks tile.openstreetmap.org for tells that server, along with your internet address, roughly where the map is looking. It asks only for the tiles a map is showing, and only while one that draws tiles is on screen. With your own server in openmaptiles.conf, OpenStreetMap is not contacted.\n\nMap data is (c) OpenStreetMap contributors, and that credit is displayed under the map whenever the tiles are on screen - the application will not draw a basemap it cannot credit.\n\nTiles are cached on disk, so an area you have looked at works again without a network, nothing is fetched twice, and only what you are actually looking at is ever requested. The cache is now kept under 2048 MB by default (oldest tiles removed first; the limit and an optional maximum age in days can be changed, and 0 means no limit).\n\nMORE SOURCES, WRITTEN BY YOU. A file named openmaptiles.sources can hold several named sources, and a Map source field in the settings picks one while the program runs. Each source can use {s} subdomains, @2x tiles and an API key read from the FOXSDR_TILE_KEY environment variable or typed in the Map key field - the key is never shown or put in a file name. There are grey and dimming filters, and an overlay (for example a weather layer) with its own opacity. A source or overlay without an attribution line is refused, and every source's credit is shown under the map. Only OpenStreetMap is on by default; since 1.3.0 a presets line in openmaptiles.conf adds named sources (OpenTopoMap, NASA GIBS, CARTO styles) with their credits, and CARTO needs your own API key. For any other provider it is up to you to follow that provider's terms. An offline folder of tiles can be used instead of, or before, the network. The maxzoom setting, which older versions read and ignored, now limits what is asked for.\n\nLIMITS. MBTiles files cannot be read (convert them to a folder of tiles first). The Map source field is a text box, not a list. Looking up the newest weather frame from a provider is not done; you type the time. The new features were tested against stand-in servers and tile folders, and have not been tried in the full application. The satellites map never draws these tiles.",
       "category": "maps-tools",
       "experimental": false,
-      "whatsNew": "1.3.0: Adds optional named tile sources (OpenTopoMap, NASA GIBS, CARTO styles and OpenStreetMap) chosen with the \"presets\" line in openmaptiles.conf, off until you add it, a field for your own API key where a source needs one, and a per-source cache age. Their address and credit text have not been tried against the live services.",
-      "published": "2026-11-12",
+      "whatsNew": "1.3.1: Text only; the module behaves as 1.3.0. The catalogue no longer implies tiles on the satellites map (it keeps the coastline) and now says what a tile request tells the OpenStreetMap server. 1.3.0: Adds optional named tile sources (OpenTopoMap, NASA GIBS, CARTO styles and OpenStreetMap) chosen with the \"presets\" line in openmaptiles.conf, off until you add it, a field for your own API key where a source needs one, and a per-source cache age. Their address and credit text have not been tried against the live services.",
+      "published": "2026-11-19",
       "screenshots": [],
       "minSupportedVersion": "1.0.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
@@ -880,9 +880,9 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "openmaptiles-basemap-1.3.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.3.0-abi3-win-x64.dll",
-          "sha256": "41205e00787d0b6c7cc262c668c764d503959b08e9e3051bb961b17382b1a4fd",
+          "file": "openmaptiles-basemap-1.3.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/openmaptiles-basemap-1.3.1-abi3-win-x64.dll",
+          "sha256": "c6c886688f0b4a6a1eeb209ce9f03b756578b182f2c85c91cd1ddf9184ce6f5f",
           "sizeBytes": 374272
         }
       ]
