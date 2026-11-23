@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-11-23T14:23:34Z",
+  "generated": "2026-11-23T21:17:58Z",
   "note": "Plugin catalogue for FoxSDR. The application fetches ONLY this file until you explicitly install something. Every download is verified against the sha256 recorded here before it is placed in the plugins directory.",
   "plugins": [
     {
@@ -669,7 +669,7 @@
     {
       "id": "dvb-receiver",
       "name": "DVB-S and DVB-T Receiver",
-      "version": "0.4.0",
+      "version": "0.4.1",
       "author": "FoxSDR project",
       "licence": "Free to use, source not published",
       "abiVersion": 3,
@@ -680,8 +680,8 @@
       "description": "Demodulates DVB-S (QPSK) and DVB-T (2K and 8K carriers; QPSK, 16-QAM and 64-QAM, hierarchical or not) from raw I/Q, corrects the errors and recovers the transport stream. It reads the programme tables and shows the service names, the stream types and whether a service is scrambled, with a plot of the constellation. It never decodes video or audio.\n\nYou set the system, symbol rate or bandwidth and code rate in its dvb.cfg file. Optionally it can pass the clear transport stream to a UDP port on this computer; that is off by default and goes to 127.0.0.1 unless you change it. Nothing else leaves the program.\n\nReceive only. Proven on generated signals only: it has not met a real DVB signal. Since 0.2.0 DVB-T needs roughly 0.3 to 0.8 of one processor core at 9.14 MS/s in the modes measured (2 to 6.4 before), using a second thread for the error correction and fast code that needs a processor with AVX2. Without AVX2 the 64-QAM modes will not keep up and the plugin drops input, which the panel counts. If your radio runs faster than 9.14 MS/s (10 or 20 MS/s is typical) the worst mode measured needs about 1.2 cores on one thread, so a busy or slow computer can still fall behind. DVB-S at code rate 1/2 now locks down to about 2.5 dB Es/N0 (it needed about 5.5 dB), also on generated signals only. Since 0.3.0 DVB-S2 normal frames are decoded too (set system dvbs2 in dvb.cfg; it is never part of auto); short frames, multiple input streams and DVB-S2X are counted, not decoded, and DVB-T2 is not supported. Some digital television systems are covered by patent pools; whether any applies to you is for you to check. Since 0.4.0 hierarchical DVB-T (alpha 1, 2 and 4) is decoded too: the high-priority stream by default, the low-priority stream with \"hierarchy lp\" in dvb.cfg, on generated signals only.",
       "category": "broadcast",
       "experimental": true,
-      "whatsNew": "0.4.0: Decodes DVB-T hierarchical transmission (alpha 1, 2 and 4): the high-priority stream by default, the low-priority stream with \"hierarchy lp\" in dvb.cfg. Proven on generated signals only; no real hierarchical DVB-T signal has been tried. 0.3.0: Adds DVB-S2 normal frames (all 28 MODCODs, pilots on or off), chosen with \"system dvbs2\" in dvb.cfg. Short frames, multiple input streams and DVB-S2X are counted but not decoded. Proven on generated signals only; no real DVB-S2 signal has been tried.",
-      "published": "2026-11-13",
+      "whatsNew": "0.4.1: Starting the decoder no longer freezes FoxSDR on some PCs (it used to start a system command to make its settings folder). The decoder now starts in the background and shows 'starting' until it is ready. 0.4.0: Decodes DVB-T hierarchical transmission (alpha 1, 2 and 4): the high-priority stream by default, the low-priority stream with \"hierarchy lp\" in dvb.cfg. Proven on generated signals only; no real hierarchical DVB-T signal has been tried. 0.3.0: Adds DVB-S2 normal frames (all 28 MODCODs, pilots on or off), chosen with \"system dvbs2\" in dvb.cfg. Short frames, multiple input streams and DVB-S2X are counted but not decoded. Proven on generated signals only; no real DVB-S2 signal has been tried.",
+      "published": "2026-11-23",
       "screenshots": [],
       "minSupportedVersion": "0.1.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
@@ -689,10 +689,10 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "dvb-receiver-0.4.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/dvb-receiver-0.4.0-abi3-win-x64.dll",
-          "sha256": "07be670b68a194ad55691e97078daafad3391caaafce2d99601245dbf077f38e",
-          "sizeBytes": 564224
+          "file": "dvb-receiver-0.4.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/dvb-receiver-0.4.1-abi3-win-x64.dll",
+          "sha256": "e40136e20ac1b1f33efbd768bf8245fbca06922f0c730e5b7e718127da8f7ccf",
+          "sizeBytes": 572416
         }
       ]
     },
