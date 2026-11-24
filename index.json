@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-11-23T21:17:58Z",
+  "generated": "2026-11-24T13:59:47Z",
   "note": "Plugin catalogue for FoxSDR. The application fetches ONLY this file until you explicitly install something. Every download is verified against the sha256 recorded here before it is placed in the plugins directory.",
   "plugins": [
     {
       "id": "survey-engine",
       "name": "Survey Engine",
-      "version": "0.2.1",
+      "version": "0.2.2",
       "author": "FoxSDR project",
       "licence": "Free to use, source not published",
       "abiVersion": 3,
@@ -18,8 +18,8 @@
       "description": "A waterfall tells you whether something is on a frequency while you are watching it. This answers the other question - what is around you at all - which needs days rather than minutes and therefore needs nobody sitting there. Point it at a band, leave it on a machine that is on anyway, and come back to the frequencies that were actually used, how wide they were, how strong they got, and what fraction of the visits they were present for.\n\nIt reads the whole receiver bandwidth at once rather than one channel at a time, so a 2 MHz slice is surveyed per dwell, and it steps across the band on its own. Stepping needs the 'allow tuning' permission on its row - a plugin cannot grant itself the VFO - and without it the survey still works perfectly well on whatever you have tuned, and says so rather than appearing broken.\n\nFindings go to survey.csv beside its configuration, rewritten every dwell so it is always current, and read back at startup so a survey resumes across a restart instead of being erased by one.\n\nADDED IN 0.2.0, from settings or a survey.cfg file, with the defaults unchanged from 0.1.x: FFT size, window shape, edge crop, receiver gain (needs the 'radio settings' permission) and a ppm correction, which is taken off the frequencies it reports because FoxSDR has no call to retune for ppm; several bands in one run; peak-hold and minimum-hold traces; and a time-on-air percentage per channel with an hour-of-day record, if you ask for sub-dwells. Keys on its panel save a baseline of what is normally there, and later runs raise a status line, a log warning and a spectrum marker for a signal not in it. A limit file can mark a frequency range that rises too far above the noise or above a level, and the panel shows pass or fail. It can also draw a sweep heat map as a picture, where a click tunes to that frequency (needs the 'allow tuning' permission), and write an rtl_power-style CSV, an occupancy CSV and a PNG of the heat map; those three files are off until you ask for them.\n\nLIMITS OF THE NEW FEATURES. A mask breach is shown as a marker and a panel row; it cannot record I/Q, and FoxSDR cannot draw a horizontal limit line. The picture window, click-to-tune and the extra panel columns have not been tried in the full application, and a host may choose to show the new picture decoder instead of the decoder output.\n\nWHAT IT WILL NOT TELL YOU. It does not know who is transmitting; no power spectrum does. The guess column is derived from the occupied bandwidth alone and always carries a question mark - 'NFM?' means 'about 12 kHz wide, which is what narrowband FM looks like', not 'this is narrowband FM', and never 'this is the local taxi firm'. A band name is shown where one is known, from an editable file of ITU allocations that ships with sections for all three regions; naming the actual operator of a channel needs a licence register, which is somebody else's compiled work and not ours to ship. If you have one, paste its rows into that file and it stays on your machine.",
       "category": "maps-tools",
       "experimental": false,
-      "whatsNew": "0.2.1: A band with an absurdly large stop frequency (for example 1e308) no longer refuses the whole survey on some processors (the heat map column count overflowed). 0.2.0: Adds settings for FFT size, window, crop, gain and ppm, several bands in one run, peak and min-hold traces, new-signal alerts against a saved baseline, duty-cycle figures, a limit-mask check and a clickable sweep heat map. The defaults behave like 0.1.x; the picture window, clicks and extra panel columns have not been tried in the full application.",
-      "published": "2026-11-12",
+      "whatsNew": "0.2.2: Starting Survey Engine no longer freezes FoxSDR on a slow disk: it starts in the background and shows \"starting\" until ready. Survey files are written safely, and a copy is kept if another program has the file open. The survey files now end with one extra line that starts with \"#\", and side files (.previous, .part, .kept) may appear beside the survey. 0.2.1: A band with an absurdly large stop frequency (for example 1e308) no longer refuses the whole survey on some processors (the heat map column count overflowed). 0.2.0: Adds settings for FFT size, window, crop, gain and ppm, several bands in one run, peak and min-hold traces, new-signal alerts against a saved baseline, duty-cycle figures, a limit-mask check and a clickable sweep heat map. The defaults behave like 0.1.x; the picture window, clicks and extra panel columns have not been tried in the full application.",
+      "published": "2026-11-24",
       "screenshots": [],
       "minSupportedVersion": "0.1.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
@@ -27,10 +27,10 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "survey-engine-0.2.1-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/survey-engine-0.2.1-abi3-win-x64.dll",
-          "sha256": "38c5783aea22d3df41cc625fb6f07c7b816c9a20dc5ae491608381c571bfe729",
-          "sizeBytes": 393216
+          "file": "survey-engine-0.2.2-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/survey-engine-0.2.2-abi3-win-x64.dll",
+          "sha256": "9b7c3db8e4bb1fc2dd44825957e4c200a7f47cb5a4006cf38b0de8c7803ac326",
+          "sizeBytes": 489984
         }
       ]
     },
@@ -218,7 +218,7 @@
     {
       "id": "selcal-decoder",
       "name": "SELCAL Decoder",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": "FoxSDR project",
       "licence": "Free to use, source not published",
       "abiVersion": 3,
@@ -229,8 +229,8 @@
       "description": "SELCAL - selective calling - is how an aeronautical radio station on HF gets the attention of one aircraft's crew without making them listen to the whole frequency. The station sends the aircraft's four-letter code as two one-second pulses of two simultaneous tones, and the flight deck chimes. This decodes those calls: one line each, \"SELCAL AB-CD\", with the four measured tones, both pulse lengths and the gap between them.\n\nIt knows all 32 tones of the ICAO table, including the 16 added in November 2022, and names a code that uses them as a 32-tone code. Each pulse is timed to the sample, so the timing the standard sets - pulses of 1.0 plus or minus 0.25 seconds, a gap of 0.2 plus or minus 0.1 - is actually checked.\n\nA call that does not meet the standard is still reported, marked \"SELCAL?\" with the reason in words: a pulse too short or too long, a gap out of range, a tone that is in no table (with its measured frequency and how far it is from the nearest one), a tone used twice, or a first pulse whose second never came. On a fading HF channel that is often the real call, damaged, and hiding it would hide what you were listening for.\n\nThe presets tune ten North Atlantic HF frequencies from the ICAO NAT families that Shanwick, Gander and the other oceanic stations work - listen in USB on the listed frequency, with no offset. A receiver a few hertz off still decodes: every tone is accepted within 1.5 percent and the error is printed.\n\nREGISTRATION LIST AND REPEATS (1.1.0). If you give it a CSV of your own, one CODE,LABEL per line such as AB-CD,G-ABCD, through the FOXSDR_SELCAL_FILE environment variable or at foxsdr/selcal/registry.csv in your cache folder, a clean call line gains '= LABEL'. Codes are matched in the order the pulses were sent. Each clean call also shows how many times that code has been heard (call N); when the same code is called again within 120 seconds the line adds REPEAT N and the time since the last call, and the tuned frequency is shown.\n\nWHAT IT WILL NOT DO / LIMITS: no registration list is shipped, because the registrar's assignments are not published as open data, so without your file it names nothing. The labels live in memory only and are never written out. Calls marked SELCAL? are neither named nor counted. The 120 second repeat window is our choice, not from a standard, and whether real calls repeat inside it was not checked. Tried on generated signals only, and the file is set through an environment variable, not a settings screen.",
       "category": "aircraft",
       "experimental": false,
-      "whatsNew": "1.1.0: Can name the aircraft behind a code from a list you supply, counts repeat calls of one code within 120 seconds, and shows the frequency the receiver is tuned to. Calls that fail the standard are never named or counted.",
-      "published": "2026-11-12",
+      "whatsNew": "1.1.1: Starting no longer freezes FoxSDR while your registration list is read. 1.1.0: Can name the aircraft behind a code from a list you supply, counts repeat calls of one code within 120 seconds, and shows the frequency the receiver is tuned to. Calls that fail the standard are never named or counted.",
+      "published": "2026-11-24",
       "screenshots": [],
       "minSupportedVersion": "1.0.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
@@ -238,10 +238,10 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "selcal-decoder-1.1.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/selcal-decoder-1.1.0-abi3-win-x64.dll",
-          "sha256": "b832dba603b2b79cad27e2d57ba051a80a5459dd5d6aa562527c837dfd787cb8",
-          "sizeBytes": 238080
+          "file": "selcal-decoder-1.1.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/selcal-decoder-1.1.1-abi3-win-x64.dll",
+          "sha256": "468386364c2fd74a1e30b9391437fbd50067ba0ce0abf48ec27373803218c9b3",
+          "sizeBytes": 251392
         }
       ]
     },
@@ -398,7 +398,7 @@
     {
       "id": "freedv-rx",
       "name": "FreeDV Receive",
-      "version": "0.1.0",
+      "version": "0.1.1",
       "author": "FoxSDR project",
       "licence": "Free to use, source not published",
       "abiVersion": 3,
@@ -409,8 +409,8 @@
       "description": "FreeDV is the open digital-voice mode amateurs use on HF. This plugin takes demodulated sideband audio (8 kHz), plays the speech through the receiver's speakers, prints the text the transmitter sends (usually a callsign) as a line of Decoder output, and reports sync and signal-to-noise.\n\nTHE PLUGIN CONTAINS NO FREEDV CODE, NO MODEM AND NO CODEC. They live in the Codec 2 library, which is under the LGPL and which YOU add: put codec2.dll next to the plugin or give its path in the settings. Without it the plugin says so and does nothing. Receive only: no transmit function is even looked up. The decoded text is held in memory only and is never written to a file, a setting or the log.\n\nWHAT IS AND IS NOT PROVEN. The names of the eleven library calls it uses were checked against the export table of an unmodified Codec 2 1.2.0 library (read as bytes, nothing executed). Their argument types and the number the library uses for each mode were written from understanding and are NOT confirmed, because the only document that gives them is the library's source header, which was not read; a setting lets you give another mode number. The whole chain was tested against stand-in libraries written for the test: no FreeDV signal and no real Codec 2 library has been run through it.",
       "category": "broadcast",
       "experimental": true,
-      "whatsNew": "0.1.0: first release. FreeDV 1600, 700C, 700D, 700E and 2020 through a Codec 2 library you add; tried against stand-in libraries only.",
-      "published": "2026-11-12",
+      "whatsNew": "0.1.1: Starting no longer freezes FoxSDR while the Codec 2 library loads: it starts in the background and shows \"starting\". 0.1.0: first release. FreeDV 1600, 700C, 700D, 700E and 2020 through a Codec 2 library you add; tried against stand-in libraries only.",
+      "published": "2026-11-24",
       "screenshots": [],
       "minSupportedVersion": "0.1.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
@@ -418,10 +418,10 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "freedv-rx-0.1.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/freedv-rx-0.1.0-abi3-win-x64.dll",
-          "sha256": "8b0f8340154c9bb31654eb827a2df7df90b06e10dd13fb3efb1594c0bd139532",
-          "sizeBytes": 183808
+          "file": "freedv-rx-0.1.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/freedv-rx-0.1.1-abi3-win-x64.dll",
+          "sha256": "5d08ca1327cf9f279f4c3eabc8613b13e71f68db295ccface03d790887eff1e1",
+          "sizeBytes": 203264
         }
       ]
     },
@@ -789,7 +789,7 @@
     {
       "id": "vor-decoder",
       "name": "VOR Navigation Decoder",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": "FoxSDR project",
       "licence": "Free to use, source not published",
       "abiVersion": 3,
@@ -800,8 +800,8 @@
       "description": "A VHF omnidirectional range is a ground beacon that tells every aircraft in range which bearing from the station it is on, and it does that by transmitting two 30 Hz signals whose phase difference IS the bearing. This reads them and prints the answer once a second: the radial you are sitting on, clockwise from magnetic north at the station, and the reciprocal course that would take you to it - both of them, because confusing the two is the classic way to read a VOR backwards.\n\nIt reads the station's callsign as well. Every VOR sends two or three letters in Morse at about seven words a minute, three times in each half minute, and without them a bearing is a number from nowhere in particular.\n\nIt also opens an instrument window - the cockpit course indicator the reading belongs on, with the compass card turned to your radial, the ident and its Morse on the glass beneath, an OBS knob that selects a course and swings the deviation bar and the TO/FROM flag from the bearing being received, and a NAV warning flag across the face whenever there is no valid signal.\n\nSET THE CHANNEL WIDE. Tune anywhere from 108.000 to 117.950 MHz in AM, and make the channel AT LEAST ABOUT 22 kHz wide. That is the one thing you have to get right and the one thing that fails silently: the bearing reference rides on a 9,960 Hz subcarrier that a normal 6 or 10 kHz AM filter removes entirely, and what is left still sounds exactly like a VOR. Rather than sit there producing nothing, the decoder says so in as many words when the subcarrier is missing.\n\nThere are no preset frequencies, deliberately. Every other decoder here ships them because a mode lives on the same frequency the world over; VOR channels are assigned station by station, so any list would be wrong for almost everyone who installed it. Find your local beacon on a chart, or turn on the Airports and Navaids plugin, which knows where they are.\n\nNothing is invented from an empty channel: the decoder wants both 30 Hz signals present, at the strengths the standard specifies, before it will report a bearing at all. Written clean-room from ICAO Annex 10, Volume I, section 3.3, with the Morse alphabet reused from this project's own CW decoder. Conventional and Doppler VOR both read correctly - the standard requires them to look the same from the receiver's side - and the bearing is magnetic, as the station transmits it. A true-north radial is added only when it can be: from a declination you set, or, once the ident has matched, from the magnetic variation the navaid list gives that station.\n\nNEW IN 1.1.0. If the Airports and Navaids plugin's navaid list is cached on this machine, the decoded ident is compared with the VOR stations listed within 5 kHz of the tuned frequency, and the plugin says whether it matches or is NOT on the list (it says nothing if there is no list). Each line also shows the strengths of the 30 Hz reference and variable tones, and from the third reading a circular average for that station over the last readings (up to 12 within 60 seconds). An optional scan (FOXSDR_VOR_SCAN=113.6,114.5, off by default) asks FoxSDR to retune across the channels you list, which needs the receiver-control permission, and reports each station's average.\n\nWHAT IT WILL NOT DO / LIMITS: the true radial needs a declination (FOXSDR_VOR_DECLINATION_DEG, east positive) or a matched ident; none is claimed otherwise. The 30 Hz strengths are relative qualities, not absolute levels. These switches are environment variables only; there is no settings screen for them. Tried on generated signals and test files only: no real VOR recording was available, and the scan on a real FoxSDR, or a station whose tuned frequency differs from the list by more than 5 kHz, was not checked.",
       "category": "aircraft",
       "experimental": false,
-      "whatsNew": "1.1.0: Checks the Morse ident against the navaid list of the Airports and Navaids plugin, adds a true-north radial from a declination you give or the station's listed variation, a running average per station, and an optional scan across channels you list. Generated signals only.",
-      "published": "2026-11-12",
+      "whatsNew": "1.1.1: Starting no longer freezes FoxSDR while the navaid list is read. 1.1.0: Checks the Morse ident against the navaid list of the Airports and Navaids plugin, adds a true-north radial from a declination you give or the station's listed variation, a running average per station, and an optional scan across channels you list. Generated signals only.",
+      "published": "2026-11-24",
       "screenshots": [],
       "minSupportedVersion": "1.0.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
@@ -809,10 +809,10 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "vor-decoder-1.1.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/vor-decoder-1.1.0-abi3-win-x64.dll",
-          "sha256": "cd9381f99f4cd6b5749b923e50d768cae1a458395acf0171dde867fbaa028ee2",
-          "sizeBytes": 263680
+          "file": "vor-decoder-1.1.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/vor-decoder-1.1.1-abi3-win-x64.dll",
+          "sha256": "ba6bae1e4a1c1806b24b5dbb24b3eddbb0da8fa3ccc44faf606b68734f85745e",
+          "sizeBytes": 272896
         }
       ]
     },
@@ -1358,7 +1358,7 @@
     {
       "id": "navtex-dsc-decoder",
       "name": "NAVTEX & DSC (marine)",
-      "version": "1.1.0",
+      "version": "1.1.1",
       "author": "FoxSDR project",
       "licence": "Free to use, source not published",
       "abiVersion": 3,
@@ -1370,8 +1370,8 @@
       "description": "Decodes the two text services a ship's radio keeps watch on. NAVTEX is the navigational and meteorological warning broadcast from coast stations on 518 kHz (international, English), 490 kHz and 4209.5 kHz (national): SITOR collective B-mode, 100 Bd, every character sent twice and checked for four marks and three spaces, framed ZCZC B1B2B3B4 ... NNNN. Each message is printed whole under a header naming the transmitter letter, the subject and the message number and counting the characters the second copy repaired and the ones neither copy could supply, which are printed as an asterisk. Digital Selective Calling is the GMDSS's calling system: distress alerts, all-ships urgency and safety calls, and individual calls and their acknowledgements, 1200 Bd on VHF channel 70 and 100 Bd on 2187.5, 4207.5, 6312, 8414.5, 12577 and 16804.5 kHz. A call prints as one line - format, category, the sender's MMSI, the nature of distress, the position and the UTC time where the call carries them - and a call whose error-check character does not match is refused and named, never printed as if it were good. A call that carries a position (a distress alert, a distress relay or acknowledgement, a position acknowledgement) also puts that vessel on the map.\n\nTUNE UPPER SIDEBAND, 1.7 kHz BELOW THE PUBLISHED FREQUENCY. NAVTEX and HF DSC frequencies are published as the centre of the two tones, which a single-sideband transmitter sends 1.7 kHz above its carrier: for 518 kHz tune 516.3 kHz USB. The presets already do this. Tuning the published frequency decodes nothing; tuning lower sideband puts the tones the wrong way round and the plugin says so once in five minutes. VHF channel 70 is 156.525 MHz in narrowband FM, with no offset.\n\nWHAT IT DOES NOT DO. It is an audio decoder and does not know the frequency, so a NAVTEX header shows the transmitter letter and not the NAVAREA. It reads the 7-unit signals the right way up only: selectively addressed NAVTEX transmissions are sent inverted so that only the station called prints them, and are not decoded. A NAVTEX message whose preamble is damaged is not printed; every repeat of a message is printed; and a DSC call with an unreadable character is refused, not guessed. It decodes no DSC telephone-number or automatic-connection messages.\n\nIt fits a TELEPRINTER instrument window with the printed lines on its paper, and offers ten presets.\n\nOPTIONS ADDED IN 1.1.0 - ALL OFF OR EMPTY BY DEFAULT, so the output is as before until you set them. Station (B1) and subject (B2) filters for NAVTEX, with a line naming why a message was not printed; the urgent subjects A, B, D and L are never hidden by the subject filter, and a message numbered 00 prints through both filters. Repeat suppression, which prints a message once for 72 hours. An alarm, which puts an ALERT line before the message and raises the instrument's ALERT flag for 60 seconds for those NAVTEX subjects and for a DSC distress alert, relay or acknowledgement; it is a visual notice only and plays no sound. Country, kind of station and ship type shown after a DSC MMSI from the ITU MID table, with names from a file of your own (no station-name list is shipped). The next 24 hours of NAVTEX broadcast slots offered to the host as schedule hints.\n\nLIMITS OF THE OPTIONS. The country table was typed in from the ITU page and has not been checked row by row against the ITU spreadsheet. A DSC call whose check character fails is refused and raises no alert, even if it looks like distress. The settings form, the schedule hints and the ALERT flag have been tried only against a stand-in host; whether FoxSDR lists the hints or records anything from them is up to the host.\n\nWritten clean-room from ITU-R M.625, M.476, M.540, M.493 and M.541 and the IMO NAVTEX Manual (MSC.1/Circ.1403); no NAVTEX or DSC decoder was read. The 32 7-unit signals and all 128 DSC characters are checked in the plugin's own test against the Recommendations' tables, and the NAVTEX messages it transmits are the IMO manual's own worked examples. NAVTEX has been tried on generated signals only (the manual's own worked messages). DSC has also been run on five real recordings of VHF channel 70 calls - two individual calls, a distress relay, a distress acknowledgement and an all-ships call - which decoded to the sender identities listed with the recordings. No Recommendation publishes a numerically complete DSC call, so the DSC calls in the built-in test are built from the message tables: they prove the decoder agrees with the transmitter, not with a ship. Nothing was transmitted to test it - a DSC distress alert is not something to radiate.",
       "category": "marine",
       "experimental": false,
-      "whatsNew": "1.1.0: Adds optional NAVTEX station and subject filters, repeat suppression and an ALERT line for urgent NAVTEX and DSC distress calls, plus country names for DSC MMSIs. All of it is off until you switch it on. DSC has now also decoded five real VHF channel 70 recordings; NAVTEX is still generated-signal only.",
-      "published": "2026-11-12",
+      "whatsNew": "1.1.1: Starting no longer freezes FoxSDR while the names files are read. 1.1.0: Adds optional NAVTEX station and subject filters, repeat suppression and an ALERT line for urgent NAVTEX and DSC distress calls, plus country names for DSC MMSIs. All of it is off until you switch it on. DSC has now also decoded five real VHF channel 70 recordings; NAVTEX is still generated-signal only.",
+      "published": "2026-11-24",
       "screenshots": [],
       "legalNotice": "THIS IS NOT A GMDSS WATCH RECEIVER AND IS NOT PART OF THE GMDSS. Nothing in this plugin sounds an alarm. A receiver that is tuned elsewhere, switched off, or without a usable antenna misses a call completely, and a line on a screen is no substitute for the radio watch the SOLAS Convention requires a ship to keep.\n\nA DISTRESS ALERT DECODED HERE IS REAL. If it decodes a DSC distress alert, relay or acknowledgement, or a NAVTEX message with subject letter D, contact the coastguard or your national rescue co-ordination centre with the frequency, the time, the MMSI and the position. Do not assume somebody else has heard it, and do not wait to see whether it repeats. Never transmit a distress alert or any DSC call to test a receiver: a false alert puts real people to work.\n\nReceiving is lawful. TRANSMITTING ON THE DSC DISTRESS AND SAFETY FREQUENCIES, OR ON 518, 490 OR 4209.5 kHz, IS NOT: those channels are reserved internationally for distress and safety traffic, and transmitting on them without authority is an offence in most jurisdictions.\n\nMost DSC calls are addressed to a particular ship or coast station: individual and group calls, their acknowledgements and position replies. Distress, urgency, safety and all-ships calls and NAVTEX broadcasts are meant for everybody; the addressed ones are not. In the United Kingdom it is an offence under section 48 of the Wireless Telegraphy Act 2006 to intercept a message you are not authorised to receive, or to disclose its contents, and comparable restrictions apply in many other jurisdictions. This plugin is distributed separately from the application, and is not included in it, so that installing it is your informed decision. You are responsible for ensuring that your use of it is lawful where you are.",
       "minSupportedVersion": "1.0.0",
@@ -1380,10 +1380,10 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "navtex-dsc-decoder-1.1.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/navtex-dsc-decoder-1.1.0-abi3-win-x64.dll",
-          "sha256": "8ff35a71163e1d12874c8a8aca53dec027a88803bfdce4799c7026dae6fdb25f",
-          "sizeBytes": 255488
+          "file": "navtex-dsc-decoder-1.1.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/navtex-dsc-decoder-1.1.1-abi3-win-x64.dll",
+          "sha256": "2af0c594dbce5c0637d713fe5f78e8ae9a25d91cddd553fa175161a09dda87ce",
+          "sizeBytes": 266752
         }
       ]
     },
@@ -1450,7 +1450,7 @@
     {
       "id": "lrpt-decoder",
       "name": "Meteor-M LRPT Weather Pictures",
-      "version": "0.4.0",
+      "version": "0.4.1",
       "author": "FoxSDR project",
       "licence": "Free to use, source not published",
       "abiVersion": 3,
@@ -1461,8 +1461,8 @@
       "description": "EXPERIMENTAL, and proven on one recording only. Version 0.2.0 drew, and 0.3.0 still draws, a picture from the one raw I/Q recording of a Meteor-M N2-2 pass that was available (frame lock, 3687 frames corrected, a recognisable coastline and cloud). The way an image packet becomes pixels was worked out from that recording, because the operator's description could not be obtained: it comes from ONE satellite on ONE pass, so other satellites, other passes or other channel choices may not draw correctly. The radio layers were written from published CCSDS documents and tested against the numbers printed in them. A packet it cannot read is refused, out loud, rather than drawn wrongly.\n\nWhat it does. It reads raw I/Q at any sample rate from 144 kS/s to 61.44 MS/s and needs nothing set up: it searches 20 kHz either side of the tuned frequency for the carrier, so Doppler and a dial that is not exact are dealt with, works out which way round the constellation is (an inverted spectrum included), and follows you if you retune mid-pass. It decodes both QPSK and offset QPSK (OQPSK) at once and tells you which it locked to: the 2014 satellite is reported to send QPSK, the current ones OQPSK, but that rests on two secondary sources and no operator document, so both are tried. Presets for 137.100 and 137.900 MHz. The picture is three grey channels side by side, building line by line, and the log reports the carrier, the lock, the error rates and the packet types heard. At a sample rate too low for the signal it says so, in words, and does nothing else.\n\nWhat 0.3.0 adds, configured in lrpt.cfg. A symbol-rate search (symbol-rate auto, the default): if a carrier is heard but nothing locks for about 8 seconds it tries the other of 72 000 and 80 000 symbols a second. The plain 80 000 mode has been tried on generated signals only. The on-board time of each picture row is read and logged (read off the one recording; the epoch of the day counter is not established, so the date is taken from your computer's clock). Saving a finished pass, off by default (save-images yes): one grey PNG per channel, an RGB false-colour composite, an infrared picture and a statistics text file, never overwriting. The composite's channel mapping is an assumption, not from a document. A real pass saved this way gave a recognisable false-colour picture of cloud, land and sea.\n\nWhat it does not do: decode the operator's picture format from a document (it was worked out from one recording); prove the 80 000 symbols a second INTERLEAVED mode (built in 0.4.0 from the interleaver parameters of the meteor_decode program, with no official description and no recording, so only generated signals have decoded); give factory-calibrated temperatures (you can supply a two-point calibration, which colours the infrared picture and is labelled as yours); or put the picture on the map. It pairs with the Satellites plugin, which says when a satellite is overhead.\n\nWritten clean-room from CCSDS 131.0-B, 732.0-B and 133.0-B and ITU-T T.81, apart from the 0.4.0 interleaved mode, whose parameters come from the MIT-licensed meteor_decode. Its test builds its own transmitter and decodes the picture at eight sample rates up to 61.44 MS/s with a carrier offset, clock error, DC offset and noise, as QPSK and as offset QPSK; down to 2.5 dB (QPSK) or 3.0 dB (offset QPSK) energy-per-symbol to noise it recovers the whole picture, and in pure noise it never locks.",
       "category": "satellites-weather",
       "experimental": true,
-      "whatsNew": "0.4.0: Decodes the interleaved 80 000 symbols a second mode, using the interleaver parameters read from the meteor_decode program; setting interleaved-80k to no gives the old plain mode. It has been tried on generated signals only, and which sign convention the satellite uses is not known, so all four are tried.",
-      "published": "2026-11-12",
+      "whatsNew": "0.4.1: Starting no longer freezes FoxSDR while the data folder and lrpt.cfg are read; stopping no longer waits without limit. 0.4.0: Decodes the interleaved 80 000 symbols a second mode, using the interleaver parameters read from the meteor_decode program; setting interleaved-80k to no gives the old plain mode. It has been tried on generated signals only, and which sign convention the satellite uses is not known, so all four are tried.",
+      "published": "2026-11-24",
       "screenshots": [],
       "minSupportedVersion": "0.1.0",
       "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
@@ -1470,17 +1470,17 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "lrpt-decoder-0.4.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/lrpt-decoder-0.4.0-abi3-win-x64.dll",
-          "sha256": "06231f8b562dd88fe13215509999407e7f2ad940d869372e9bb0d42bd56ec8f1",
-          "sizeBytes": 360448
+          "file": "lrpt-decoder-0.4.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/lrpt-decoder-0.4.1-abi3-win-x64.dll",
+          "sha256": "318a7d14a403ae3f86db1067330eabdaf631a599e21cf6ecfcb33d7cd039b071",
+          "sizeBytes": 373248
         }
       ]
     },
     {
       "id": "goes",
       "name": "GOES Weather Satellites (HRIT / LRIT)",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "author": "FoxSDR project",
       "licence": "Free to use, source not published",
       "abiVersion": 3,
@@ -1492,8 +1492,8 @@
       "description": "The GOES satellites sit still over the Americas and broadcast, continuously and in the clear, what they are looking at: full-disk imagery from the Advanced Baseline Imager, the EMWIN text products that carry warnings and forecasts, and the administrative messages that go with them. This decoder takes that signal from raw I/Q all the way to the files it carries.\n\nThere are two links and it handles both. GOES 16, 18 and 19 send HRIT at 1694.1 MHz; the older GOES 13, 14 and 15 sent LRIT at 1691 MHz. Pick the preset for the one you are pointed at and the decoder chooses its own symbol rate, filter and framing to match. A panel shows the whole chain at once - whether the carrier and frame sync have locked, the signal-to-noise ratio, the bit error rate before error correction, how many frames arrived and how many the Reed-Solomon layer had to repair, which virtual channels the satellite is using, and what files are being built.\n\nA word about what you need, because this one is not a wire aerial. GOES is geostationary - about 36 000 km away, in a fixed spot in the sky - so it takes a dish of roughly a metre and a low-noise amplifier for the 1.7 GHz band. The reward is that it never sets: point it once and it works all day.\n\nGOES-R imagery is Rice compressed and this version decompresses it: a full-disk ABI image is drawn on screen, named by its band, as the older LRIT pictures already were. EMWIN text products arrive as text (they come zipped, and that is handled too). A product whose compression the decoder does not know is still written to disk as a standard .lrit file any xRIT tool will open, and the panel says so rather than showing an empty picture. One honest caveat: the decompressor is proven against the standard's reference streams and NOAA's published sample files, and no Rice-compressed product straight off a satellite has been through it; a real dish pass is the test that counts.\n\nSINCE 0.3.0. A coarse frequency pull-in measures how far the carrier is from where you tuned and moves the receiver onto it, so an LNB whose oscillator is not locked no longer stops the lock (pull-in no in goes.cfg turns it off). On a recording of a real GOES-17 HRIT signal whose carrier sat 292 kHz off centre, the decoder found 4 frames and refused all 4 before, and after it locked and produced 613 frames and 5 files (EMWIN text and two other products); that recording holds no picture, so no GOES image has been drawn from real air. The Viterbi stage is about 8.5 times faster with identical output. With save-images yes in goes.cfg (off by default) every finished picture is written as a grey PNG, never overwriting a file, named from a template you can change and optionally cut into named crop regions.\n\nWritten from the published specifications - the CCSDS synchronization and channel coding, space data link and space packet standards, the CGMS LRIT/HRIT Global Specification and NOAA's own LRIT documents - with the clause each block came from recorded beside it. The test suite carries a complete GOES transmitter and checks the randomiser, the Reed-Solomon dual basis and the convolutional encoder against numbers printed in those standards rather than against the decoder's own opinion.",
       "category": "satellites-weather",
       "experimental": false,
-      "whatsNew": "0.3.0: Locks on to a carrier that is hundreds of kilohertz off tune (coarse pull-in, on by default), decodes the error-correction layer about 8 times faster, and can save finished pictures as PNGs, whole or cropped, with a file-name template (off by default). Picture saving has only been tried on generated streams, not on a real GOES image.",
-      "published": "2026-11-12",
+      "whatsNew": "0.3.1: Starting no longer freezes FoxSDR while the products folder is made. 0.3.0: Locks on to a carrier that is hundreds of kilohertz off tune (coarse pull-in, on by default), decodes the error-correction layer about 8 times faster, and can save finished pictures as PNGs, whole or cropped, with a file-name template (off by default). Picture saving has only been tried on generated streams, not on a real GOES image.",
+      "published": "2026-11-24",
       "screenshots": [],
       "legalNotice": "This decoder was written from public specifications and is MIT licensed. goestools by Pieter Noordhuis (BSD 2-Clause, Copyright (c) 2017 Pieter Noordhuis) was read as a reference for the handful of transmitter behaviours the published documents do not state; no code was copied from it. libaec (BSD 2-Clause, Mathis Rosenhauer and the Deutsches Klimarechenzentrum) was consulted for the meaning of the seven flag bits in the Rice header record, which no standard defines; no code was copied from it either. See src/goes/NOTICE in the plugin repository for the full attribution.",
       "minSupportedVersion": "0.1.0",
@@ -1502,10 +1502,10 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "goes-0.3.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/goes-0.3.0-abi3-win-x64.dll",
-          "sha256": "3ba7b7231fe66335767d8a9d7e028fb6ae25d12b5f2f8cde59cd71debaf867d0",
-          "sizeBytes": 368128
+          "file": "goes-0.3.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/goes-0.3.1-abi3-win-x64.dll",
+          "sha256": "6ae079a19ca9216e8ed34a67215146480ba85b48d9a25ea11a8a98abe6d4a7f9",
+          "sizeBytes": 398336
         }
       ]
     },
@@ -2478,7 +2478,7 @@
     {
       "id": "effect-chain",
       "name": "Effect Chain",
-      "version": "0.3.0",
+      "version": "0.3.1",
       "author": "FoxSDR project",
       "licence": "Free to use, source not published",
       "abiVersion": 3,
@@ -2487,8 +2487,8 @@
       "description": "Passes the final audio of the receiver through a chain of up to eight effect stages, in the order you give, before it reaches your speakers. A stage is a VST3 effect (a .vst3 file or package) that you put in a folder yourself, or one of the small test effect modules (.dll) used to check the plugin. Each stage has a wet percentage and can be bypassed on its own, and the whole chain has a bypass that returns the audio unchanged. Each stage's own delay is added up, kept in time with the dry path so bypassing never makes a jump, and shown in the window with the effect's name, its state, its parameters and its processor use.\n\nYOU SUPPLY THE EFFECTS. The plugin ships none and never downloads or installs any. Nothing is loaded until you name an effects folder; the window then lists the .vst3 files in it (listing runs none of them) and loads only the ones you name in the stage list. Network folders and path tricks are refused. An effect that will not load, is not an effect, will not start, or does not fit mono or stereo audio is reported in plain words in the window and the log, never as a dialog box, and the audio goes on untouched. An effect's parameters are set in one text row (stage:parameter=value, for example 2:0=0.5) and take effect without reloading it. The state an effect keeps of its own (beyond those parameters) is saved a moment after you change them, up to 3000 bytes per stage, and given back to the same effect the next time it loads; a damaged or oversized saved state is refused with a plain sentence and the effect starts from its own settings.\n\nWHAT IT CAN AND CANNOT CONTAIN. An effect runs inside FoxSDR's own process, with FoxSDR's rights: it is someone else's program and there is no sandbox. If an effect crashes, hangs while loading or while playing, is too slow or returns invalid numbers, that stage is bypassed (a crashed one is not called again until you reload) and you are told once. By default each stage runs on its own thread and the audio waits for it at most a set time per block (8 ms); three bad blocks in a row bypass the stage. Run stages inline removes the wait but then cannot survive a hang. What this cannot stop: an effect that corrupts memory or overflows a stack can still take the whole program down, and an effect that does something harmful on purpose is not stopped at all. Load only effects you trust.\n\nLIMITS. Audio effects only: no instruments, no effect windows, no list of an effect's own presets, no MIDI, no side-chain, mono or stereo only. FoxSDR cannot be told about the chain's delay, so the delay is shown only in this plugin's window. Tested with small effects written for the test and with a stand-in host, not in the full application and with no third-party effect; a real third-party effect may behave differently. Windows only. The plugin has no network code and prints nothing.",
       "category": "maps-tools",
       "experimental": true,
-      "whatsNew": "0.3.0: an effect's own saved state is kept with the chain and given back at the next load (up to 3000 bytes a stage; a damaged one is refused in plain words). 0.2.0: loads VST3 effects that you supply: scans a folder you name, sets effect parameters, bypasses and unloads them, and says in plain words when one cannot be used. Tested with small effects written for the test, never with a third-party effect. A crashing or hanging effect is bypassed; one that corrupts memory can still stop FoxSDR.",
-      "published": "2026-11-16",
+      "whatsNew": "0.3.1: Building an effect chain no longer freezes FoxSDR while the effects load. 0.3.0: an effect's own saved state is kept with the chain and given back at the next load (up to 3000 bytes a stage; a damaged one is refused in plain words). 0.2.0: loads VST3 effects that you supply: scans a folder you name, sets effect parameters, bypasses and unloads them, and says in plain words when one cannot be used. Tested with small effects written for the test, never with a third-party effect. A crashing or hanging effect is bypassed; one that corrupts memory can still stop FoxSDR.",
+      "published": "2026-11-24",
       "screenshots": [],
       "legalNotice": "VST is a registered trademark of Steinberg Media Technologies GmbH. This plugin is built with the Steinberg VST 3 SDK, which is under the MIT licence (copyright 2026 Steinberg Media Technologies GmbH); the licence text is in the plugin's notice file. The effects you load are other people's programs, run inside FoxSDR without a sandbox, and are not supplied, checked or supported by this project.",
       "minSupportedVersion": "0.1.0",
@@ -2497,10 +2497,10 @@
         {
           "os": "windows",
           "arch": "x64",
-          "file": "effect-chain-0.3.0-abi3-win-x64.dll",
-          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/effect-chain-0.3.0-abi3-win-x64.dll",
-          "sha256": "3f6dfde161155d433cf31e2ede497da6d1f3de0c27df9a26069936480f3ec107",
-          "sizeBytes": 652800
+          "file": "effect-chain-0.3.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/effect-chain-0.3.1-abi3-win-x64.dll",
+          "sha256": "bd709815984420e4aee3351ddfd3b896a1c3313385bd2f29f14f3a270a8d5e0c",
+          "sizeBytes": 665088
         }
       ]
     },
