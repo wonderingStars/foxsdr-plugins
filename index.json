@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "generated": "2026-11-24T13:59:47Z",
+  "generated": "2026-11-27T12:03:02Z",
   "note": "Plugin catalogue for FoxSDR. The application fetches ONLY this file until you explicitly install something. Every download is verified against the sha256 recorded here before it is placed in the plugins directory.",
   "plugins": [
     {
@@ -632,6 +632,36 @@
           "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/hrpt-decoder-0.1.0-abi3-win-x64.dll",
           "sha256": "f7c7df88ebe24aa235a469e77a19cf99fe1c6417a6cfa6573c80b257783f86c0",
           "sizeBytes": 183808
+        }
+      ]
+    },
+    {
+      "id": "lora-monitor",
+      "name": "LoRa Monitor",
+      "version": "0.3.1",
+      "author": "FoxSDR project",
+      "licence": "Free to use, source not published",
+      "abiVersion": 3,
+      "capabilities": [
+        "CASCADE_CAP_IQ_DECODER"
+      ],
+      "summary": "Receives LoRa transmissions from raw I/Q (spreading factors 7 to 12) and shows the frame header and, where it can, the LoRaWAN or MeshCore header fields. Headers only. Receive only.",
+      "description": "LoRa is the chirp modulation used by many low-power sensors and mesh networks. This plugin finds the preamble, demodulates the symbols, undoes the interleaving and the error correction, and checks the frame header and the payload check. It shows the header fields (length, coding rate, whether a payload check is present) and, for LoRaWAN and MeshCore, the header fields of the packet: message type, counters, port, route and hop count. It shows the payload as a length only, never its content. Spreading factor and bandwidth can be set or scanned.\n\nDevice addresses (DevAddr, JoinEUI, DevEUI) are hidden by default: the setting Hide device addresses is on until you turn it off, and nothing about a device is written to disk. Receive only, and no network.\n\nThe scrambling sequence LoRa applies to the payload is not in the sources used, so it is not built in: unless you type a sequence into its settings, the payload is reported as not descrambled and the LoRaWAN and MeshCore fields cannot be read from real frames. Meshtastic frames are recognised by their sync word (0x2B) and their 16-byte routing header is shown: destination, sender, packet id, flags (hop limit, want-ack, via MQTT), channel hash, next hop and relay node. Node numbers are hidden by default like the other addresses, and the encrypted payload is only counted, never decoded. Like the LoRaWAN and MeshCore fields this needs the whitening bytes, so it has never run on a real frame, and the flag bit positions and packet-id byte order are unverified. Tested on generated signals only, so treat it as unproven on the air.",
+      "category": "meters-paging",
+      "experimental": true,
+      "whatsNew": "0.3.1: Back in the catalogue. It shows frame headers only, never message content: Meshtastic and LoRaWAN messages are not decoded or shown. 0.2.0: Recognises Meshtastic frames by their sync word and shows the 16-byte routing header (destination, sender, packet id, flags, channel hash, relay), with node numbers hidden by default. Still needs your own whitening bytes, so it has not run on a real frame; generated signals only.",
+      "published": "2026-11-27",
+      "screenshots": [],
+      "minSupportedVersion": "0.1.0",
+      "homepage": "https://github.com/wonderingStars/foxsdr-plugins",
+      "platforms": [
+        {
+          "os": "windows",
+          "arch": "x64",
+          "file": "lora-monitor-0.3.1-abi3-win-x64.dll",
+          "url": "https://raw.githubusercontent.com/wonderingStars/foxsdr-plugins/master/plugins/lora-monitor-0.3.1-abi3-win-x64.dll",
+          "sha256": "5190a7b6a86f0556b454590d158c790672c78ff7e438e7d4056727944369c89a",
+          "sizeBytes": 271872
         }
       ]
     },
